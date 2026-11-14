@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>سَنَد — مدير أعمالك الرقمي</title>
+  <title>Sanad Ai</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -337,9 +337,7 @@
             <span class="text-[11px] font-extrabold text-purple-700 bg-purple-50 px-3 py-1 rounded-full">
               حاسبة التوفير الشهري
             </span>
-            <span class="font-num text-[11px] font-extrabold text-rose-700 bg-rose-50 border border-rose-200/70 px-3 py-1 rounded-full">
-              نسبة توفير ثابتة 40%
-            </span>
+            
           </div>
           <h3 class="text-base sm:text-lg font-extrabold text-slate-900 mt-2">
             كم يوفر عليك «سَنَد» في متجرك أو منشأتك؟
@@ -382,9 +380,9 @@
           </div>
 
           <div class="bg-gradient-to-br from-rose-50 to-purple-50 rounded-2xl p-3.5 border border-pink-200/70 text-center">
-            <div class="text-[11px] font-extrabold text-rose-700">توفيرك الشهري الثابت (40%)</div>
+            <div class="text-[11px] font-extrabold text-rose-700">توفيرك الشهري التقريبي</div>
             <div id="netSaveVal" class="font-num text-base sm:text-lg font-extrabold text-rose-600 mt-1">
-              +1,200 SAR (40%)
+              +1,200 SAR
             </div>
           </div>
         </div>
@@ -531,7 +529,7 @@
 
       document.getElementById("calcStaffLabel").textContent = labels[count] || `سَنَد + ${count - 1} (${count} موظفين)`;
       document.getElementById("tradCostVal").textContent = tradCost.toLocaleString("en-US") + " SAR";
-      document.getElementById("netSaveVal").textContent = "+" + saved.toLocaleString("en-US") + " SAR (40%)";
+      document.getElementById("netSaveVal").textContent = "+" + saved.toLocaleString("en-US") + " SAR";
     }
   </script>
 
