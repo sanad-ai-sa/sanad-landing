@@ -115,8 +115,407 @@
       accent-color: #EC4899;
     }
   </style>
+
+<!-- === MANARAT SPA SIDEBAR & BI-DIRECTIONAL PORTAL === -->
+<style id="manarat-spa-styles">
+  :root {
+    --m-navy: #0F2540;
+    --m-blue: #2176AE;
+    --m-green: #2D6A4F;
+    --m-gold: #D4A017;
+    --m-red: #C1121F;
+    --m-sidebar-w: 270px;
+  }
+  body.manarat-spa-body {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .m-app-shell {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+  }
+  /* Fixed Sidebar that flips automatically with dir="rtl" vs dir="ltr" */
+  .m-sidebar {
+    width: var(--m-sidebar-w);
+    background: linear-gradient(180deg, #091526 0%, #0F2540 100%);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 99999;
+    box-shadow: 0 0 25px rgba(0,0,0,0.45);
+    border-inline-end: 1px solid rgba(212, 160, 23, 0.25);
+    transition: all 0.25s ease;
+    font-family: 'Cairo', 'Inter', sans-serif;
+  }
+  html[dir="rtl"] .m-sidebar { right: 0; left: auto; }
+  html[dir="ltr"] .m-sidebar { left: 0; right: auto; }
+
+  .m-main-area {
+    flex: 1;
+    min-height: 100vh;
+    transition: all 0.25s ease;
+    width: calc(100% - var(--m-sidebar-w));
+  }
+  html[dir="rtl"] .m-main-area { margin-right: var(--m-sidebar-w); margin-left: 0; }
+  html[dir="ltr"] .m-main-area { margin-left: var(--m-sidebar-w); margin-right: 0; }
+
+  /* Sidebar Header */
+  .m-sb-header {
+    padding: 20px 18px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .m-sb-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .m-sb-logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #D4A017, #b4820c);
+    color: #091526;
+    font-weight: 900;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(212,160,23,0.35);
+  }
+  .m-sb-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .m-sb-sub {
+    font-size: 11px;
+    color: #94a3b8;
+  }
+
+  /* Language Toggle Pill */
+  .m-lang-box {
+    padding: 12px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .m-lang-btn {
+    width: 100%;
+    background: rgba(33, 118, 174, 0.2);
+    border: 1px solid rgba(212, 160, 23, 0.45);
+    color: #f8fafc;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Cairo', 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: 0.2s;
+  }
+  .m-lang-btn:hover {
+    background: rgba(212, 160, 23, 0.25);
+    border-color: #D4A017;
+  }
+
+  /* Navigation Menu */
+  .m-nav-list {
+    list-style: none;
+    padding: 16px 12px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+  .m-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    color: #cbd5e1;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    text-align: start;
+    background: transparent;
+    width: 100%;
+    font-family: inherit;
+  }
+  .m-nav-item:hover {
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+  }
+  .m-nav-item.active {
+    background: linear-gradient(90deg, rgba(212,160,23,0.22), rgba(33,118,174,0.18));
+    color: #ffffff;
+    border-color: rgba(212,160,23,0.6);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  }
+  .m-nav-icon {
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+  }
+  .m-badge-active {
+    margin-inline-start: auto;
+    background: #2D6A4F;
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 12px;
+    font-weight: 700;
+  }
+
+  .m-sb-footer {
+    padding: 14px 18px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 11.5px;
+    color: #94a3b8;
+    text-align: center;
+  }
+
+  /* Views Management */
+  .m-view-panel {
+    display: none;
+  }
+  .m-view-panel.active {
+    display: block;
+    animation: mFadeIn 0.25s ease;
+  }
+  @keyframes mFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Portal Inner Pages (Onboarding & Support) */
+  .m-portal-wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 24px 70px;
+    font-family: 'Cairo', 'Inter', sans-serif;
+    color: #f8fafc;
+  }
+  .m-portal-card {
+    background: rgba(15, 37, 64, 0.88);
+    border: 1px solid rgba(212, 160, 23, 0.35);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    backdrop-filter: blur(12px);
+  }
+  .m-portal-title {
+    margin: 0 0 8px 0;
+    font-size: 24px;
+    font-weight: 800;
+    color: #D4A017;
+  }
+  .m-portal-desc {
+    margin: 0 0 24px 0;
+    font-size: 14.5px;
+    color: #cbd5e1;
+    line-height: 1.7;
+  }
+  .m-form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .m-field-box {
+    background: rgba(9, 21, 38, 0.75);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 16px 18px;
+    transition: 0.2s;
+  }
+  .m-field-box:focus-within {
+    border-color: #D4A017;
+    box-shadow: 0 0 0 2px rgba(212,160,23,0.2);
+  }
+  .m-field-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 800;
+    font-size: 14.5px;
+    color: #ffffff;
+    margin-bottom: 6px;
+  }
+  .m-field-hint {
+    font-size: 12.5px;
+    color: #94a3b8;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .m-input, .m-textarea, .m-select {
+    width: 100%;
+    box-sizing: border-box;
+    background: #060e1a;
+    border: 1px solid #334155;
+    color: #ffffff;
+    padding: 11px 14px;
+    border-radius: 8px;
+    font-family: 'Cairo', 'Inter', sans-serif;
+    font-size: 14px;
+  }
+  .m-input:focus, .m-textarea:focus, .m-select:focus {
+    outline: none;
+    border-color: #2176AE;
+  }
+  .m-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .m-submit-btn {
+    margin-top: 12px;
+    width: 100%;
+    background: linear-gradient(135deg, #2D6A4F, #1b4332);
+    color: #ffffff;
+    border: 1px solid rgba(212,160,23,0.5);
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-family: 'Cairo', 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .m-submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(45,106,79,0.45);
+  }
+  .m-pin-gate {
+    background: rgba(33, 118, 174, 0.14);
+    border: 1px dashed #D4A017;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  /* Mobile Responsive Header */
+  .m-mobile-bar {
+    display: none;
+    background: #091526;
+    color: #fff;
+    padding: 12px 16px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(212,160,23,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 99990;
+  }
+  @media (max-width: 900px) {
+    .m-sidebar {
+      transform: translateX(100%);
+      width: 260px;
+    }
+    html[dir="ltr"] .m-sidebar {
+      transform: translateX(-100%);
+    }
+    .m-sidebar.open {
+      transform: translateX(0) !important;
+    }
+    .m-main-area {
+      width: 100% !important;
+      margin: 0 !important;
+    }
+    .m-mobile-bar {
+      display: flex;
+    }
+    .m-row-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
 </head>
-<body class="crystal-page-bg flex flex-col justify-between">
+<body class="manarat-spa-body">
+
+<div class="m-mobile-bar">
+  <div style="display:flex;align-items:center;gap:8px;font-weight:800;">
+    <span style="background:#D4A017;color:#091526;padding:2px 8px;border-radius:6px;">س</span>
+    <span data-i18n="brand_name">منظومة سَنَد الرقمية</span>
+  </div>
+  <div style="display:flex;gap:8px;">
+    <button onclick="toggleManaratLang()" style="background:#2176AE;color:#fff;border:none;padding:6px 10px;border-radius:6px;font-weight:700;cursor:pointer;" id="m-mob-lang">EN / ع</button>
+    <button onclick="document.getElementById('m-sidebar').classList.toggle('open')" style="background:#D4A017;color:#091526;border:none;padding:6px 12px;border-radius:6px;font-weight:800;cursor:pointer;">☰</button>
+  </div>
+</div>
+
+<div class="m-app-shell">
+  <!-- FIXED SIDEBAR -->
+  <aside class="m-sidebar" id="m-sidebar">
+    <div class="m-sb-header">
+      <div class="m-sb-brand">
+        <div class="m-sb-logo">س</div>
+        <div>
+          <div class="m-sb-title" data-i18n="brand_name">منظومة سَنَد</div>
+          <div class="m-sb-sub" data-i18n="brand_sub">منارة العادل للتجارة</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-lang-box">
+      <button class="m-lang-btn" onclick="toggleManaratLang()">
+        <span>🌐</span>
+        <span id="m-lang-label">English (LTR) ⬅️</span>
+      </button>
+    </div>
+
+    <ul class="m-nav-list">
+      <li>
+        <button class="m-nav-item active" id="nav-home" onclick="switchManaratTab('home')">
+          <span class="m-nav-icon">🏠</span>
+          <span data-i18n="nav_home">الرئيسية (Home)</span>
+        </button>
+      </li>
+      <li>
+        <button class="m-nav-item" id="nav-onboard" onclick="switchManaratTab('onboard')">
+          <span class="m-nav-icon">🚀</span>
+          <span data-i18n="nav_onboard">المشتركين الجدد</span>
+          <span class="m-badge-active" data-i18n="badge_new">تفعيل</span>
+        </button>
+      </li>
+      <li>
+        <button class="m-nav-item" id="nav-support" onclick="switchManaratTab('support')">
+          <span class="m-nav-icon">💬</span>
+          <span data-i18n="nav_support">الاستفسارات والدعم</span>
+        </button>
+      </li>
+    </ul>
+
+    <div class="m-sb-footer">
+      <div data-i18n="sb_footer">بوابة الربط السحابي الموحدة v2.5</div>
+      <div style="margin-top:4px;color:#D4A017;font-family:Inter,sans-serif;">maladel.com</div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="m-main-area">
+    <!-- TAB 1: HOME (EXISTING LANDING PAGE) -->
+    <section id="view-home" class="m-view-panel active">
+      
 
   <!-- 1. الشريط العلوي -->
   <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-purple-100/70">
@@ -532,6 +931,366 @@
       document.getElementById("netSaveVal").textContent = "+" + saved.toLocaleString("en-US") + " SAR";
     }
   </script>
+
+
+    </section>
+
+    <!-- TAB 2: NEW SUBSCRIBERS (THE 5 MANDATORY ONBOARDING FIELDS) -->
+    <section id="view-onboard" class="m-view-panel">
+      <div class="m-portal-wrap">
+        <div class="m-portal-card">
+          <h2 class="m-portal-title" data-i18n="onb_title">🚀 بوابة تفعيل المتجر للمشتركين الجدد (البنود الخمسة)</h2>
+          <p class="m-portal-desc" data-i18n="onb_desc">
+            مرحباً بك في عائلة «سَنَد». تُحفظ بياناتك تلقائياً في متصفحك أثناء الكتابة حتى تتمكن من الذهاب لمنصة (سلة أو زد) لنسخ مفتاح الربط والعودة دون فقدان ما كتبته.
+          </p>
+
+          <div class="m-pin-gate">
+            <div>
+              <strong style="color:#D4A017;" data-i18n="pin_label">🔑 كود التفعيل أو رقم إيصال التحويل (المرسل من سَنَد):</strong>
+              <div style="font-size:12px;color:#cbd5e1;" data-i18n="pin_hint">يسمح لك بالدخول والخروج لحفظ وإكمال بيانات متجرك</div>
+            </div>
+            <input type="text" id="onb_code" class="m-input" style="max-width:220px;text-align:center;font-weight:800;letter-spacing:1px;" placeholder="مثال: 5142451" oninput="saveOnbDraft()">
+          </div>
+
+          <div class="m-form-grid">
+            <!-- 1 -->
+            <div class="m-field-box">
+              <div class="m-field-label">
+                <span>1️⃣</span>
+                <span data-i18n="f1_title">اسم متجرك الرسمي + رابط المتجر على (سلة أو زد)</span>
+              </div>
+              <div class="m-field-hint" data-i18n="f1_hint">اكتب اسم المتجر كما يظهر للعملاء مع الرابط الكامل للمتجر.</div>
+              <div class="m-row-2">
+                <input type="text" id="onb_store_name" class="m-input" data-i18n-ph="f1_ph1" placeholder="اسم المتجر الرسمي (مثال: متجر رفا)" oninput="saveOnbDraft()">
+                <input type="url" id="onb_store_url" class="m-input" data-i18n-ph="f1_ph2" placeholder="https://salla.sa/your-store" oninput="saveOnbDraft()">
+              </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="m-field-box">
+              <div class="m-field-label">
+                <span>2️⃣</span>
+                <span data-i18n="f2_title">الاسم المفضل لموظفك الرقمي الذي سيخاطب عملاءك</span>
+              </div>
+              <div class="m-field-hint" data-i18n="f2_hint">الاسم الذي سيعرّف به الموظف الرقمي نفسه عند الرد على زبائنك.</div>
+              <input type="text" id="onb_bot_name" class="m-input" data-i18n-ph="f2_ph" placeholder="مثال: سَنَد، أو مساعد متجر رفا..." oninput="saveOnbDraft()">
+            </div>
+
+            <!-- 3 -->
+            <div class="m-field-box">
+              <div class="m-field-label">
+                <span>3️⃣</span>
+                <span data-i18n="f3_title">رقم جوال المالك (Owner) لاستقبال تقارير المستودع</span>
+              </div>
+              <div class="m-field-hint" data-i18n="f3_hint">سيتم اعتماد هذا الرقم كجوال الأونر (المالك) الذي يستقبل تقارير المستودع وتنبيهات البضاعة التي شارفت على الانتهاء.</div>
+              <input type="tel" id="onb_owner_phone" class="m-input" placeholder="05XXXXXXXX" oninput="saveOnbDraft()">
+            </div>
+
+            <!-- 4 -->
+            <div class="m-field-box">
+              <div class="m-field-label">
+                <span>4️⃣</span>
+                <span data-i18n="f4_title">رقم واتساب خدمة العملاء الذي سيعمل عليه الموظف الرقمي</span>
+              </div>
+              <div class="m-field-hint" data-i18n="f4_hint">الرقم المخصص للرد على الزبائن (سيتم إرسال باركود الربط QR له).</div>
+              <input type="tel" id="onb_bot_phone" class="m-input" placeholder="05XXXXXXXX" oninput="saveOnbDraft()">
+            </div>
+
+            <!-- 5 -->
+            <div class="m-field-box">
+              <div class="m-field-label">
+                <span>5️⃣</span>
+                <span data-i18n="f5_title">مفتاح الربط البرمجي الحي للمتجر (API Token للقراءة فقط) + الحد الأدنى للكمية</span>
+              </div>
+              <div class="m-field-hint" data-i18n="f5_hint">من إعدادات متجرك في (سلة أو زد) ليسحب أمين المستودع «رَصد» منتجاتك وأسعارك لحظة بلحظة — مع تحديد الحد الأدنى للكمية للتنبيه قبل النفاد.</div>
+              <div class="m-row-2">
+                <input type="password" id="onb_api_token" class="m-input" data-i18n-ph="f5_ph1" placeholder="Read-Only API Token">
+                <input type="number" id="onb_min_qty" class="m-input" value="5" min="1" data-i18n-ph="f5_ph2" placeholder="الحد الأدنى للكمية (مثال: 5)" oninput="saveOnbDraft()">
+              </div>
+            </div>
+
+            <button class="m-submit-btn" onclick="submitOnboardingForm()" data-i18n="onb_submit">
+              ✅ اعتماد البيانات الخمسة وإرسالها لتفعيل الموظف الرقمي فوراً
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: BATCH INQUIRIES & MAINTENANCE TICKETS -->
+    <section id="view-support" class="m-view-panel">
+      <div class="m-portal-wrap">
+        <div class="m-portal-card">
+          <h2 class="m-portal-title" data-i18n="sup_title">💬 بوابة الاستفسارات الشاملة وتذاكر الصيانة</h2>
+          <p class="m-portal-desc" data-i18n="sup_desc">
+            بدلاً من كتابة رسائل متقطعة، اكتب جميع استفساراتك أو تفاصيل تذكرة الصيانة دفعة واحدة هنا، وسيقوم «سَنَد» بالرد على كافة نقاطك في رسالة واحدة شاملة ومرتبة على الواتساب.
+          </p>
+
+          <div class="m-form-grid">
+            <div class="m-row-2">
+              <div class="m-field-box">
+                <div class="m-field-label" data-i18n="sup_name_lbl">الاسم الكريم / اسم المتجر</div>
+                <input type="text" id="sup_name" class="m-input" placeholder="مثال: فهد - متجر العطور">
+              </div>
+              <div class="m-field-box">
+                <div class="m-field-label" data-i18n="sup_phone_lbl">رقم الواتساب (لاستلام الرد الشامل)</div>
+                <input type="tel" id="sup_phone" class="m-input" placeholder="05XXXXXXXX">
+              </div>
+            </div>
+
+            <div class="m-field-box">
+              <div class="m-field-label" data-i18n="sup_type_lbl">نوع الطلب</div>
+              <select id="sup_type" class="m-select">
+                <option value="استفسار شامل قبل الاشتراك" data-i18n="sup_opt1">📩 استفسارات شاملة قبل الاشتراك (رد موحد في رسالة واحدة)</option>
+                <option value="تذكرة صيانة لمشترك حالي" data-i18n="sup_opt2">🛠️ رفع تذكرة صيانة للدعم الفني (لمشتركي سَنَد)</option>
+              </select>
+            </div>
+
+            <div class="m-field-box">
+              <div class="m-field-label" data-i18n="sup_msg_lbl">اكتب جميع استفساراتك أو تفاصيل طلب الصيانة هنا:</div>
+              <div class="m-field-hint" data-i18n="sup_msg_hint">رتب أسئلتك (1، 2، 3...) أو اكتبها بحرية وسيجيبك سَنَد عليها بالكامل في رد واحد.</div>
+              <textarea id="sup_msg" rows="6" class="m-textarea" placeholder="1- هل يدعم...&#10;2- كيف يتم...&#10;3- ..."></textarea>
+            </div>
+
+            <button class="m-submit-btn" onclick="submitSupportForm()" data-i18n="sup_submit">
+              🚀 إرسال كافة الاستفسارات / التذكرة بضغطة واحدة
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+const M_I18N = {
+  ar: {
+    dir: "rtl",
+    lang_btn: "English (LTR) ⬅️",
+    brand_name: "منظومة سَنَد",
+    brand_sub: "منارة العادل للتجارة",
+    nav_home: "الرئيسية (Home)",
+    nav_onboard: "المشتركين الجدد",
+    badge_new: "تفعيل",
+    nav_support: "الاستفسارات والدعم",
+    sb_footer: "بوابة الربط السحابي الموحدة v2.5",
+    onb_title: "🚀 بوابة تفعيل المتجر للمشتركين الجدد (البنود الخمسة)",
+    onb_desc: "مرحباً بك في عائلة «سَنَد». تُحفظ بياناتك تلقائياً في متصفحك أثناء الكتابة حتى تتمكن من الذهاب لمنصة (سلة أو زد) لنسخ مفتاح الربط والعودة دون فقدان ما كتبته.",
+    pin_label: "🔑 كود التفعيل أو رقم إيصال التحويل (المرسل من سَنَد):",
+    pin_hint: "يسمح لك بالدخول والخروج لحفظ وإكمال بيانات متجرك",
+    f1_title: "اسم متجرك الرسمي + رابط المتجر على (سلة أو زد)",
+    f1_hint: "اكتب اسم المتجر كما يظهر للعملاء مع الرابط الكامل للمتجر.",
+    f1_ph1: "اسم المتجر الرسمي (مثال: متجر رفا)",
+    f1_ph2: "https://salla.sa/your-store",
+    f2_title: "الاسم المفضل لموظفك الرقمي الذي سيخاطب عملاءك",
+    f2_hint: "الاسم الذي سيعرّف به الموظف الرقمي نفسه عند الرد على زبائنك.",
+    f2_ph: "مثال: سَنَد، أو مساعد متجر رفا...",
+    f3_title: "رقم جوال المالك (Owner) لاستقبال تقارير المستودع",
+    f3_hint: "سيتم اعتماد هذا الرقم كجوال الأونر (المالك) الذي يستقبل تقارير المستودع وتنبيهات البضاعة التي شارفت على الانتهاء.",
+    f4_title: "رقم واتساب خدمة العملاء الذي سيعمل عليه الموظف الرقمي",
+    f4_hint: "الرقم المخصص للرد على الزبائن (سيتم إرسال باركود الربط QR له).",
+    f5_title: "مفتاح الربط البرمجي الحي للمتجر (API Token للقراءة فقط) + الحد الأدنى للكمية",
+    f5_hint: "من إعدادات متجرك في (سلة أو زد) ليسحب أمين المستودع «رَصد» منتجاتك وأسعارك لحظة بلحظة — مع تحديد الحد الأدنى للكمية للتنبيه قبل النفاد.",
+    f5_ph1: "Read-Only API Token",
+    f5_ph2: "الحد الأدنى للكمية (مثال: 5)",
+    onb_submit: "✅ اعتماد البيانات الخمسة وإرسالها لتفعيل الموظف الرقمي فوراً",
+    sup_title: "💬 بوابة الاستفسارات الشاملة وتذاكر الصيانة",
+    sup_desc: "بدلاً من كتابة رسائل متقطعة، اكتب جميع استفساراتك أو تفاصيل تذكرة الصيانة دفعة واحدة هنا، وسيقوم «سَنَد» بالرد على كافة نقاطك في رسالة واحدة شاملة ومرتبة على الواتساب.",
+    sup_name_lbl: "الاسم الكريم / اسم المتجر",
+    sup_phone_lbl: "رقم الواتساب (لاستلام الرد الشامل)",
+    sup_type_lbl: "نوع الطلب",
+    sup_opt1: "📩 استفسارات شاملة قبل الاشتراك (رد موحد في رسالة واحدة)",
+    sup_opt2: "🛠️ رفع تذكرة صيانة للدعم الفني (لمشتركي سَنَد)",
+    sup_msg_lbl: "اكتب جميع استفساراتك أو تفاصيل طلب الصيانة هنا:",
+    sup_msg_hint: "رتب أسئلتك (1، 2، 3...) أو اكتبها بحرية وسيجيبك سَنَد عليها بالكامل في رد واحد.",
+    sup_submit: "🚀 إرسال كافة الاستفسارات / التذكرة بضغطة واحدة"
+  },
+  en: {
+    dir: "ltr",
+    lang_btn: "➡️ العربية (RTL)",
+    brand_name: "Sanad AI Platform",
+    brand_sub: "Manarat Al-Adel Trading",
+    nav_home: "Home",
+    nav_onboard: "New Subscribers",
+    badge_new: "Setup",
+    nav_support: "Inquiries & Support",
+    sb_footer: "Unified Cloud Portal v2.5",
+    onb_title: "🚀 New Store Onboarding Portal (5 Mandatory Steps)",
+    onb_desc: "Welcome to Sanad AI. Your entries are auto-saved in your browser so you can switch tabs to Salla/Zid to copy your API token and return anytime without losing progress.",
+    pin_label: "🔑 Activation Code / Transfer Ref (Provided by Sanad):",
+    pin_hint: "Allows multi-entry access to complete your store setup",
+    f1_title: "Official Store Name + Store Link (Salla or Zid)",
+    f1_hint: "Enter your public store name and full store URL.",
+    f1_ph1: "Official Store Name (e.g., Rafa Store)",
+    f1_ph2: "https://salla.sa/your-store",
+    f2_title: "Preferred Name for Your Digital Employee",
+    f2_hint: "The persona name your AI assistant will use when greeting your customers.",
+    f2_ph: "e.g., Sanad, or Rafa Store Assistant...",
+    f3_title: "Owner Mobile Number (For Inventory & Low-Stock Reports)",
+    f3_hint: "This number is registered as the Store Owner to receive warehouse reports and low-stock alerts.",
+    f4_title: "Customer Service WhatsApp Number (Bot Number)",
+    f4_hint: "The dedicated WhatsApp number that will reply to your customers (receives QR link).",
+    f5_title: "Live Store API Token (Read-Only) + Low-Stock Threshold",
+    f5_hint: "From your Salla/Zid settings so Rasd Engine can sync products & prices in real-time — plus minimum quantity alert limit.",
+    f5_ph1: "Read-Only API Token",
+    f5_ph2: "Min Qty Threshold (e.g., 5)",
+    onb_submit: "✅ Submit All 5 Setup Items & Activate Digital Employee",
+    sup_title: "💬 All-in-One Inquiries & Maintenance Ticket Portal",
+    sup_desc: "Instead of sending fragmented messages, write all your questions or technical ticket details here at once. Sanad AI will reply to all your points in one comprehensive WhatsApp message.",
+    sup_name_lbl: "Your Name / Store Name",
+    sup_phone_lbl: "WhatsApp Number (To Receive Reply)",
+    sup_type_lbl: "Request Type",
+    sup_opt1: "📩 Pre-Subscription Batch Inquiry (Single Unified Reply)",
+    sup_opt2: "🛠️ Technical Maintenance Ticket (Existing Subscribers)",
+    sup_msg_lbl: "Write all your questions or maintenance details below:",
+    sup_msg_hint: "List your questions (1, 2, 3...) and Sanad will answer everything in one organized message.",
+    sup_submit: "🚀 Send All Inquiries / Submit Ticket in One Click"
+  }
+};
+
+let currentManaratLang = localStorage.getItem("manarat_lang") || "ar";
+
+function applyManaratLang(lang) {
+  currentManaratLang = lang;
+  localStorage.setItem("manarat_lang", lang);
+  const dict = M_I18N[lang];
+  document.documentElement.setAttribute("dir", dict.dir);
+  document.documentElement.setAttribute("lang", lang);
+
+  const lbl = document.getElementById("m-lang-label");
+  if (lbl) lbl.textContent = dict.lang_btn;
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const k = el.getAttribute("data-i18n");
+    if (dict[k]) el.textContent = dict[k];
+  });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+    const k = el.getAttribute("data-i18n-ph");
+    if (dict[k]) el.setAttribute("placeholder", dict[k]);
+  });
+}
+
+function toggleManaratLang() {
+  applyManaratLang(currentManaratLang === "ar" ? "en" : "ar");
+}
+
+function switchManaratTab(tab) {
+  ["home", "onboard", "support"].forEach(t => {
+    const v = document.getElementById("view-" + t);
+    const n = document.getElementById("nav-" + t);
+    if (v) v.classList.toggle("active", t === tab);
+    if (n) n.classList.toggle("active", t === tab);
+  });
+  const sb = document.getElementById("m-sidebar");
+  if (sb) sb.classList.remove("open");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function saveOnbDraft() {
+  const draft = {
+    code: document.getElementById("onb_code")?.value || "",
+    storeName: document.getElementById("onb_store_name")?.value || "",
+    storeUrl: document.getElementById("onb_store_url")?.value || "",
+    botName: document.getElementById("onb_bot_name")?.value || "",
+    ownerPhone: document.getElementById("onb_owner_phone")?.value || "",
+    botPhone: document.getElementById("onb_bot_phone")?.value || "",
+    minQty: document.getElementById("onb_min_qty")?.value || "5"
+  };
+  localStorage.setItem("manarat_onb_draft", JSON.stringify(draft));
+}
+
+function loadOnbDraft() {
+  try {
+    const raw = localStorage.getItem("manarat_onb_draft");
+    if (!raw) return;
+    const d = JSON.parse(raw);
+    if (d.code) document.getElementById("onb_code").value = d.code;
+    if (d.storeName) document.getElementById("onb_store_name").value = d.storeName;
+    if (d.storeUrl) document.getElementById("onb_store_url").value = d.storeUrl;
+    if (d.botName) document.getElementById("onb_bot_name").value = d.botName;
+    if (d.ownerPhone) document.getElementById("onb_owner_phone").value = d.ownerPhone;
+    if (d.botPhone) document.getElementById("onb_bot_phone").value = d.botPhone;
+    if (d.minQty) document.getElementById("onb_min_qty").value = d.minQty;
+  } catch (e) {}
+}
+
+function submitOnboardingForm() {
+  const code = document.getElementById("onb_code").value.trim() || "NEW";
+  const sName = document.getElementById("onb_store_name").value.trim();
+  const sUrl = document.getElementById("onb_store_url").value.trim();
+  const bName = document.getElementById("onb_bot_name").value.trim() || "سند";
+  const oPhone = document.getElementById("onb_owner_phone").value.trim();
+  const bPhone = document.getElementById("onb_bot_phone").value.trim();
+  const token = document.getElementById("onb_api_token").value.trim();
+  const minQty = document.getElementById("onb_min_qty").value.trim() || "5";
+
+  if (!sName || !oPhone || !bPhone) {
+    alert(currentManaratLang === "ar" ? "يرجى إكمال الحقول الأساسية (اسم المتجر، جوال المالك، ورقم البوت)." : "Please fill in the required fields (Store Name, Owner Phone, Bot Phone).");
+    return;
+  }
+
+  const msg = [
+    "🚀 *طلب تفعيل مشترك جديد (البنود الخمسة - maladel.com)*",
+    "🔑 كود التفعيل: " + code,
+    "1️⃣ المتجر: " + sName + " | " + sUrl,
+    "2️⃣ اسم الموظف الرقمي: " + bName,
+    "3️⃣ جوال المالك (للتقارير): " + oPhone,
+    "4️⃣ واتساب خدمة العملاء: " + bPhone,
+    "5️⃣ مفتاح الربط (Token): " + (token ? token : "سيتم تزويده") + " | الحد الأدنى للكمية: " + minQty
+  ].join("
+");
+
+  try {
+    fetch("http://127.0.0.1:5699/api/portal-event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type: "ONBOARDING", code, sName, sUrl, bName, oPhone, bPhone, minQty, time: new Date().toISOString() })
+    }).catch(() => {});
+  } catch (e) {}
+
+  window.open("https://wa.me/966566566977?text=" + encodeURIComponent(msg), "_blank");
+}
+
+function submitSupportForm() {
+  const name = document.getElementById("sup_name").value.trim();
+  const phone = document.getElementById("sup_phone").value.trim();
+  const type = document.getElementById("sup_type").value;
+  const details = document.getElementById("sup_msg").value.trim();
+
+  if (!name || !details) {
+    alert(currentManaratLang === "ar" ? "يرجى كتابة الاسم وتفاصيل الاستفسار أو التذكرة." : "Please enter your name and inquiry/ticket details.");
+    return;
+  }
+
+  const tktId = "TKT-" + Math.floor(1000 + Math.random() * 9000);
+  const msg = [
+    "📌 *" + type + " (" + tktId + ")*",
+    "👤 العميل/المتجر: " + name,
+    "📱 الواتساب: " + phone,
+    "📝 التفاصيل الكاملة (لإجابتها في رسالة واحدة):",
+    details
+  ].join("
+");
+
+  try {
+    fetch("http://127.0.0.1:5699/api/portal-event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type: "TICKET", tktId, category: type, name, phone, details, time: new Date().toISOString() })
+    }).catch(() => {});
+  } catch (e) {}
+
+  window.open("https://wa.me/966566566977?text=" + encodeURIComponent(msg), "_blank");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("manarat-spa-body");
+  loadOnbDraft();
+  applyManaratLang(currentManaratLang);
+  if (window.location.hash === "#onboard") switchManaratTab("onboard");
+  if (window.location.hash === "#support") switchManaratTab("support");
+});
+</script>
 
 </body>
 </html>
