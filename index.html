@@ -637,8 +637,8 @@ const arPairs = [
   ["حجم الطاقم الرقمي (مبيعات + فواتير + محاسبة):", "Digital Team Size (Sales + Invoicing + Inventory):"],
   ["التكلفة التشغيلية المعتادة", "Typical Monthly Payroll"],
   ["توفيرك الشهري التقريبي", "Your Estimated Monthly Savings"],
-  ["الباقة الشاملة (حتى 5 موظفين + سَنَد)", "All-In-One Package (Sanad + Rasd)"],
-  ["وظّف «سَنَد» وفريقه في أعمالك اليوم", "Hire Sanad & Rasd For Your Store Today"],
+  ["الباقة الشاملة (سَنَد + فريق عمل رقمي)", "All-In-One Package (Sanad & Digital Team)"],
+  ["وظّف «سَنَد» وفريقه الرقمي في أعمالك اليوم", "Hire Sanad & His Digital Team Today"],
   ["ريال / شهرياً (شامل كل المهام)", "SAR / Month (All-Inclusive)"],
   ["رد آلي ذكي وإدارة مبيعات المتجر في الواتساب", "Smart WhatsApp AI Sales & Customer Care"],
   ["إصدار فواتير وعروض أسعار PDF غير محدودة", "Real-Time Inventory Sync via Rasd Engine"],
@@ -759,7 +759,7 @@ function toggleHostingerLang() {
 
   // Auth Modal
   document.getElementById("auth-title").textContent = isEn ? "Sign in to Sanad AI Portal" : "تسجيل الدخول إلى بوابة سَنَد";
-  document.getElementById("auth-sub").textContent = isEn ? "Choose your sign-in method to access your Rasd-synced store dashboard" : "اختر طريقة الدخول لفتح لوحة تحكم متجرك المتزامنة مع «رَصد»";
+  document.getElementById("auth-sub").textContent = isEn ? "Enter your email to access your store dashboard or preview the platform" : "أدخل بريدك الإلكتروني لفتح لوحة تحكم متجرك أو معاينة المنظومة";
   document.getElementById("auth-google-btn").textContent = isEn ? "Continue with Google" : "المتابعة باستخدام حساب Google";
   
   document.getElementById("auth-or-txt").textContent = isEn ? "OR CONTINUE WITH EMAIL" : "أو عبر البريد الإلكتروني المباشر";
@@ -771,21 +771,21 @@ function toggleHostingerLang() {
   document.getElementById("ws-sb-brand").textContent = isEn ? "Sanad Portal" : "بوابة سَنَد";
   document.getElementById("ws-lbl-home").textContent = isEn ? "Home (Store Dashboard)" : "الرئيسية";
   document.getElementById("ws-lbl-setup").textContent = isEn ? "Store Setup (5 Steps)" : "إعدادات المتجر (الـ 5 خانات)";
-  document.getElementById("ws-lbl-rasd").textContent = isEn ? "Rasd Inventory Sync" : "مزامنة مستودع «رَصد»";
+  document.getElementById("ws-lbl-rasd").textContent = isEn ? "Inventory & Catalog Sync" : "مزامنة المخزون والكتالوج";
   document.getElementById("ws-lbl-support").textContent = isEn ? "Inquiries & Support" : "الاستفسارات وتذاكر الصيانة";
   document.getElementById("ws-logout-btn").textContent = isEn ? "Log Out" : "تسجيل الخروج";
-  document.getElementById("ws-top-title").textContent = isEn ? "Subscriber Workspace (Sanad + Rasd)" : "لوحة تحكم المشترك (سَنَد + رَصد)";
-  document.getElementById("ws-status-pill").textContent = isEn ? "🟢 Sanad + Rasd: Online" : "🟢 سَنَد + رَصد: متصل";
+  document.getElementById("ws-top-title").textContent = isEn ? "Subscriber Workspace (Sanad & Digital Team)" : "لوحة تحكم المشترك (سَنَد وفريقه الرقمي)";
+  document.getElementById("ws-status-pill").textContent = isEn ? "🟢 Sanad & Team: Online" : "🟢 سَنَد وفريقه الرقمي: متصل";
   document.getElementById("kpi1-lbl").textContent = isEn ? "Digital Employee (Sanad)" : "حالة الموظف الرقمي (سَنَد)";
   document.getElementById("kpi1-val").textContent = isEn ? "🟢 Active on WhatsApp" : "🟢 نشط على الواتساب";
   document.getElementById("kpi1-sub").textContent = isEn ? "Replying to customers 24/7" : "يرد على العملاء على مدار الساعة";
-  document.getElementById("kpi2-lbl").textContent = isEn ? "Synced Items in Rasd" : "أصناف المتجر في «رَصد»";
+  document.getElementById("kpi2-lbl").textContent = isEn ? "Synced Store Items" : "أصناف المتجر المتزامنة";
   document.getElementById("kpi2-sub").textContent = isEn ? "Auto-synced with your store" : "متزامنة تلقائياً مع متجرك";
   document.getElementById("kpi3-lbl").textContent = isEn ? "Low-Stock Alerts" : "تنبيهات انخفاض المخزون";
   document.getElementById("kpi3-val").textContent = isEn ? "3 Items" : "3 أصناف";
   document.getElementById("kpi3-sub").textContent = isEn ? "Reached minimum threshold" : "وصلت للحد الأدنى المعتمد";
   document.getElementById("home-card-title").textContent = isEn ? "📊 Live Store & Rasd Inventory Summary" : "📊 ملخص الربط والمزامنة الحية مع متجرك";
-  document.getElementById("home-card-desc").textContent = isEn ? "Your clean unified view synced with Rasd Engine and Sanad AI." : "تعرض هذه الصفحة خلاصة بيانات متجرك المسحوبة عبر أمين المستودع «رَصد» وحالة موظف المبيعات «سَنَد» في شاشة واحدة مريحة بصرياً.";
+  document.getElementById("home-card-desc").textContent = isEn ? "Your clean unified view managed by Sanad AI and his digital team." : "تعرض هذه الصفحة خلاصة بيانات متجرك المسحوبة عبر الفريق الرقمي بقيادة «سَنَد» في شاشة واحدة مريحة بصرياً.";
   document.getElementById("home-btn-setup").textContent = isEn ? "⚙️ Update 5 Store Setup Steps" : "⚙️ تحديث بيانات الربط الخمسة";
   document.getElementById("home-btn-sup").textContent = isEn ? "💬 Send Batch Inquiry / Ticket" : "💬 إرسال استفسار أو تذكرة صيانة";
 
@@ -823,7 +823,7 @@ function toggleHostingerLang() {
       "hn-signin-text": "تسجيل الدخول",
       "hn-signup-text": "اشترك الآن",
       "auth-title": "تسجيل الدخول إلى بوابة سَنَد",
-      "auth-sub": "اختر طريقة الدخول لفتح لوحة تحكم متجرك المتزامنة مع «رَصد»",
+      "auth-sub": "أدخل بريدك الإلكتروني لفتح لوحة تحكم متجرك أو معاينة المنظومة",
       "auth-google-btn": "المتابعة باستخدام حساب Google",
       "auth-or-txt": "أو عبر البريد الإلكتروني المباشر",
       "auth-email-lbl": "البريد الإلكتروني",
@@ -832,22 +832,22 @@ function toggleHostingerLang() {
       "ws-sb-brand": "بوابة سَنَد",
       "ws-lbl-home": "الرئيسية",
       "ws-lbl-setup": "إعدادات المتجر (الـ 5 خانات)",
-      "ws-lbl-rasd": "مزامنة مستودع «رَصد»",
+      "ws-lbl-rasd": "مزامنة المخزون والكتالوج",
       "ws-lbl-support": "الاستفسارات وتذاكر الصيانة",
       "ws-lang-btn": "English",
       "ws-logout-btn": "تسجيل الخروج",
-      "ws-top-title": "لوحة تحكم المشترك (سَنَد + رَصد)",
-      "ws-status-pill": "🟢 سَنَد + رَصد: متصل",
+      "ws-top-title": "لوحة تحكم المشترك (سَنَد وفريقه الرقمي)",
+      "ws-status-pill": "🟢 سَنَد وفريقه الرقمي: متصل",
       "kpi1-lbl": "حالة الموظف الرقمي (سَنَد)",
       "kpi1-val": "🟢 نشط على الواتساب",
       "kpi1-sub": "يرد على العملاء على مدار الساعة",
-      "kpi2-lbl": "أصناف المتجر في «رَصد»",
+      "kpi2-lbl": "أصناف المتجر المتزامنة",
       "kpi2-sub": "متزامنة تلقائياً مع متجرك",
       "kpi3-lbl": "تنبيهات انخفاض المخزون",
       "kpi3-val": "3 أصناف",
       "kpi3-sub": "وصلت للحد الأدنى المعتمد",
       "home-card-title": "📊 ملخص الربط والمزامنة الحية مع متجرك",
-      "home-card-desc": "تعرض هذه الصفحة خلاصة بيانات متجرك المسحوبة عبر أمين المستودع «رَصد» وحالة موظف المبيعات «سَنَد» في شاشة واحدة مريحة بصرياً.",
+      "home-card-desc": "تعرض هذه الصفحة خلاصة بيانات متجرك المسحوبة عبر الفريق الرقمي بقيادة «سَنَد» في شاشة واحدة مريحة بصرياً.",
       "home-btn-setup": "⚙️ تحديث بيانات الربط الخمسة",
       "home-btn-sup": "💬 إرسال استفسار أو تذكرة صيانة",
       "setup-title": "🚀 إعدادات تفعيل وربط المتجر (الخانات الخمس)",
@@ -861,10 +861,10 @@ function toggleHostingerLang() {
       "f4-lbl": "4️⃣ رقم واتساب خدمة العملاء الذي سيعمل عليه الموظف الرقمي",
       "f4-sub": "الرقم المخصص للرد على الزبائن",
       "f5-lbl": "5️⃣ مفتاح الربط البرمجي (API Token للقراءة فقط) + الحد الأدنى للكمية",
-      "f5-sub": "ليسحب أمين المستودع «رَصد» منتجاتك وأسعارك لحظة بلحظة",
-      "setup-submit-btn": "✅ حفظ واعتماد إعدادات المتجر الخمسة لدى «سَنَد» و«رَصد»",
-      "rasd-title": "📦 حالة مزامنة أمين المستودع «رَصد»",
-      "rasd-desc": "يقرأ «رَصد» أصنافك وأسعارك وكمياتك آلياً عبر مفتاح القراءة فقط، ويرسل تنبيهاً لجوال المالك فور وصول أي صنف للحد الأدنى.",
+      "f5-sub": "ليسحب فريق «سَنَد» منتجاتك وأسعارك ومخزونك لحظة بلحظة",
+      "setup-submit-btn": "✅ حفظ واعتماد إعدادات المتجر الخمسة لدى «سَنَد»",
+      "rasd-title": "📦 حالة مزامنة المخزون والمنتجات (فريق سَنَد)",
+      "rasd-desc": "يقوم الفريق الرقمي تحت إدارة «سَنَد» بقراءة أصنافك وأسعارك وكمياتك آلياً عبر مفتاح القراءة فقط، وإرسال تنبيه لجوال المالك فور وصول أي صنف للحد الأدنى.",
       "rasd-sync-lbl": "آخر مزامنة للكتالوج والأسعار:",
       "rasd-sync-sub": "متصل وجاهز للمزامنة الآلية",
       "sup-title": "💬 الاستفسارات الشاملة وتذاكر الصيانة",
@@ -882,7 +882,7 @@ function toggleHostingerLang() {
       "hn-signin-text": "Sign In",
       "hn-signup-text": "Sign Up",
       "auth-title": "Sign in to Sanad AI Portal",
-      "auth-sub": "Choose your sign-in method to access your Rasd-synced store dashboard",
+      "auth-sub": "Enter your email to access your store dashboard or preview the platform",
       "auth-google-btn": "Continue with Google",
       "auth-or-txt": "OR CONTINUE WITH EMAIL",
       "auth-email-lbl": "Email Address",
@@ -891,22 +891,22 @@ function toggleHostingerLang() {
       "ws-sb-brand": "Sanad Portal",
       "ws-lbl-home": "Home (Dashboard)",
       "ws-lbl-setup": "Store Setup (5 Steps)",
-      "ws-lbl-rasd": "Rasd Inventory Sync",
+      "ws-lbl-rasd": "Inventory & Catalog Sync",
       "ws-lbl-support": "Inquiries & Support",
       "ws-lang-btn": "عربي",
       "ws-logout-btn": "Log Out",
-      "ws-top-title": "Subscriber Workspace (Sanad + Rasd)",
-      "ws-status-pill": "🟢 Sanad + Rasd: Online",
+      "ws-top-title": "Subscriber Workspace (Sanad & Digital Team)",
+      "ws-status-pill": "🟢 Sanad & Team: Online",
       "kpi1-lbl": "Digital Employee (Sanad)",
       "kpi1-val": "🟢 Active on WhatsApp",
       "kpi1-sub": "Replying to customers 24/7",
-      "kpi2-lbl": "Synced Items in Rasd",
+      "kpi2-lbl": "Synced Store Items",
       "kpi2-sub": "Auto-synced with your store",
       "kpi3-lbl": "Low-Stock Alerts",
       "kpi3-val": "3 Items",
       "kpi3-sub": "Reached minimum threshold",
       "home-card-title": "📊 Live Store & Rasd Inventory Summary",
-      "home-card-desc": "Your clean unified view synced with Rasd Engine and Sanad AI.",
+      "home-card-desc": "Your clean unified view managed by Sanad AI and his digital team.",
       "home-btn-setup": "⚙️ Update 5 Store Setup Steps",
       "home-btn-sup": "💬 Send Batch Inquiry / Ticket",
       "setup-title": "🚀 Store Activation & Setup (5 Mandatory Steps)",
@@ -920,10 +920,10 @@ function toggleHostingerLang() {
       "f4-lbl": "4️⃣ Customer Service WhatsApp Number (Bot)",
       "f4-sub": "Dedicated number for replying to customers",
       "f5-lbl": "5️⃣ Live Store API Token (Read-Only) + Min Qty Threshold",
-      "f5-sub": "Allows Rasd Engine to sync your products and prices in real-time",
+      "f5-sub": "Allows Sanad's digital team to sync your products and prices in real-time",
       "setup-submit-btn": "✅ Save & Activate 5 Store Setup Items",
-      "rasd-title": "📦 Rasd Inventory Sync Status",
-      "rasd-desc": "Rasd reads your items, prices, and stock via Read-Only token and alerts the Owner mobile when stock is low.",
+      "rasd-title": "📦 Inventory & Catalog Sync Status",
+      "rasd-desc": "Sanad's digital team reads your items, prices, and stock via Read-Only token and alerts the Owner mobile when stock is low.",
       "rasd-sync-lbl": "Last Catalog & Price Sync:",
       "rasd-sync-sub": "Connected & ready for auto-sync",
       "sup-title": "💬 All-in-One Inquiries & Maintenance Tickets",
@@ -980,10 +980,10 @@ function toggleHostingerLang() {
     ["6 موظفين (سَنَد + 5 كامل البكج)", "6 Employees (Full Package)"],
     ["التكلفة التشغيلية المعتادة", "Typical Monthly Payroll"],
     ["توفيرك الشهري التقريبي", "Your Estimated Monthly Savings"],
-    ["الباقة الشاملة (حتى 5 موظفين + سَنَد)", "All-In-One Package (Sanad + Rasd)"],
+    ["الباقة الشاملة (سَنَد + فريق عمل رقمي)", "All-In-One Package (Sanad & Digital Team)"],
     ["13 SAR / يومياً", "13 SAR / Day"],
     ["يومياً", "Day"],
-    ["وظّف «سَنَد» وفريقه في أعمالك اليوم", "Hire Sanad & Rasd For Your Store Today"],
+    ["وظّف «سَنَد» وفريقه الرقمي في أعمالك اليوم", "Hire Sanad & His Digital Team Today"],
     ["ريال / شهرياً (شامل كل المهام)", "SAR / Month (All-Inclusive)"],
     ["رد آلي ذكي وإدارة مبيعات المتجر في الواتساب", "Smart WhatsApp AI Sales & Customer Care"],
     ["إصدار فواتير وعروض أسعار PDF غير محدودة", "Unlimited PDF Quotes & Tax Invoices"],
@@ -1104,6 +1104,7 @@ function toggleHostingerLang() {
 <script id="sanad-ws-actions">window.toggleGemSidebar=function(){const sb=document.getElementById("m-gem-sidebar");const main=document.getElementById("m-gem-main");if(!sb||!main)return;const isClosed=sb.classList.toggle("collapsed");main.classList.toggle("with-sb",!isClosed);document.body.classList.toggle("sb-closed",isClosed);};window.switchWsPane=function(pane){["home","setup","rasd","support"].forEach(p=>{const pe=document.getElementById("ws-pane-"+p);const ne=document.getElementById("ws-nav-"+p);if(pe)pe.classList.toggle("active",p===pane);if(ne)ne.classList.toggle("active",p===pane);});if(window.innerWidth<=768&&window.toggleGemSidebar){const sb=document.getElementById("m-gem-sidebar");if(sb&&!sb.classList.contains("collapsed"))window.toggleGemSidebar();}};window.logoutWorkspace=function(){localStorage.removeItem("sanad_client_email");document.getElementById("client-workspace-view").style.display="none";document.getElementById("client-workspace-view").classList.remove("active");document.getElementById("public-landing-view").style.display="block";window.scrollTo(0,0);};</script>
 <script id="sanad-state-and-leads">(function(){window.logVisitorLead=function(email,name,source){const leads=JSON.parse(localStorage.getItem("sanad_captured_leads")||"[]");const entry={email:email,name:name||"",source:source,timestamp:new Date().toISOString(),domain:window.location.hostname};leads.push(entry);localStorage.setItem("sanad_captured_leads",JSON.stringify(leads));try{fetch("http://localhost:5691/api/leads",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(entry)}).catch(()=>{});}catch(e){}};window.renderWorkspaceState=function(email,pin,name){const isEn=window.curHnLang==="en";const savedSetup=JSON.parse(localStorage.getItem("sanad_setup_"+email)||"null");const isSubscribed=(pin&&pin.trim().length>=4)||(savedSetup&&savedSetup.apiToken);const stPill=document.getElementById("ws-status-pill");const k1v=document.getElementById("kpi1-val");const k1s=document.getElementById("kpi1-sub");const k2v=document.getElementById("kpi2-val");const k2s=document.getElementById("kpi2-sub");const k3v=document.getElementById("kpi3-val");const k3s=document.getElementById("kpi3-sub");const hTitle=document.getElementById("home-card-title");const hDesc=document.getElementById("home-card-desc");const rSub=document.getElementById("rasd-sync-sub");if(!isSubscribed){if(stPill){stPill.textContent=isEn?"⚪ Unsubscribed (Preview Mode)":"⚪ حساب زائر (بانتظار تفعيل الاشتراك)";stPill.style.background="#F1F5F9";stPill.style.color="#475569";stPill.style.borderColor="#CBD5E1";}if(k1v){k1v.textContent=isEn?"⚪ Inactive (0)":"⚪ غير مفعل (0)";k1v.style.color="#64748B";}if(k1s)k1s.textContent=isEn?"Subscribe & link store to activate Sanad":"اشترك واربط متجرك ليبدأ «سَنَد» بالعمل";if(k2v)k2v.textContent="0";if(k2s)k2s.textContent=isEn?"No store API linked yet (0 items)":"لم يتم ربط مفتاح المتجر بعد (0 أصناف)";if(k3v){k3v.textContent=isEn?"0 Alerts":"0 تنبيهات";k3v.style.color="#64748B";}if(k3s)k3s.textContent=isEn?"Appears after catalog sync":"تظهر هنا بعد تفعيل الاشتراك والمزامنة";if(hTitle)hTitle.textContent=isEn?"👋 Welcome! Complete Your Subscription to Activate Your Store":"👋 أهلاً بك في بوابة «سَنَد» و«رَصد»! يسعدنا انضمامك واشتراكك معنا";if(hDesc)hDesc.innerHTML=isEn?"Your email (<strong>"+email+"</strong>) is registered as an interested visitor. All metrics are currently set to <strong>0</strong>. To activate your digital employee and sync your live store inventory, please complete the <strong>5 Store Setup Steps</strong> or activate your subscription on WhatsApp.":"تم تسجيل بريدك الإلكتروني (<strong>"+email+"</strong>) بنجاح في قائمة المهتمين بـ «سَنَد». جميع العدادات حالياً مصفّرة (<strong>0</strong>) لأن الحساب غير مشترك بعد. لتفعيل موظفك الرقمي وسحب أصناف متجرك الحقيقية، يرجى تعبئة <strong>(إعدادات المتجر - الـ 5 خانات)</strong> أو طلب كود تفعيل اشتراكك عبر الواتساب.";if(rSub)rSub.textContent=isEn?"0 items synced — Waiting for API Token":"0 أصناف — بانتظار إدخال مفتاح المتجر وتفعيل الاشتراك";}else{const itemsCount=(savedSetup&&savedSetup.syncedCount)||"148";const alertsCount=(savedSetup&&savedSetup.alertsCount)||"2";if(stPill){stPill.textContent=isEn?"🟢 Sanad + Rasd: Active Subscriber":"🟢 مشترك نشط (سَنَد + رَصد متصل)";stPill.style.background="#ECFDF5";stPill.style.color="#047857";stPill.style.borderColor="#A7F3D0";}if(k1v){k1v.textContent=isEn?"🟢 Active on WhatsApp":"🟢 نشط على الواتساب";k1v.style.color="#059669";}if(k1s)k1s.textContent=isEn?"Replying to your store customers 24/7":"يرد على عملاء متجرك على مدار الساعة";if(k2v)k2v.textContent=String(itemsCount);if(k2s)k2s.textContent=isEn?"Synced with "+(savedSetup&&savedSetup.storeName||"your store"):"متزامنة تلقائياً مع "+(savedSetup&&savedSetup.storeName||"متجرك");if(k3v){k3v.textContent=isEn?alertsCount+" Items":alertsCount+" أصناف";k3v.style.color="#D97706";}if(k3s)k3s.textContent=isEn?"Reached minimum threshold":"وصلت للحد الأدنى المعتمد";if(hTitle)hTitle.textContent=isEn?"📊 Live Store & Rasd Inventory Summary":"📊 ملخص الربط والمزامنة الحية لمتجرك المعتمد";if(hDesc)hDesc.textContent=isEn?"Your store is actively synced with Rasd Engine and Sanad AI.":"متجرك مربوط ومفعل بنجاح مع أمين المستودع «رَصد» وموظف المبيعات «سَنَد».";}};window.enterClientWorkspace=function(e){if(e)e.preventDefault();const em=(document.getElementById("auth-email-inp").value||"merchant@store.com").trim();const pin=(document.getElementById("auth-pin-inp").value||"").trim();localStorage.setItem("sanad_client_email",em);localStorage.setItem("sanad_client_pin",pin);window.logVisitorLead(em,"","Direct_Email_Form");document.getElementById("m-auth-modal").style.display="none";document.getElementById("m-auth-modal").classList.remove("active");document.getElementById("public-landing-view").style.display="none";const ws=document.getElementById("client-workspace-view");ws.style.display="flex";ws.classList.add("active");document.getElementById("ws-user-badge").textContent=em;window.renderWorkspaceState(em,pin,"");window.scrollTo(0,0);};const origToggle=window.toggleHostingerLang;window.toggleHostingerLang=function(){if(origToggle)origToggle();const em=localStorage.getItem("sanad_client_email");const pin=localStorage.getItem("sanad_client_pin")||"";if(em&&document.getElementById("client-workspace-view").style.display==="flex"){window.renderWorkspaceState(em,pin,"");}};})();</script>
 <script id="sanad-email-only-flow">(function(){function syncAuthLabels(){const isEn=window.curHnLang==="en";const pinLbl=document.getElementById("auth-pin-lbl");const subLbl=document.getElementById("auth-sub");const btnLbl=document.getElementById("auth-submit-btn");const pinInp=document.getElementById("auth-pin-inp");if(subLbl)subLbl.textContent=isEn?"Enter your email to access your store dashboard or preview the platform":"أدخل بريدك الإلكتروني لفتح لوحة تحكم متجرك أو معاينة المنظومة";if(pinLbl)pinLbl.innerHTML=isEn?"Subscriber Password / Pin <span style=\"display:block;font-size:11px;font-weight:500;color:#64748B;margin-top:3px;\">💡 Not subscribed yet? Leave the password blank and press Enter to preview the dashboard.</span>":"كلمة المرور / كود المشترك <span style=\"display:block;font-size:11.5px;font-weight:500;color:#64748B;margin-top:3px;\">💡 إذا لم تكن مشتركاً بعد، اترك خانة كلمة المرور فارغة واضغط (Enter) لمعاينة لوحة التحكم.</span>";if(pinInp)pinInp.setAttribute("placeholder",isEn?"Leave blank for free preview...":"اتركها فارغة للمعاينة المجانية...");if(btnLbl)btnLbl.textContent=isEn?"Enter Store Dashboard":"دخول إلى لوحة تحكم المتجر";}window.addEventListener("DOMContentLoaded",syncAuthLabels);setTimeout(syncAuthLabels,150);const oldT=window.toggleHostingerLang;window.toggleHostingerLang=function(){if(oldT)oldT();syncAuthLabels();};})();</script>
+<script id="sanad-final-auth-and-zero">(function(){function cleanAuthDivider(){const orEl=document.getElementById("auth-or-txt");if(orEl){const parent=orEl.closest(".m-oauth-divider")||orEl;parent.style.display="none";}}window.renderWorkspaceState=function(email,pin){const isEn=window.curHnLang==="en";const savedSetup=JSON.parse(localStorage.getItem("sanad_setup_"+email)||"null");const isSubscribed=(pin&&pin.trim().length>=4)||(savedSetup&&savedSetup.apiToken);const stPill=document.getElementById("ws-status-pill");const k1v=document.getElementById("kpi1-val");const k1s=document.getElementById("kpi1-sub");const k2s=document.getElementById("kpi2-sub");const k3v=document.getElementById("kpi3-val");const k3s=document.getElementById("kpi3-sub");const hTitle=document.getElementById("home-card-title");const hDesc=document.getElementById("home-card-desc");const rSub=document.getElementById("rasd-sync-sub");const k2Num=k2s&&k2s.parentElement?k2s.parentElement.querySelector("div[style*=\"24px\"],div[style*=\"26px\"],div[style*=\"28px\"],strong,.m-kpi-val"):null;let wBanner=document.getElementById("sanad-visitor-welcome-banner");if(!wBanner&&hDesc&&hDesc.parentElement){wBanner=document.createElement("div");wBanner.id="sanad-visitor-welcome-banner";wBanner.style.cssText="margin-top:16px;padding:16px 18px;border-radius:14px;background:linear-gradient(135deg,#FDF2F8 0%,#EFF6FF 100%);border:1px solid #FBCFE8;color:#0F172A;font-size:14px;line-height:1.7;";hDesc.parentElement.insertBefore(wBanner,hDesc.nextSibling);}if(!isSubscribed){if(stPill){stPill.textContent=isEn?"⚪ Free Preview Mode (0 Data)":"⚪ وضع المعاينة المجانية (حساب غير مشترك)";stPill.style.background="#F1F5F9";stPill.style.color="#475569";}if(k1v){k1v.textContent=isEn?"⚪ Waiting for Activation (0)":"⚪ بانتظار التفعيل (0)";k1v.style.color="#64748B";}if(k1s)k1s.textContent=isEn?"Subscribe & link store so Sanad & his team start working":"اشترك واربط متجرك ليبدأ «سَنَد» وفريقه الرقمي بالعمل";if(k2Num){k2Num.textContent="0";k2Num.style.color="#64748B";}if(k2s)k2s.textContent=isEn?"0 items synced (Store API not linked yet)":"0 أصناف (لم يتم ربط مفتاح المتجر بعد)";if(k3v){k3v.textContent=isEn?"0 Alerts":"0 أصناف";k3v.style.color="#64748B";}if(k3s)k3s.textContent=isEn?"Appears after store sync":"تظهر هنا بعد تفعيل الاشتراك والمزامنة";if(hTitle)hTitle.textContent=isEn?"📊 Live Store Summary (Managed by Sanad & Digital Team)":"📊 ملخص الربط والمزامنة الحية مع متجرك (إدارة سَنَد)";if(hDesc)hDesc.textContent=isEn?"All counters above are set to (0) for full transparency because no store is linked to this email yet.":"جميع العدادات في الأعلى مصفّرة (0) للمصداقية، حيث لم يتم ربط متجر فعلي بهذا البريد الإلكتروني حتى الآن.";if(wBanner){wBanner.style.display="block";wBanner.innerHTML=isEn?"<strong>👋 Welcome to Sanad Portal ("+email+")!</strong><br>We are delighted to have you preview the platform. Once you subscribe, <strong>Sanad and his team of specialized digital employees</strong> will immediately take over your customer replies, inventory tracking, and invoicing 24/7. Click <strong>(Store Setup - 5 Steps)</strong> to prepare your store link or activate via WhatsApp.":"<strong>👋 أهلاً ومرحباً بك في بوابة «سَنَد» ("+email+")!</strong><br>يسعدنا جداً اطلاعك على لوحة التحكم. فور تفعيل اشتراكك، سيتولى <strong>«سَنَد» ومجموعة الموظفين الرقميين التابعين له</strong> إدارة مبيعاتك، متابعة مخزونك، وإصدار فواتيرك على مدار الساعة، وتتحول هذه الأصفار إلى أرقام متجرك الحية. يمكنك الآن استكشاف قسم <strong>(إعدادات المتجر - الـ 5 خانات)</strong> لتجهيز بياناتك.";}if(rSub)rSub.textContent=isEn?"0 items — Waiting for Store API Token":"0 أصناف — بانتظار ربط مفتاح المتجر وتفعيل الاشتراك";}else{if(wBanner)wBanner.style.display="none";if(stPill){stPill.textContent=isEn?"🟢 Sanad & Team: Active":"🟢 سَنَد وفريقه الرقمي: نشط";stPill.style.background="#ECFDF5";stPill.style.color="#047857";}if(k1v){k1v.textContent=isEn?"🟢 Active on WhatsApp":"🟢 نشط على الواتساب";k1v.style.color="#059669";}if(k2Num){k2Num.textContent=(savedSetup&&savedSetup.syncedCount)||"148";k2Num.style.color="#0F172A";}if(k3v){k3v.textContent=isEn?"3 Items":"3 أصناف";k3v.style.color="#D97706";}}};window.enterClientWorkspace=function(e){if(e)e.preventDefault();const inp=document.getElementById("auth-email-inp");const em=inp?inp.value.trim():"";const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(!em||!emailRegex.test(em)){if(inp){inp.style.border="2px solid #E11D48";inp.style.background="#FFF1F2";inp.focus();}let errEl=document.getElementById("auth-email-err");if(!errEl&&inp){errEl=document.createElement("div");errEl.id="auth-email-err";errEl.style.cssText="color:#E11D48;font-size:12px;font-weight:700;margin-top:6px;";inp.parentElement.appendChild(errEl);}if(errEl)errEl.textContent=window.curHnLang==="en"?"⚠️ Please enter a valid email address first to preview or access the dashboard.":"⚠️ فضلاً اكتب بريدك الإلكتروني الصحيح أولاً لفتح لوحة التحكم أو المعاينة.";return false;}if(inp){inp.style.border="1px solid #CBD5E1";inp.style.background="#F8FAFC";}const errEl=document.getElementById("auth-email-err");if(errEl)errEl.textContent="";const pin=(document.getElementById("auth-pin-inp").value||"").trim();localStorage.setItem("sanad_client_email",em);localStorage.setItem("sanad_client_pin",pin);if(window.logVisitorLead)window.logVisitorLead(em,"","Email_Portal_Login");document.getElementById("m-auth-modal").style.display="none";document.getElementById("m-auth-modal").classList.remove("active");document.getElementById("public-landing-view").style.display="none";const ws=document.getElementById("client-workspace-view");ws.style.display="flex";ws.classList.add("active");document.getElementById("ws-user-badge").textContent=em;window.renderWorkspaceState(em,pin);window.scrollTo(0,0);};window.addEventListener("DOMContentLoaded",cleanAuthDivider);setTimeout(cleanAuthDivider,100);})();</script>
 </body>
 </html>
 <script type="module">import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"; import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"; window.SANAD_FIREBASE_CONFIG = JSON.parse(localStorage.getItem("sanad_fb_cfg") || "{\"apiKey\":\"\",\"authDomain\":\"maladel.com\",\"projectId\":\"\"}"); window.realOAuthSignIn = async function(providerName) { if(window.location.protocol === "file:") { alert(window.curHnLang==="en" ? "⚠️ Real Google OAuth requires running on https://maladel.com or http://localhost (blocked on file://). Opening preview workspace now." : "⚠️ نافذة قوقل الحقيقية تعمل فقط عند فتح الموقع عبر https://maladel.com أو localhost (محجوبة أمنياً على الملف المحلي file://). سيتم فتح لوحة المعاينة الآن."); document.getElementById("m-auth-modal").style.display="none"; document.getElementById("public-landing-view").style.display="none"; document.getElementById("client-workspace-view").style.display="flex"; document.getElementById("ws-user-badge").textContent="Preview Mode (Google)"; return; } if(!window.SANAD_FIREBASE_CONFIG.apiKey) { document.getElementById("m-auth-modal").style.display="none"; document.getElementById("public-landing-view").style.display="none"; document.getElementById("client-workspace-view").style.display="flex"; document.getElementById("ws-user-badge").textContent="Google Account (maladel.com)"; window.scrollTo(0,0); return; } try { const app = initializeApp(window.SANAD_FIREBASE_CONFIG); const auth = getAuth(app); const res = await signInWithPopup(auth, new GoogleAuthProvider()); const user = res.user; document.getElementById("m-auth-modal").style.display="none"; document.getElementById("public-landing-view").style.display="none"; document.getElementById("client-workspace-view").style.display="flex"; document.getElementById("ws-user-badge").textContent = (user.displayName ? user.displayName + " | " : "") + user.email; } catch(err) { alert("OAuth Error: " + err.message); } };</script>
@@ -1420,7 +1421,7 @@ function toggleHostingerLang() {
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-extrabold text-white sanad-avatar-grad px-3 py-1 rounded-full">
-              الباقة الشاملة (حتى 5 موظفين + سَنَد)
+              الباقة الشاملة (سَنَد + فريق عمل رقمي)
             </span>
             <span class="font-num text-xs font-extrabold text-purple-700">
               13 SAR / يومياً
@@ -1428,7 +1429,7 @@ function toggleHostingerLang() {
           </div>
 
           <h3 class="text-base sm:text-lg font-extrabold text-slate-900">
-            وظّف «سَنَد» وفريقه في أعمالك اليوم
+            وظّف «سَنَد» وفريقه الرقمي في أعمالك اليوم
           </h3>
 
           <div class="flex items-baseline gap-1.5">
@@ -1572,7 +1573,7 @@ function toggleHostingerLang() {
     <button class="m-auth-close" onclick="document.getElementById('m-auth-modal').style.display='none';document.getElementById('m-auth-modal').classList.remove('open');">✕</button>
     <div class="m-hn-logo" style="margin:0 auto 12px;width:44px;height:44px;font-size:20px;">س</div>
     <h3 style="margin:0 0 6px;font-size:20px;font-weight:900;" id="auth-title">تسجيل الدخول إلى بوابة سَنَد</h3>
-    <p style="margin:0 0 20px;font-size:13px;color:#64748b;" id="auth-sub">اختر طريقة الدخول لفتح لوحة تحكم متجرك المتزامنة مع «رَصد»</p>
+    <p style="margin:0 0 20px;font-size:13px;color:#64748b;" id="auth-sub">أدخل بريدك الإلكتروني لفتح لوحة تحكم متجرك أو معاينة المنظومة</p>
 
     
 
@@ -1627,7 +1628,7 @@ function toggleHostingerLang() {
       <li>
         <button class="m-gem-item" id="ws-nav-rasd" onclick="switchWsPane('rasd')">
           <span>📦</span>
-          <span id="ws-lbl-rasd">مزامنة مستودع «رَصد»</span>
+          <span id="ws-lbl-rasd">مزامنة المخزون والكتالوج</span>
         </button>
       </li>
       <li>
@@ -1657,12 +1658,12 @@ function toggleHostingerLang() {
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
         </button>
         <div>
-          <div style="font-weight:900;font-size:15px;" id="ws-top-title">لوحة تحكم المشترك (سَنَد + رَصد)</div>
+          <div style="font-weight:900;font-size:15px;" id="ws-top-title">لوحة تحكم المشترك (سَنَد وفريقه الرقمي)</div>
           <div style="font-size:12px;color:#64748b;" id="ws-user-badge">متصل بحساب: merchant@store.com</div>
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:8px;">
-        <span style="background:#dcfce7;color:#166534;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:800;" id="ws-status-pill">🟢 سَنَد + رَصد: متصل</span>
+        <span style="background:#dcfce7;color:#166534;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:800;" id="ws-status-pill">🟢 سَنَد وفريقه الرقمي: متصل</span>
       </div>
     </div>
 
@@ -1676,7 +1677,7 @@ function toggleHostingerLang() {
             <div class="m-kpi-sub" id="kpi1-sub">يرد على العملاء على مدار الساعة</div>
           </div>
           <div class="m-kpi-card">
-            <div class="m-kpi-label" id="kpi2-lbl">أصناف المتجر في «رَصد»</div>
+            <div class="m-kpi-label" id="kpi2-lbl">أصناف المتجر المتزامنة</div>
             <div class="m-kpi-val" id="kpi2-val">148</div>
             <div class="m-kpi-sub" id="kpi2-sub">متزامنة تلقائياً مع متجرك</div>
           </div>
@@ -1690,7 +1691,7 @@ function toggleHostingerLang() {
         <div class="m-ws-card">
           <h3 style="margin:0 0 8px;font-size:18px;font-weight:900;" id="home-card-title">📊 ملخص الربط والمزامنة الحية مع متجرك</h3>
           <p style="margin:0 0 18px;color:#64748b;font-size:13.5px;" id="home-card-desc">
-            تعرض هذه الصفحة خلاصة بيانات متجرك المسحوبة عبر أمين المستودع «رَصد» وحالة موظف المبيعات «سَنَد» في شاشة واحدة مريحة بصرياً.
+            تعرض هذه الصفحة خلاصة بيانات متجرك المسحوبة عبر الفريق الرقمي بقيادة «سَنَد» في شاشة واحدة مريحة بصرياً.
           </p>
           <div style="display:flex;gap:10px;flex-wrap:wrap;">
             <button class="m-btn-signup" onclick="switchWsPane('setup')" id="home-btn-setup">⚙️ تحديث بيانات الربط الخمسة</button>
@@ -1736,7 +1737,7 @@ function toggleHostingerLang() {
 
           <div class="m-form-box">
             <label id="f5-lbl">5️⃣ مفتاح الربط البرمجي (API Token للقراءة فقط) + الحد الأدنى للكمية</label>
-            <small id="f5-sub">ليسحب أمين المستودع «رَصد» منتجاتك وأسعارك لحظة بلحظة</small>
+            <small id="f5-sub">ليسحب فريق «سَنَد» منتجاتك وأسعارك ومخزونك لحظة بلحظة</small>
             <div class="m-row-2">
               <input type="password" id="onb_api_token" class="m-auth-input" placeholder="Read-Only API Token">
               <input type="number" id="onb_min_qty" class="m-auth-input" value="5" min="1" placeholder="الحد الأدنى للكمية (5)">
@@ -1744,7 +1745,7 @@ function toggleHostingerLang() {
           </div>
 
           <button class="m-auth-submit" onclick="submitClientSetup()" id="setup-submit-btn">
-            ✅ حفظ واعتماد إعدادات المتجر الخمسة لدى «سَنَد» و«رَصد»
+            ✅ حفظ واعتماد إعدادات المتجر الخمسة لدى «سَنَد»
           </button>
         </div>
       </div>
@@ -1752,9 +1753,9 @@ function toggleHostingerLang() {
       <!-- PANE 3: RASD INVENTORY SYNC -->
       <div class="m-ws-pane" id="ws-pane-rasd">
         <div class="m-ws-card">
-          <h3 style="margin:0 0 8px;font-size:18px;font-weight:900;" id="rasd-title">📦 حالة مزامنة أمين المستودع «رَصد»</h3>
+          <h3 style="margin:0 0 8px;font-size:18px;font-weight:900;" id="rasd-title">📦 حالة مزامنة المخزون والمنتجات (فريق سَنَد)</h3>
           <p style="margin:0 0 16px;color:#64748b;font-size:13.5px;" id="rasd-desc">
-            يقرأ «رَصد» أصنافك وأسعارك وكمياتك آلياً عبر مفتاح القراءة فقط، ويرسل تنبيهاً لجوال المالك فور وصول أي صنف للحد الأدنى.
+            يقوم الفريق الرقمي تحت إدارة «سَنَد» بقراءة أصنافك وأسعارك وكمياتك آلياً عبر مفتاح القراءة فقط، وإرسال تنبيه لجوال المالك فور وصول أي صنف للحد الأدنى.
           </p>
           <div class="m-form-box" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
             <div>
