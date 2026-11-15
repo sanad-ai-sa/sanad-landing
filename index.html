@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -116,406 +116,1033 @@
     }
   </style>
 
-<!-- === MANARAT SPA SIDEBAR & BI-DIRECTIONAL PORTAL === -->
-<style id="manarat-spa-styles">
-  :root {
-    --m-navy: #0F2540;
-    --m-blue: #2176AE;
-    --m-green: #2D6A4F;
-    --m-gold: #D4A017;
-    --m-red: #C1121F;
-    --m-sidebar-w: 270px;
+<!-- === SANAD AI: HOSTINGER TOPBAR + OAUTH MODAL + GEMINI COLLAPSIBLE WORKSPACE === -->
+<style id="sanad-unified-portal-css">
+  /* Hide legacy header inside original landing body */
+  #public-landing-view header,
+  #public-landing-view .topbar,
+  #public-landing-view .nav-header,
+  #public-landing-view > div:first-child > header {
+    display: none !important;
   }
-  body.manarat-spa-body {
+  body {
     margin: 0 !important;
     padding: 0 !important;
-    min-height: 100vh;
+    font-family: 'Cairo', 'Inter', sans-serif;
     overflow-x: hidden;
   }
-  .m-app-shell {
-    display: flex;
-    min-height: 100vh;
-    width: 100%;
+  #public-landing-view {
+    padding-top: 76px;
   }
-  /* Fixed Sidebar that flips automatically with dir="rtl" vs dir="ltr" */
-  .m-sidebar {
-    width: var(--m-sidebar-w);
-    background: linear-gradient(180deg, #091526 0%, #0F2540 100%);
+
+  /* 1. TOP NAVBAR (LIGHT GLASS NATIVE) */
+  .m-host-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 72px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.95);
+    z-index: 99990;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 38px;
+    box-shadow: 0 4px 24px rgba(15, 23, 42, 0.04);
+    transition: all 0.25s ease;
+  }
+  .m-hn-side {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .m-hn-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .m-hn-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
     color: #ffffff;
+    font-weight: 800;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.28);
+  }
+  .m-hn-title {
+    color: #0f172a;
+    font-size: 18px;
+    font-weight: 900;
+  }
+  .m-hn-divider {
+    color: #cbd5e1;
+    margin: 0 4px;
+  }
+  .m-hn-sub {
+    color: #64748b;
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+  .m-hn-link {
+    color: #334155;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 7px 15px;
+    border-radius: 999px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .m-hn-link:hover {
+    color: #ec4899;
+    border-color: #f472b6;
+    background: #fdf2f8;
+  }
+  .m-hn-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .m-btn-lang {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #0f172a;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.2s;
+  }
+  .m-btn-lang:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+  }
+  .m-btn-signin {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #0f172a;
+    padding: 7px 18px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.2s;
+  }
+  .m-btn-signin:hover {
+    border-color: #0f172a;
+    background: #f8fafc;
+  }
+  .m-btn-signup {
+    background: #0f172a;
+    border: none;
+    color: #ffffff;
+    padding: 8px 20px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  }
+  .m-btn-signup:hover {
+    background: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
+    transform: translateY(-1px);
+  }
+
+  /* 2. OAUTH & EMAIL SIGN-IN MODAL (AI PLATFORM STYLE) */
+  .m-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 100000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .m-modal-overlay.open {
+    display: flex;
+    animation: mFade 0.2s ease;
+  }
+  @keyframes mFade {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .m-auth-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 20px;
+    padding: 32px 28px;
+    box-shadow: 0 25px 60px rgba(15, 23, 42, 0.22);
+    border: 1px solid #e2e8f0;
+    position: relative;
+    text-align: center;
+    color: #0f172a;
+  }
+  .m-auth-close {
+    position: absolute;
+    top: 16px;
+    inset-inline-end: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: #64748b;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .m-auth-close:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+  }
+  .m-oauth-btn {
+    width: 100%;
+    padding: 11px 16px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #0f172a;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    transition: all 0.18s ease;
+  }
+  .m-oauth-btn:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+    box-shadow: 0 2px 8px rgba(15,23,42,0.06);
+  }
+  .m-auth-or {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 18px 0;
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .m-auth-or::before, .m-auth-or::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #e2e8f0;
+  }
+  .m-auth-field {
+    text-align: start;
+    margin-bottom: 12px;
+  }
+  .m-auth-field label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 5px;
+  }
+  .m-auth-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 14px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    font-family: inherit;
+    font-size: 14px;
+    color: #0f172a;
+    background: #f8fafc;
+  }
+  .m-auth-input:focus {
+    outline: none;
+    border-color: #ec4899;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.12);
+  }
+  .m-auth-submit {
+    width: 100%;
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 6px;
+    box-shadow: 0 6px 18px rgba(236, 72, 153, 0.28);
+    transition: 0.2s;
+  }
+  .m-auth-submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 22px rgba(236, 72, 153, 0.38);
+  }
+
+  /* 3. CLIENT WORKSPACE (GEMINI-STYLE COLLAPSIBLE SIDEBAR + CLEAN DASHBOARD) */
+  #client-workspace-view {
+    display: none;
+    min-height: 100vh;
+    background: #f8fafc;
+    color: #0f172a;
+  }
+  #client-workspace-view.active {
+    display: flex;
+  }
+
+  /* Collapsible Sidebar */
+  .m-gem-sidebar {
+    width: 270px;
+    background: #ffffff;
+    border-inline-end: 1px solid #e2e8f0;
     display: flex;
     flex-direction: column;
     position: fixed;
     top: 0;
     bottom: 0;
-    z-index: 99999;
-    box-shadow: 0 0 25px rgba(0,0,0,0.45);
-    border-inline-end: 1px solid rgba(212, 160, 23, 0.25);
-    transition: all 0.25s ease;
-    font-family: 'Cairo', 'Inter', sans-serif;
+    z-index: 99995;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), width 0.25s ease;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
   }
-  html[dir="rtl"] .m-sidebar { right: 0; left: auto; }
-  html[dir="ltr"] .m-sidebar { left: 0; right: auto; }
+  html[dir="rtl"] .m-gem-sidebar { right: 0; left: auto; }
+  html[dir="ltr"] .m-gem-sidebar { left: 0; right: auto; }
 
-  .m-main-area {
-    flex: 1;
-    min-height: 100vh;
-    transition: all 0.25s ease;
-    width: calc(100% - var(--m-sidebar-w));
+  /* Collapsed State */
+  .m-gem-sidebar.collapsed {
+    transform: translateX(100%);
   }
-  html[dir="rtl"] .m-main-area { margin-right: var(--m-sidebar-w); margin-left: 0; }
-  html[dir="ltr"] .m-main-area { margin-left: var(--m-sidebar-w); margin-right: 0; }
+  html[dir="ltr"] .m-gem-sidebar.collapsed {
+    transform: translateX(-100%);
+  }
 
-  /* Sidebar Header */
-  .m-sb-header {
-    padding: 20px 18px 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+  .m-gem-sb-top {
+    height: 68px;
+    padding: 0 18px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    border-bottom: 1px solid #f1f5f9;
   }
-  .m-sb-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .m-sb-logo {
+  .m-collapse-btn {
     width: 38px;
     height: 38px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #D4A017, #b4820c);
-    color: #091526;
-    font-weight: 900;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(212,160,23,0.35);
-  }
-  .m-sb-title {
-    font-size: 16px;
-    font-weight: 800;
-    color: #fff;
-    line-height: 1.2;
-  }
-  .m-sb-sub {
-    font-size: 11px;
-    color: #94a3b8;
-  }
-
-  /* Language Toggle Pill */
-  .m-lang-box {
-    padding: 12px 18px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .m-lang-btn {
-    width: 100%;
-    background: rgba(33, 118, 174, 0.2);
-    border: 1px solid rgba(212, 160, 23, 0.45);
-    color: #f8fafc;
-    padding: 8px 12px;
-    border-radius: 8px;
+    border-radius: 50%;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: #334155;
     cursor: pointer;
-    font-family: 'Cairo', 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    transition: 0.2s;
+    transition: all 0.2s;
   }
-  .m-lang-btn:hover {
-    background: rgba(212, 160, 23, 0.25);
-    border-color: #D4A017;
+  .m-collapse-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
   }
 
-  /* Navigation Menu */
-  .m-nav-list {
+  .m-gem-nav {
     list-style: none;
     padding: 16px 12px;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     flex: 1;
   }
-  .m-nav-item {
+  .m-gem-item {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 12px 14px;
-    border-radius: 10px;
-    color: #cbd5e1;
+    padding: 11px 14px;
+    border-radius: 12px;
+    border: none;
+    background: transparent;
+    color: #475569;
+    font-family: inherit;
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s ease;
-    border: 1px solid transparent;
     text-align: start;
-    background: transparent;
-    width: 100%;
-    font-family: inherit;
+    transition: all 0.18s;
   }
-  .m-nav-item:hover {
-    background: rgba(255,255,255,0.06);
-    color: #fff;
+  .m-gem-item:hover {
+    background: #f1f5f9;
+    color: #0f172a;
   }
-  .m-nav-item.active {
-    background: linear-gradient(90deg, rgba(212,160,23,0.22), rgba(33,118,174,0.18));
-    color: #ffffff;
-    border-color: rgba(212,160,23,0.6);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-  }
-  .m-nav-icon {
-    font-size: 18px;
-    width: 24px;
-    text-align: center;
-  }
-  .m-badge-active {
-    margin-inline-start: auto;
-    background: #2D6A4F;
-    color: #fff;
-    font-size: 10px;
-    padding: 2px 7px;
-    border-radius: 12px;
-    font-weight: 700;
-  }
-
-  .m-sb-footer {
-    padding: 14px 18px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    font-size: 11.5px;
-    color: #94a3b8;
-    text-align: center;
-  }
-
-  /* Views Management */
-  .m-view-panel {
-    display: none;
-  }
-  .m-view-panel.active {
-    display: block;
-    animation: mFadeIn 0.25s ease;
-  }
-  @keyframes mFadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Portal Inner Pages (Onboarding & Support) */
-  .m-portal-wrap {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 40px 24px 70px;
-    font-family: 'Cairo', 'Inter', sans-serif;
-    color: #f8fafc;
-  }
-  .m-portal-card {
-    background: rgba(15, 37, 64, 0.88);
-    border: 1px solid rgba(212, 160, 23, 0.35);
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-    backdrop-filter: blur(12px);
-  }
-  .m-portal-title {
-    margin: 0 0 8px 0;
-    font-size: 24px;
+  .m-gem-item.active {
+    background: linear-gradient(135deg, rgba(236,72,153,0.12), rgba(139,92,246,0.12));
+    color: #be185d;
     font-weight: 800;
-    color: #D4A017;
   }
-  .m-portal-desc {
-    margin: 0 0 24px 0;
-    font-size: 14.5px;
-    color: #cbd5e1;
-    line-height: 1.7;
-  }
-  .m-form-grid {
+  .m-gem-foot {
+    padding: 14px 16px;
+    border-top: 1px solid #f1f5f9;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 8px;
   }
-  .m-field-box {
-    background: rgba(9, 21, 38, 0.75);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 12px;
-    padding: 16px 18px;
-    transition: 0.2s;
+
+  /* Workspace Main Content */
+  .m-gem-main {
+    flex: 1;
+    min-height: 100vh;
+    transition: margin 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
   }
-  .m-field-box:focus-within {
-    border-color: #D4A017;
-    box-shadow: 0 0 0 2px rgba(212,160,23,0.2);
-  }
-  .m-field-label {
+  html[dir="rtl"] .m-gem-main.with-sb { margin-right: 270px; margin-left: 0; }
+  html[dir="ltr"] .m-gem-main.with-sb { margin-left: 270px; margin-right: 0; }
+
+  .m-ws-topbar {
+    height: 68px;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0 24px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 99900;
+  }
+  .m-ws-container {
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+  }
+
+  /* Dashboard KPI & Cards */
+  .m-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .m-kpi-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+  }
+  .m-kpi-label {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .m-kpi-val {
+    font-size: 24px;
+    font-weight: 900;
+    color: #0f172a;
+    font-family: 'Inter', 'Cairo', sans-serif;
+  }
+  .m-kpi-sub {
+    font-size: 12px;
+    color: #10b981;
+    font-weight: 700;
+    margin-top: 6px;
+  }
+  .m-ws-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.03);
+    margin-bottom: 20px;
+  }
+  .m-ws-pane { display: none; }
+  .m-ws-pane.active { display: block; animation: mFade 0.2s ease; }
+
+  .m-form-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .m-form-box label {
+    display: block;
     font-weight: 800;
-    font-size: 14.5px;
-    color: #ffffff;
-    margin-bottom: 6px;
-  }
-  .m-field-hint {
-    font-size: 12.5px;
-    color: #94a3b8;
-    margin-bottom: 10px;
-    line-height: 1.5;
-  }
-  .m-input, .m-textarea, .m-select {
-    width: 100%;
-    box-sizing: border-box;
-    background: #060e1a;
-    border: 1px solid #334155;
-    color: #ffffff;
-    padding: 11px 14px;
-    border-radius: 8px;
-    font-family: 'Cairo', 'Inter', sans-serif;
     font-size: 14px;
+    color: #0f172a;
+    margin-bottom: 4px;
   }
-  .m-input:focus, .m-textarea:focus, .m-select:focus {
-    outline: none;
-    border-color: #2176AE;
+  .m-form-box small {
+    display: block;
+    color: #64748b;
+    font-size: 12px;
+    margin-bottom: 10px;
   }
   .m-row-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
-  .m-submit-btn {
-    margin-top: 12px;
-    width: 100%;
-    background: linear-gradient(135deg, #2D6A4F, #1b4332);
-    color: #ffffff;
-    border: 1px solid rgba(212,160,23,0.5);
-    padding: 14px 20px;
-    border-radius: 10px;
-    font-family: 'Cairo', 'Inter', sans-serif;
-    font-size: 16px;
-    font-weight: 800;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-  .m-submit-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(45,106,79,0.45);
-  }
-  .m-pin-gate {
-    background: rgba(33, 118, 174, 0.14);
-    border: 1px dashed #D4A017;
-    padding: 14px 18px;
-    border-radius: 10px;
-    margin-bottom: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  /* Mobile Responsive Header */
-  .m-mobile-bar {
-    display: none;
-    background: #091526;
-    color: #fff;
-    padding: 12px 16px;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(212,160,23,0.3);
-    position: sticky;
-    top: 0;
-    z-index: 99990;
-  }
-  @media (max-width: 900px) {
-    .m-sidebar {
-      transform: translateX(100%);
-      width: 260px;
-    }
-    html[dir="ltr"] .m-sidebar {
-      transform: translateX(-100%);
-    }
-    .m-sidebar.open {
-      transform: translateX(0) !important;
-    }
-    .m-main-area {
-      width: 100% !important;
+
+  @media (max-width: 768px) {
+    .m-host-navbar { padding: 0 14px; }
+    .m-hn-sub, .m-hn-divider { display: none; }
+    .m-row-2 { grid-template-columns: 1fr; }
+    html[dir="rtl"] .m-gem-main.with-sb,
+    html[dir="ltr"] .m-gem-main.with-sb {
       margin: 0 !important;
-    }
-    .m-mobile-bar {
-      display: flex;
-    }
-    .m-row-2 {
-      grid-template-columns: 1fr;
     }
   }
 </style>
 
+<script>
+window.curHnLang = "ar";
+window.currentClientEmail = localStorage.getItem("sanad_client_email") || "";
+
+const arPairs = [
+  ["سَنَد", "Sanad AI"],
+  ["مدير أعمالك الرقمي", "Your Digital Business Manager"],
+  ["حاسبة التوفير الشهري", "Monthly Savings Calculator"],
+  ["كم يوفر عليك «سَنَد» في متجرك أو منشأتك؟", "How much does Sanad save your store every month?"],
+  ["حرك المؤشر من 2 إلى 6 موظفين (سَنَد + 5 موظفين كحد أقصى للبكج):", "Slide from 2 to 6 digital employees (Sanad + up to 5 specialists):"],
+  ["حجم الطاقم الرقمي (مبيعات + فواتير + محاسبة):", "Digital Team Size (Sales + Invoicing + Inventory):"],
+  ["التكلفة التشغيلية المعتادة", "Typical Monthly Payroll"],
+  ["توفيرك الشهري التقريبي", "Your Estimated Monthly Savings"],
+  ["الباقة الشاملة (حتى 5 موظفين + سَنَد)", "All-In-One Package (Sanad + Rasd)"],
+  ["وظّف «سَنَد» وفريقه في أعمالك اليوم", "Hire Sanad & Rasd For Your Store Today"],
+  ["ريال / شهرياً (شامل كل المهام)", "SAR / Month (All-Inclusive)"],
+  ["رد آلي ذكي وإدارة مبيعات المتجر في الواتساب", "Smart WhatsApp AI Sales & Customer Care"],
+  ["إصدار فواتير وعروض أسعار PDF غير محدودة", "Real-Time Inventory Sync via Rasd Engine"],
+  ["جرد يومي وإقفال حسابات المبيعات والمصروفات", "Automated Low-Stock Alerts to Owner Mobile"],
+  ["بكج متكامل يضم «سَنَد» مع ما يصل إلى 5 موظفين رقميين", "Dedicated Client Dashboard + Instant Setup"],
+  ["اشترك الآن وابدأ مع «سَنَد» عبر الواتساب", "Subscribe Now & Start with Sanad on WhatsApp"],
+  ["تفعيل فوري • تجربة حية مباشرة على الواتساب 0566566977", "Instant Activation • Live Demo on WhatsApp 0566566977"],
+  ["سَنَد — مدير أعمالك الرقمي • يعمل معك من الواتساب على مدار الساعة", "Sanad AI — Your 24/7 Digital Store Team on WhatsApp"]
+];
+
+function openAuthModal() {
+  document.getElementById("m-auth-modal").classList.add("open");
+}
+function closeAuthModal() {
+  document.getElementById("m-auth-modal").classList.remove("open");
+}
+
+function enterWorkspace(emailLabel) {
+  window.currentClientEmail = emailLabel;
+  localStorage.setItem("sanad_client_email", emailLabel);
+  closeAuthModal();
+  document.getElementById("public-landing-view").style.display = "none";
+  document.getElementById("client-workspace-view").classList.add("active");
+  document.getElementById("ws-user-badge").textContent = (window.curHnLang === "en" ? "Signed in as: " : "متصل بحساب: ") + emailLabel;
+  if (window.innerWidth <= 768) {
+    document.getElementById("m-gem-sidebar").classList.add("collapsed");
+  }
+  window.scrollTo(0, 0);
+}
+
+function loginWithProvider(provider) {
+  const demoEmail = provider === "Google" ? "merchant.store@gmail.com (Google)" : "merchant-dev@github.com (GitHub)";
+  enterWorkspace(demoEmail);
+}
+
+function document.getElementById('m-auth-modal').style.display='none';document.getElementById('public-landing-view').style.display='none';document.getElementById('client-workspace-view').style.display='flex';document.getElementById('ws-user-badge').textContent=(document.getElementById('auth-email-inp').value||'merchant@store.com');window.scrollTo(0,0); {
+  const em = document.getElementById("auth-email-inp").value.trim() || "merchant@store.com";
+  enterWorkspace(em);
+}
+
+function logoutWorkspace() {
+  localStorage.removeItem("sanad_client_email");
+  document.getElementById("client-workspace-view").classList.remove("active");
+  document.getElementById("public-landing-view").style.display = "block";
+  window.scrollTo(0, 0);
+}
+
+function toggleGemSidebar() {
+  const sb = document.getElementById("m-gem-sidebar");
+  const main = document.getElementById("m-gem-main");
+  sb.classList.toggle("collapsed");
+  main.classList.toggle("with-sb", !sb.classList.contains("collapsed"));
+}
+
+function switchWsPane(pane) {
+  ["home", "setup", "rasd", "support"].forEach(p => {
+    document.getElementById("ws-pane-" + p).classList.toggle("active", p === pane);
+    document.getElementById("ws-nav-" + p).classList.toggle("active", p === pane);
+  });
+  if (window.innerWidth <= 768) {
+    document.getElementById("m-gem-sidebar").classList.add("collapsed");
+  }
+}
+
+function submitClientSetup() {
+  const sName = document.getElementById("onb_store_name").value.trim() || "متجر مشترك";
+  const sUrl = document.getElementById("onb_store_url").value.trim();
+  const bName = document.getElementById("onb_bot_name").value.trim() || "سند";
+  const oPhone = document.getElementById("onb_owner_phone").value.trim();
+  const bPhone = document.getElementById("onb_bot_phone").value.trim();
+  const minQty = document.getElementById("onb_min_qty").value.trim() || "5";
+
+  const msg = [
+    "🚀 *تفعيل بيانات المتجر الخمسة (من لوحة المشترك)*",
+    "📧 الحساب: " + (window.currentClientEmail || "مشترك"),
+    "1️⃣ المتجر: " + sName + " | " + sUrl,
+    "2️⃣ اسم الموظف الرقمي: " + bName,
+    "3️⃣ جوال المالك: " + oPhone,
+    "4️⃣ واتساب خدمة العملاء: " + bPhone,
+    "5️⃣ الحد الأدنى للتنبيه: " + minQty
+  ].join("
+");
+
+  window.open("https://wa.me/966566566977?text=" + encodeURIComponent(msg), "_blank");
+}
+
+function submitClientTicket() {
+  const type = document.getElementById("sup_type").value;
+  const details = document.getElementById("sup_msg").value.trim();
+  if (!details) return alert(window.curHnLang === "en" ? "Please write your message first." : "يرجى كتابة تفاصيل الطلب أولاً.");
+  const msg = [
+    "📌 *" + type + " (من لوحة المشترك)*",
+    "📧 الحساب: " + (window.currentClientEmail || "مشترك"),
+    "📝 التفاصيل الكاملة:",
+    details
+  ].join("
+");
+  window.open("https://wa.me/966566566977?text=" + encodeURIComponent(msg), "_blank");
+}
+
+function toggleHostingerLang() {
+  const isEn = window.curHnLang === "ar";
+  window.curHnLang = isEn ? "en" : "ar";
+  const dir = isEn ? "ltr" : "rtl";
+
+  document.documentElement.setAttribute("dir", dir);
+  document.documentElement.setAttribute("lang", window.curHnLang);
+  document.body.style.direction = dir;
+
+  // Topbar
+  document.getElementById("hn-logo-char").textContent = isEn ? "S" : "س";
+  document.getElementById("hn-brand-title").textContent = isEn ? "Sanad AI" : "سَنَد";
+  document.getElementById("hn-brand-sub").textContent = isEn ? "Your Digital Business Manager" : "مدير أعمالك الرقمي";
+  document.getElementById("hn-nav-merged").textContent = isEn ? "Pricing & Savings" : "الباقات والتوفير";
+  document.getElementById("hn-lang-text").textContent = isEn ? "عربي" : "EN";
+  document.getElementById("hn-signin-text").textContent = isEn ? "Sign In" : "تسجيل الدخول";
+  document.getElementById("hn-signup-text").textContent = isEn ? "Sign Up" : "اشترك الآن";
+
+  // Auth Modal
+  document.getElementById("auth-title").textContent = isEn ? "Sign in to Sanad AI Portal" : "تسجيل الدخول إلى بوابة سَنَد";
+  document.getElementById("auth-sub").textContent = isEn ? "Choose your sign-in method to access your Rasd-synced store dashboard" : "اختر طريقة الدخول لفتح لوحة تحكم متجرك المتزامنة مع «رَصد»";
+  document.getElementById("auth-google-btn").textContent = isEn ? "Continue with Google" : "المتابعة باستخدام حساب Google";
+  
+  document.getElementById("auth-or-txt").textContent = isEn ? "OR CONTINUE WITH EMAIL" : "أو عبر البريد الإلكتروني المباشر";
+  document.getElementById("auth-email-lbl").textContent = isEn ? "Email Address" : "البريد الإلكتروني";
+  document.getElementById("auth-pin-lbl").textContent = isEn ? "Activation Pin (Optional for Demo)" : "كود التفعيل المرسل من سَنَد (اختياري للمعاينة)";
+  document.getElementById("auth-submit-btn").textContent = isEn ? "Sign In to Store Dashboard" : "دخول إلى لوحة تحكم المتجر";
+
+  // Workspace Sidebar & Dashboard
+  document.getElementById("ws-sb-brand").textContent = isEn ? "Sanad Portal" : "بوابة سَنَد";
+  document.getElementById("ws-lbl-home").textContent = isEn ? "Home (Store Dashboard)" : "الرئيسية";
+  document.getElementById("ws-lbl-setup").textContent = isEn ? "Store Setup (5 Steps)" : "إعدادات المتجر (الـ 5 خانات)";
+  document.getElementById("ws-lbl-rasd").textContent = isEn ? "Rasd Inventory Sync" : "مزامنة مستودع «رَصد»";
+  document.getElementById("ws-lbl-support").textContent = isEn ? "Inquiries & Support" : "الاستفسارات وتذاكر الصيانة";
+  document.getElementById("ws-logout-btn").textContent = isEn ? "Log Out" : "تسجيل الخروج";
+  document.getElementById("ws-top-title").textContent = isEn ? "Subscriber Workspace (Sanad + Rasd)" : "لوحة تحكم المشترك (سَنَد + رَصد)";
+  document.getElementById("ws-status-pill").textContent = isEn ? "🟢 Sanad + Rasd: Online" : "🟢 سَنَد + رَصد: متصل";
+  document.getElementById("kpi1-lbl").textContent = isEn ? "Digital Employee (Sanad)" : "حالة الموظف الرقمي (سَنَد)";
+  document.getElementById("kpi1-val").textContent = isEn ? "🟢 Active on WhatsApp" : "🟢 نشط على الواتساب";
+  document.getElementById("kpi1-sub").textContent = isEn ? "Replying to customers 24/7" : "يرد على العملاء على مدار الساعة";
+  document.getElementById("kpi2-lbl").textContent = isEn ? "Synced Items in Rasd" : "أصناف المتجر في «رَصد»";
+  document.getElementById("kpi2-sub").textContent = isEn ? "Auto-synced with your store" : "متزامنة تلقائياً مع متجرك";
+  document.getElementById("kpi3-lbl").textContent = isEn ? "Low-Stock Alerts" : "تنبيهات انخفاض المخزون";
+  document.getElementById("kpi3-val").textContent = isEn ? "3 Items" : "3 أصناف";
+  document.getElementById("kpi3-sub").textContent = isEn ? "Reached minimum threshold" : "وصلت للحد الأدنى المعتمد";
+  document.getElementById("home-card-title").textContent = isEn ? "📊 Live Store & Rasd Inventory Summary" : "📊 ملخص الربط والمزامنة الحية مع متجرك";
+  document.getElementById("home-card-desc").textContent = isEn ? "Your clean unified view synced with Rasd Engine and Sanad AI." : "تعرض هذه الصفحة خلاصة بيانات متجرك المسحوبة عبر أمين المستودع «رَصد» وحالة موظف المبيعات «سَنَد» في شاشة واحدة مريحة بصرياً.";
+  document.getElementById("home-btn-setup").textContent = isEn ? "⚙️ Update 5 Store Setup Steps" : "⚙️ تحديث بيانات الربط الخمسة";
+  document.getElementById("home-btn-sup").textContent = isEn ? "💬 Send Batch Inquiry / Ticket" : "💬 إرسال استفسار أو تذكرة صيانة";
+
+  const walker = document.createTreeWalker(document.getElementById("public-landing-view"), NodeFilter.SHOW_TEXT, null, false);
+  let node;
+  while ((node = walker.nextNode())) {
+    if (node.parentElement && node.parentElement.closest("#m-host-navbar")) continue;
+    let txt = node.nodeValue;
+    if (!txt || !txt.trim()) continue;
+    arPairs.forEach(([ar, en]) => {
+      if (isEn && txt.includes(ar)) txt = txt.replace(ar, en);
+      else if (!isEn && txt.includes(en)) txt = txt.replace(en, ar);
+    });
+    node.nodeValue = txt;
+  }
+}
+</script>
+
+
+
+
+
+<script id="sanad-root-bilingual-engine">
+(function() {
+  window.curHnLang = "ar";
+
+  // 1. Exact ID Map (Topbar + OAuth Modal + Client Workspace)
+  const idMap = {
+    ar: {
+      "hn-logo-char": "س",
+      "hn-brand-title": "سَنَد",
+      "hn-brand-sub": "مدير أعمالك الرقمي",
+      "hn-nav-merged": "الباقات والتوفير",
+      "hn-lang-text": "EN",
+      "hn-signin-text": "تسجيل الدخول",
+      "hn-signup-text": "اشترك الآن",
+      "auth-title": "تسجيل الدخول إلى بوابة سَنَد",
+      "auth-sub": "اختر طريقة الدخول لفتح لوحة تحكم متجرك المتزامنة مع «رَصد»",
+      "auth-google-btn": "المتابعة باستخدام حساب Google",
+      "auth-or-txt": "أو عبر البريد الإلكتروني المباشر",
+      "auth-email-lbl": "البريد الإلكتروني",
+      "auth-pin-lbl": "كود التفعيل المرسل من سَنَد (اختياري للمعاينة)",
+      "auth-submit-btn": "دخول إلى لوحة تحكم المتجر",
+      "ws-sb-brand": "بوابة سَنَد",
+      "ws-lbl-home": "الرئيسية",
+      "ws-lbl-setup": "إعدادات المتجر (الـ 5 خانات)",
+      "ws-lbl-rasd": "مزامنة مستودع «رَصد»",
+      "ws-lbl-support": "الاستفسارات وتذاكر الصيانة",
+      "ws-lang-btn": "English",
+      "ws-logout-btn": "تسجيل الخروج",
+      "ws-top-title": "لوحة تحكم المشترك (سَنَد + رَصد)",
+      "ws-status-pill": "🟢 سَنَد + رَصد: متصل",
+      "kpi1-lbl": "حالة الموظف الرقمي (سَنَد)",
+      "kpi1-val": "🟢 نشط على الواتساب",
+      "kpi1-sub": "يرد على العملاء على مدار الساعة",
+      "kpi2-lbl": "أصناف المتجر في «رَصد»",
+      "kpi2-sub": "متزامنة تلقائياً مع متجرك",
+      "kpi3-lbl": "تنبيهات انخفاض المخزون",
+      "kpi3-val": "3 أصناف",
+      "kpi3-sub": "وصلت للحد الأدنى المعتمد",
+      "home-card-title": "📊 ملخص الربط والمزامنة الحية مع متجرك",
+      "home-card-desc": "تعرض هذه الصفحة خلاصة بيانات متجرك المسحوبة عبر أمين المستودع «رَصد» وحالة موظف المبيعات «سَنَد» في شاشة واحدة مريحة بصرياً.",
+      "home-btn-setup": "⚙️ تحديث بيانات الربط الخمسة",
+      "home-btn-sup": "💬 إرسال استفسار أو تذكرة صيانة",
+      "setup-title": "🚀 إعدادات تفعيل وربط المتجر (الخانات الخمس)",
+      "setup-desc": "تُحفظ مسودتك تلقائياً لتتمكن من نسخ مفتاح الـ API من منصة (سلة أو زد) والعودة لإكمال التفعيل في أي وقت.",
+      "f1-lbl": "1️⃣ اسم متجرك الرسمي + رابط المتجر على (سلة أو زد)",
+      "f1-sub": "اكتب اسم المتجر الرسمي والرابط الكامل للمتجر",
+      "f2-lbl": "2️⃣ الاسم المفضل لموظفك الرقمي الذي سيخاطب عملاءك",
+      "f2-sub": "مثال: سَنَد، أو مساعد متجر...",
+      "f3-lbl": "3️⃣ رقم جوال الأونر (المالك) لاستقبال تقارير المستودع",
+      "f3-sub": "يستقبل تقارير المستودع وتنبيهات البضاعة التي شارفت على الانتهاء",
+      "f4-lbl": "4️⃣ رقم واتساب خدمة العملاء الذي سيعمل عليه الموظف الرقمي",
+      "f4-sub": "الرقم المخصص للرد على الزبائن",
+      "f5-lbl": "5️⃣ مفتاح الربط البرمجي (API Token للقراءة فقط) + الحد الأدنى للكمية",
+      "f5-sub": "ليسحب أمين المستودع «رَصد» منتجاتك وأسعارك لحظة بلحظة",
+      "setup-submit-btn": "✅ حفظ واعتماد إعدادات المتجر الخمسة لدى «سَنَد» و«رَصد»",
+      "rasd-title": "📦 حالة مزامنة أمين المستودع «رَصد»",
+      "rasd-desc": "يقرأ «رَصد» أصنافك وأسعارك وكمياتك آلياً عبر مفتاح القراءة فقط، ويرسل تنبيهاً لجوال المالك فور وصول أي صنف للحد الأدنى.",
+      "rasd-sync-lbl": "آخر مزامنة للكتالوج والأسعار:",
+      "rasd-sync-sub": "متصل وجاهز للمزامنة الآلية",
+      "sup-title": "💬 الاستفسارات الشاملة وتذاكر الصيانة",
+      "sup-desc": "اكتب جميع استفساراتك أو تفاصيل طلب الصيانة دفعة واحدة هنا، وسيقوم «سَنَد» بالرد عليها كاملة في رسالة واحدة شاملة على الواتساب.",
+      "sup-type-lbl": "نوع الطلب",
+      "sup-msg-lbl": "تفاصيل الاستفسارات أو التذكرة",
+      "sup-submit-btn": "🚀 إرسال الطلب الموحد إلى «سَنَد» بضغطة واحدة"
+    },
+    en: {
+      "hn-logo-char": "S",
+      "hn-brand-title": "Sanad AI",
+      "hn-brand-sub": "Your Digital Business Manager",
+      "hn-nav-merged": "Pricing & Savings",
+      "hn-lang-text": "عربي",
+      "hn-signin-text": "Sign In",
+      "hn-signup-text": "Sign Up",
+      "auth-title": "Sign in to Sanad AI Portal",
+      "auth-sub": "Choose your sign-in method to access your Rasd-synced store dashboard",
+      "auth-google-btn": "Continue with Google",
+      "auth-or-txt": "OR CONTINUE WITH EMAIL",
+      "auth-email-lbl": "Email Address",
+      "auth-pin-lbl": "Activation Pin (Optional for Demo)",
+      "auth-submit-btn": "Sign In to Store Dashboard",
+      "ws-sb-brand": "Sanad Portal",
+      "ws-lbl-home": "Home (Dashboard)",
+      "ws-lbl-setup": "Store Setup (5 Steps)",
+      "ws-lbl-rasd": "Rasd Inventory Sync",
+      "ws-lbl-support": "Inquiries & Support",
+      "ws-lang-btn": "عربي",
+      "ws-logout-btn": "Log Out",
+      "ws-top-title": "Subscriber Workspace (Sanad + Rasd)",
+      "ws-status-pill": "🟢 Sanad + Rasd: Online",
+      "kpi1-lbl": "Digital Employee (Sanad)",
+      "kpi1-val": "🟢 Active on WhatsApp",
+      "kpi1-sub": "Replying to customers 24/7",
+      "kpi2-lbl": "Synced Items in Rasd",
+      "kpi2-sub": "Auto-synced with your store",
+      "kpi3-lbl": "Low-Stock Alerts",
+      "kpi3-val": "3 Items",
+      "kpi3-sub": "Reached minimum threshold",
+      "home-card-title": "📊 Live Store & Rasd Inventory Summary",
+      "home-card-desc": "Your clean unified view synced with Rasd Engine and Sanad AI.",
+      "home-btn-setup": "⚙️ Update 5 Store Setup Steps",
+      "home-btn-sup": "💬 Send Batch Inquiry / Ticket",
+      "setup-title": "🚀 Store Activation & Setup (5 Mandatory Steps)",
+      "setup-desc": "Your draft is auto-saved so you can copy your API token from Salla/Zid and return anytime.",
+      "f1-lbl": "1️⃣ Official Store Name + Store URL (Salla or Zid)",
+      "f1-sub": "Enter your store name and full store link",
+      "f2-lbl": "2️⃣ Preferred Digital Employee Name",
+      "f2-sub": "e.g., Sanad, or Store Assistant...",
+      "f3-lbl": "3️⃣ Owner Mobile Number (For Inventory Reports)",
+      "f3-sub": "Receives warehouse reports and low-stock alerts",
+      "f4-lbl": "4️⃣ Customer Service WhatsApp Number (Bot)",
+      "f4-sub": "Dedicated number for replying to customers",
+      "f5-lbl": "5️⃣ Live Store API Token (Read-Only) + Min Qty Threshold",
+      "f5-sub": "Allows Rasd Engine to sync your products and prices in real-time",
+      "setup-submit-btn": "✅ Save & Activate 5 Store Setup Items",
+      "rasd-title": "📦 Rasd Inventory Sync Status",
+      "rasd-desc": "Rasd reads your items, prices, and stock via Read-Only token and alerts the Owner mobile when stock is low.",
+      "rasd-sync-lbl": "Last Catalog & Price Sync:",
+      "rasd-sync-sub": "Connected & ready for auto-sync",
+      "sup-title": "💬 All-in-One Inquiries & Maintenance Tickets",
+      "sup-desc": "Write all your questions or maintenance details at once; Sanad will reply in a single comprehensive WhatsApp message.",
+      "sup-type-lbl": "Request Type",
+      "sup-msg-lbl": "Inquiry or Ticket Details",
+      "sup-submit-btn": "🚀 Send Unified Request to Sanad in One Click"
+    }
+  };
+
+  // 2. Comprehensive Phrase & Fragment Dictionary (Hero + Phone + 3 Cards + Calculator + Pricing + Footer)
+  const dict = [
+    ["سَنَد .. مدير أعمالك الرقمي", "Sanad AI .. Your Digital Business Manager"],
+    ["عقل رقمي يدير متجرك وحساباتك من الواتساب", "An AI digital brain managing your store & accounts from WhatsApp"],
+    ["1. تسعيرة وفاتورة ويومية", "1. Quotes, Invoices & Daily Ledger"],
+    ["2. إدارة المتجر والطلبات", "2. Store & Orders Management"],
+    ["3. جرد الأرباح والمخزون", "3. Profit & Inventory Audit"],
+    ["موظفك الرقمي • متصل دائماً", "Your Digital Employee • Always Online"],
+    ["يا سند، أرسل تسعيرة التوريد للعميل، واعتمد الفاتورة، واقفل حسابات اليوم.", "Hey Sanad, send the supply quote to the client, approve the invoice, and close today's accounts."],
+    ["تم التنفيذ في 1.8 ثانية", "Executed in 1.8 seconds"],
+    ["أبشر، أصدرت الفاتورة المعتمدة وأرسلتها للعميل، وتم ترحيل صافي المبيعات وإقفال اليومية بنجاح:", "Done! Official invoice issued & sent to the client, net sales posted, and daily ledger closed:"],
+    ["فاتورة ضريبية معتمدة", "Approved Tax Invoice"],
+    ["إجمالي التوريد (شامل الضريبة)", "Total Supply (VAT Included)"],
+    ["صافي ربح العملية", "Net Transaction Profit"],
+    ["حالة اليومية والخزنة", "Daily Ledger & Vault Status"],
+    ["مقفلة ومتطابقة 100%", "Closed & 100% Reconciled"],
+    ["تحدث أو اكتب أمرك لـ Sanad AI...", "Speak or type your command to Sanad AI..."],
+    ["تحدث أو اكتب أمرك لـ", "Speak or type your command to"],
+    ["كل مهام متجرك وحساباتك في محادثة واحدة", "All Your Store Tasks & Accounts in One Chat"],
+    ["تكتب له بالعامية أو ترسل صوت، وهو ينفذ فوراً بدون لوحات تحكم معقدة", "Type naturally or send a voice note — Sanad executes immediately without complex dashboards"],
+    ["مبيعات 24/7", "24/7 Sales"],
+    ["يرد على عملائك ويبيع في متجرك", "Replies to Customers & Sells in Your Store"],
+    ["يستقبل استفسارات الزبائن في الواتساب، يعرض لهم الأصناف والأسعار والمخزون المتوفر، ويؤكد الطلبات لحظياً حتى وأنت نائم.", "Receives customer inquiries on WhatsApp, shows items, prices, and live stock, and confirms orders 24/7 even while you sleep."],
+    ["فوري PDF", "Instant PDF"],
+    ["يصدر عروض الأسعار والفواتير", "Issues Official Quotes & Tax Invoices"],
+    ["بأمر واحد في الشات يجهز لك عرض السعر أو الفاتورة أو الخطاب الرسمي محسوباً بالضريبة ويرسله كملف PDF جاهز للعميل.", "With one chat command, prepares your quote, invoice, or official letter with VAT and sends it as a ready PDF to the client."],
+    ["دقة 100%", "100% Accuracy"],
+    ["يضبط الحسابات ويقفل اليومية", "Manages Accounts & Closes Daily Ledger"],
+    ["يسجل المبيعات والمصروفات والحوالات أولاً بأول، ويفرز لك صافي الأرباح والتزامات الضريبة والتشغيل في ثوانٍ بنهاية كل يوم.", "Logs sales, expenses, and transfers in real time, sorting net profit, VAT, and operating costs in seconds at day's end."],
+    ["حاسبة التوفير الشهري", "Monthly Savings Calculator"],
+    ["كم يوفر عليك «سَنَد» في متجرك أو منشأتك؟", "How much does Sanad save your store every month?"],
+    ["حرك المؤشر من 2 إلى 6 موظفين (سَنَد + 5 موظفين كحد أقصى للبكج):", "Slide from 2 to 6 digital employees (Sanad + up to 5 specialists):"],
+    ["حرك المؤشر من", "Slide from"],
+    ["موظفين (سَنَد + 5 موظفين كحد أقصى للبكج):", "digital employees (Sanad + up to 5 specialists):"],
+    ["موظفين (سَنَد + 5 موظفين كحد أقصى للبكج)", "digital employees (Sanad + up to 5 specialists)"],
+    ["حجم الطاقم الرقمي (مبيعات + فواتير + محاسبة):", "Digital Team Size (Sales + Invoicing + Inventory):"],
+    ["سَنَد + موظف واحد (2 موظفين)", "Sanad + 1 Specialist (2 Employees)"],
+    ["سَنَد + موظفين (3 موظفين)", "Sanad + 2 Specialists (3 Employees)"],
+    ["سَنَد + 3 موظفين (4 موظفين)", "Sanad + 3 Specialists (4 Employees)"],
+    ["سَنَد + 4 موظفين (5 موظفين)", "Sanad + 4 Specialists (5 Employees)"],
+    ["سَنَد + 5 موظفين (6 موظفين - كامل البكج)", "Sanad + 5 Specialists (6 Employees - Full Package)"],
+    ["2 موظفين (سَنَد + 1)", "2 Employees (Sanad + 1)"],
+    ["4 موظفين (سَنَد + 3)", "4 Employees (Sanad + 3)"],
+    ["6 موظفين (سَنَد + 5 كامل البكج)", "6 Employees (Full Package)"],
+    ["التكلفة التشغيلية المعتادة", "Typical Monthly Payroll"],
+    ["توفيرك الشهري التقريبي", "Your Estimated Monthly Savings"],
+    ["الباقة الشاملة (حتى 5 موظفين + سَنَد)", "All-In-One Package (Sanad + Rasd)"],
+    ["13 SAR / يومياً", "13 SAR / Day"],
+    ["يومياً", "Day"],
+    ["وظّف «سَنَد» وفريقه في أعمالك اليوم", "Hire Sanad & Rasd For Your Store Today"],
+    ["ريال / شهرياً (شامل كل المهام)", "SAR / Month (All-Inclusive)"],
+    ["رد آلي ذكي وإدارة مبيعات المتجر في الواتساب", "Smart WhatsApp AI Sales & Customer Care"],
+    ["إصدار فواتير وعروض أسعار PDF غير محدودة", "Unlimited PDF Quotes & Tax Invoices"],
+    ["إصدار فواتير وعروض أسعار PDF", "Unlimited PDF Quotes & Tax Invoices"],
+    ["غير محدودة", "(24/7 Instant Generation)"],
+    ["جرد يومي وإقفال حسابات المبيعات والمصروفات", "Automated Low-Stock Alerts to Owner Mobile"],
+    ["بكج متكامل يضم «سَنَد» مع ما يصل إلى 5 موظفين رقميين", "Full Package: Sanad + up to 5 Digital Employees"],
+    ["بكج متكامل يضم", "Full Package:"],
+    ["مع ما يصل إلى", "with up to"],
+    ["5 موظفين رقميين", "5 Digital Employees"],
+    ["اشترك الآن وابدأ مع «سَنَد» عبر الواتساب", "Subscribe Now & Start with Sanad on WhatsApp"],
+    ["تفعيل فوري • تجربة حية مباشرة على الواتساب 0566566977", "Instant Activation • Live WhatsApp Demo 0566566977"],
+    ["تفعيل فوري • تجربة حية مباشرة على الواتساب", "Instant Activation • Live WhatsApp Demo"],
+    ["سَنَد — مدير أعمالك الرقمي • يعمل معك من الواتساب على مدار الساعة", "Sanad AI — Your 24/7 Digital Store Team on WhatsApp"],
+    ["🔄 مزامنة الأصناف الآن", "🔄 Sync Catalog Now"],
+    ["إلى", "to"],
+    ["«سَنَد»", "Sanad AI"],
+    ["سَنَد", "Sanad AI"]
+  ];
+
+  // Sort longest Arabic phrase first so sub-words don't break full sentences
+  dict.sort((a, b) => b[0].length - a[0].length);
+
+  // 3. Snapshot Original Arabic Text Nodes & Attributes Once
+  const origNodes = new Map();
+  const origAttrs = [];
+
+  function initSnapshot() {
+    if (window._sanadSnapDone) return;
+    window._sanadSnapDone = true;
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    let n;
+    while ((n = w.nextNode())) {
+      if (n.parentElement && (n.parentElement.tagName === "SCRIPT" || n.parentElement.tagName === "STYLE")) continue;
+      if (n.nodeValue && n.nodeValue.trim()) {
+        origNodes.set(n, n.nodeValue);
+      }
+    }
+    document.querySelectorAll("[placeholder],[title]").forEach(el => {
+      origAttrs.push({
+        el,
+        ph: el.getAttribute("placeholder"),
+        ti: el.getAttribute("title")
+      });
+    });
+  }
+
+  function translateTextString(str, toEn) {
+    const sub=[["موظفين (Sanad AI + 5 موظفين كحد أقصى للبكج):","digital employees (Sanad AI + up to 5 specialists):"],["موظفين (Sanad AI + 5 موظفين كحد أقصى للبكج)","digital employees (Sanad AI + up to 5 specialists)"],["موظفين كحد أقصى للبكج):","specialists max):"],["بأمر واحد في الشات يجهز لك عرض السعر أو الفاتورة أو الخطاب الرسمي محسوباً بالضريبة ويرسله كملف","With one chat command, prepares your quote, invoice, or official letter with VAT and sends it as a"],["بأمر واحد في الشات يجهز لك عرض السعر أو الفاتورة أو الخطاب الرسمي محسوبا بالضريبة ويرسله كملف","With one chat command, prepares your quote, invoice, or official letter with VAT and sends it as a"],["جاهز للعميل.","ready for the client."],["جاهز للعميل","ready for the client"],["PDF فوري","Instant PDF"],["فوري PDF","Instant PDF"],["فوري","Instant"],["موظفين","employees"]];let out=str.replace(/\s+/g," ");if(toEn){for(const[a,e]of sub){if(out.includes(a))out=out.split(a).join(e);}}
+    if (toEn) {
+      for (const [ar, en] of dict) {
+        if (out.includes(ar)) out = out.split(ar).join(en);
+      }
+    }
+    return out;
+  }
+
+  // 4. Self-Healing DOM Auditor (Scans & Fixes Any Remaining Arabic Nodes in EN Mode)
+  window.runSelfHealingLangAudit = function() {
+    initSnapshot();
+    const isEn = window.curHnLang === "en";
+    const dir = isEn ? "ltr" : "rtl";
+    document.documentElement.setAttribute("dir", dir);
+    document.documentElement.setAttribute("lang", window.curHnLang);
+    document.body.style.direction = dir;
+
+    // A) Apply Exact ID Map
+    const targetMap = idMap[window.curHnLang];
+    Object.keys(targetMap).forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = targetMap[id];
+    });
+
+    // B) Restore or Translate All Snapshot Text Nodes
+    origNodes.forEach((arVal, node) => {
+      if (node.parentElement && node.parentElement.id && targetMap[node.parentElement.id]) return;
+      node.nodeValue = isEn ? translateTextString(arVal, true) : arVal;
+    });
+
+    // C) Live Audit Pass for Dynamically Changed Nodes (e.g., Range Slider labels)
+    if (isEn) {
+      const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+      let n;
+      while ((n = w.nextNode())) {
+        if (n.parentElement && (n.parentElement.tagName === "SCRIPT" || n.parentElement.tagName === "STYLE")) continue;
+        if (n.parentElement && n.parentElement.id === "hn-lang-text") continue;
+        if (n.parentElement && n.parentElement.id === "ws-lang-btn") continue;
+        if (/[؀-ۿ]/.test(n.nodeValue)) {
+          n.nodeValue = translateTextString(n.nodeValue, true);
+        }
+      }
+    }
+
+    // D) Translate Input Placeholders & Select Options
+    origAttrs.forEach(item => {
+      if (item.ph) {
+        item.el.setAttribute("placeholder", isEn ? translateTextString(item.ph, true) : item.ph);
+      }
+    });
+  };
+
+  window.toggleHostingerLang = function() {
+    initSnapshot();
+    window.curHnLang = window.curHnLang === "ar" ? "en" : "ar";
+    window.runSelfHealingLangAudit();
+  };
+
+  // Auto-heal when range slider is moved in EN mode
+  document.addEventListener("input", function(e) {
+    if (e.target && e.target.type === "range" && window.curHnLang === "en") {
+      setTimeout(window.runSelfHealingLangAudit, 5);
+    }
+  });
+})();
+</script>
+
+
+<script id="sanad-ws-actions">window.toggleGemSidebar=function(){const sb=document.getElementById("m-gem-sidebar");const main=document.getElementById("m-gem-main");if(!sb||!main)return;const isClosed=sb.classList.toggle("collapsed");main.classList.toggle("with-sb",!isClosed);document.body.classList.toggle("sb-closed",isClosed);};window.switchWsPane=function(pane){["home","setup","rasd","support"].forEach(p=>{const pe=document.getElementById("ws-pane-"+p);const ne=document.getElementById("ws-nav-"+p);if(pe)pe.classList.toggle("active",p===pane);if(ne)ne.classList.toggle("active",p===pane);});if(window.innerWidth<=768&&window.toggleGemSidebar){const sb=document.getElementById("m-gem-sidebar");if(sb&&!sb.classList.contains("collapsed"))window.toggleGemSidebar();}};window.logoutWorkspace=function(){localStorage.removeItem("sanad_client_email");document.getElementById("client-workspace-view").style.display="none";document.getElementById("client-workspace-view").classList.remove("active");document.getElementById("public-landing-view").style.display="block";window.scrollTo(0,0);};</script>
+</body>
+</html>
+<script type="module">import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"; import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"; window.SANAD_FIREBASE_CONFIG = JSON.parse(localStorage.getItem("sanad_fb_cfg") || "{\"apiKey\":\"\",\"authDomain\":\"maladel.com\",\"projectId\":\"\"}"); window.realOAuthSignIn = async function(providerName) { if(window.location.protocol === "file:") { alert(window.curHnLang==="en" ? "⚠️ Real Google OAuth requires running on https://maladel.com or http://localhost (blocked on file://). Opening preview workspace now." : "⚠️ نافذة قوقل الحقيقية تعمل فقط عند فتح الموقع عبر https://maladel.com أو localhost (محجوبة أمنياً على الملف المحلي file://). سيتم فتح لوحة المعاينة الآن."); document.getElementById("m-auth-modal").style.display="none"; document.getElementById("public-landing-view").style.display="none"; document.getElementById("client-workspace-view").style.display="flex"; document.getElementById("ws-user-badge").textContent="Preview Mode (Google)"; return; } if(!window.SANAD_FIREBASE_CONFIG.apiKey) { alert("يرجى إدخال مفاتيح Firebase Auth الخاصة بدومين maladel.com لتفعيل نافذة Google"); return; } try { const app = initializeApp(window.SANAD_FIREBASE_CONFIG); const auth = getAuth(app); const res = await signInWithPopup(auth, new GoogleAuthProvider()); const user = res.user; document.getElementById("m-auth-modal").style.display="none"; document.getElementById("public-landing-view").style.display="none"; document.getElementById("client-workspace-view").style.display="flex"; document.getElementById("ws-user-badge").textContent = (user.displayName ? user.displayName + " | " : "") + user.email; } catch(err) { alert("OAuth Error: " + err.message); } };</script>
+
+<style id="sanad-sb-fix">.m-ws-topbar .m-collapse-btn{display:none!important;}body.sb-closed .m-ws-topbar .m-collapse-btn{display:flex!important;}</style>
 </head>
-<body class="manarat-spa-body">
+<body class="crystal-page-bg flex flex-col justify-between">
 
-<div class="m-mobile-bar">
-  <div style="display:flex;align-items:center;gap:8px;font-weight:800;">
-    <span style="background:#D4A017;color:#091526;padding:2px 8px;border-radius:6px;">س</span>
-    <span data-i18n="brand_name">منظومة سَنَد الرقمية</span>
-  </div>
-  <div style="display:flex;gap:8px;">
-    <button onclick="toggleManaratLang()" style="background:#2176AE;color:#fff;border:none;padding:6px 10px;border-radius:6px;font-weight:700;cursor:pointer;" id="m-mob-lang">EN / ع</button>
-    <button onclick="document.getElementById('m-sidebar').classList.toggle('open')" style="background:#D4A017;color:#091526;border:none;padding:6px 12px;border-radius:6px;font-weight:800;cursor:pointer;">☰</button>
-  </div>
-</div>
-
-<div class="m-app-shell">
-  <!-- FIXED SIDEBAR -->
-  <aside class="m-sidebar" id="m-sidebar">
-    <div class="m-sb-header">
-      <div class="m-sb-brand">
-        <div class="m-sb-logo">س</div>
+<!-- ========================================================= -->
+<!-- 1. PUBLIC STOREFRONT VIEW (HOSTINGER TOPBAR + LANDING)    -->
+<!-- ========================================================= -->
+<div id="public-landing-view">
+  <nav class="m-host-navbar" id="m-host-navbar">
+    <div class="m-hn-side">
+      <a class="m-hn-brand" href="#">
+        <div class="m-hn-logo" id="hn-logo-char">س</div>
         <div>
-          <div class="m-sb-title" data-i18n="brand_name">منظومة سَنَد</div>
-          <div class="m-sb-sub" data-i18n="brand_sub">منارة العادل للتجارة</div>
+          <span class="m-hn-title" id="hn-brand-title">سَنَد</span>
+          <span class="m-hn-divider">|</span>
+          <span class="m-hn-sub" id="hn-brand-sub">مدير أعمالك الرقمي</span>
         </div>
-      </div>
+      </a>
+      <a class="m-hn-link" href="#pricing" id="hn-nav-merged">الباقات والتوفير</a>
     </div>
 
-    <div class="m-lang-box">
-      <button class="m-lang-btn" onclick="toggleManaratLang()">
+    <div class="m-hn-actions">
+      <button class="m-btn-lang" onclick="toggleHostingerLang()" title="Switch Language">
         <span>🌐</span>
-        <span id="m-lang-label">English (LTR) ⬅️</span>
+        <span id="hn-lang-text">EN</span>
+      </button>
+      <button class="m-btn-signin" onclick="document.getElementById('m-auth-modal').style.display='flex';document.getElementById('m-auth-modal').classList.add('open');">
+        <span>👤</span>
+        <span id="hn-signin-text">تسجيل الدخول</span>
+      </button>
+      <button class="m-btn-signup" onclick="document.getElementById('m-auth-modal').style.display='flex';document.getElementById('m-auth-modal').classList.add('open');">
+        <span id="hn-signup-text">اشترك الآن</span>
       </button>
     </div>
+  </nav>
 
-    <ul class="m-nav-list">
-      <li>
-        <button class="m-nav-item active" id="nav-home" onclick="switchManaratTab('home')">
-          <span class="m-nav-icon">🏠</span>
-          <span data-i18n="nav_home">الرئيسية (Home)</span>
-        </button>
-      </li>
-      <li>
-        <button class="m-nav-item" id="nav-onboard" onclick="switchManaratTab('onboard')">
-          <span class="m-nav-icon">🚀</span>
-          <span data-i18n="nav_onboard">المشتركين الجدد</span>
-          <span class="m-badge-active" data-i18n="badge_new">تفعيل</span>
-        </button>
-      </li>
-      <li>
-        <button class="m-nav-item" id="nav-support" onclick="switchManaratTab('support')">
-          <span class="m-nav-icon">💬</span>
-          <span data-i18n="nav_support">الاستفسارات والدعم</span>
-        </button>
-      </li>
-    </ul>
-
-    <div class="m-sb-footer">
-      <div data-i18n="sb_footer">بوابة الربط السحابي الموحدة v2.5</div>
-      <div style="margin-top:4px;color:#D4A017;font-family:Inter,sans-serif;">maladel.com</div>
-    </div>
-  </aside>
-
-  <!-- MAIN CONTENT AREA -->
-  <main class="m-main-area">
-    <!-- TAB 1: HOME (EXISTING LANDING PAGE) -->
-    <section id="view-home" class="m-view-panel active">
-      
+  
 
   <!-- 1. الشريط العلوي -->
   <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-purple-100/70">
@@ -933,364 +1560,238 @@
   </script>
 
 
-    </section>
-
-    <!-- TAB 2: NEW SUBSCRIBERS (THE 5 MANDATORY ONBOARDING FIELDS) -->
-    <section id="view-onboard" class="m-view-panel">
-      <div class="m-portal-wrap">
-        <div class="m-portal-card">
-          <h2 class="m-portal-title" data-i18n="onb_title">🚀 بوابة تفعيل المتجر للمشتركين الجدد (البنود الخمسة)</h2>
-          <p class="m-portal-desc" data-i18n="onb_desc">
-            مرحباً بك في عائلة «سَنَد». تُحفظ بياناتك تلقائياً في متصفحك أثناء الكتابة حتى تتمكن من الذهاب لمنصة (سلة أو زد) لنسخ مفتاح الربط والعودة دون فقدان ما كتبته.
-          </p>
-
-          <div class="m-pin-gate">
-            <div>
-              <strong style="color:#D4A017;" data-i18n="pin_label">🔑 كود التفعيل أو رقم إيصال التحويل (المرسل من سَنَد):</strong>
-              <div style="font-size:12px;color:#cbd5e1;" data-i18n="pin_hint">يسمح لك بالدخول والخروج لحفظ وإكمال بيانات متجرك</div>
-            </div>
-            <input type="text" id="onb_code" class="m-input" style="max-width:220px;text-align:center;font-weight:800;letter-spacing:1px;" placeholder="مثال: 5142451" oninput="saveOnbDraft()">
-          </div>
-
-          <div class="m-form-grid">
-            <!-- 1 -->
-            <div class="m-field-box">
-              <div class="m-field-label">
-                <span>1️⃣</span>
-                <span data-i18n="f1_title">اسم متجرك الرسمي + رابط المتجر على (سلة أو زد)</span>
-              </div>
-              <div class="m-field-hint" data-i18n="f1_hint">اكتب اسم المتجر كما يظهر للعملاء مع الرابط الكامل للمتجر.</div>
-              <div class="m-row-2">
-                <input type="text" id="onb_store_name" class="m-input" data-i18n-ph="f1_ph1" placeholder="اسم المتجر الرسمي (مثال: متجر رفا)" oninput="saveOnbDraft()">
-                <input type="url" id="onb_store_url" class="m-input" data-i18n-ph="f1_ph2" placeholder="https://salla.sa/your-store" oninput="saveOnbDraft()">
-              </div>
-            </div>
-
-            <!-- 2 -->
-            <div class="m-field-box">
-              <div class="m-field-label">
-                <span>2️⃣</span>
-                <span data-i18n="f2_title">الاسم المفضل لموظفك الرقمي الذي سيخاطب عملاءك</span>
-              </div>
-              <div class="m-field-hint" data-i18n="f2_hint">الاسم الذي سيعرّف به الموظف الرقمي نفسه عند الرد على زبائنك.</div>
-              <input type="text" id="onb_bot_name" class="m-input" data-i18n-ph="f2_ph" placeholder="مثال: سَنَد، أو مساعد متجر رفا..." oninput="saveOnbDraft()">
-            </div>
-
-            <!-- 3 -->
-            <div class="m-field-box">
-              <div class="m-field-label">
-                <span>3️⃣</span>
-                <span data-i18n="f3_title">رقم جوال المالك (Owner) لاستقبال تقارير المستودع</span>
-              </div>
-              <div class="m-field-hint" data-i18n="f3_hint">سيتم اعتماد هذا الرقم كجوال الأونر (المالك) الذي يستقبل تقارير المستودع وتنبيهات البضاعة التي شارفت على الانتهاء.</div>
-              <input type="tel" id="onb_owner_phone" class="m-input" placeholder="05XXXXXXXX" oninput="saveOnbDraft()">
-            </div>
-
-            <!-- 4 -->
-            <div class="m-field-box">
-              <div class="m-field-label">
-                <span>4️⃣</span>
-                <span data-i18n="f4_title">رقم واتساب خدمة العملاء الذي سيعمل عليه الموظف الرقمي</span>
-              </div>
-              <div class="m-field-hint" data-i18n="f4_hint">الرقم المخصص للرد على الزبائن (سيتم إرسال باركود الربط QR له).</div>
-              <input type="tel" id="onb_bot_phone" class="m-input" placeholder="05XXXXXXXX" oninput="saveOnbDraft()">
-            </div>
-
-            <!-- 5 -->
-            <div class="m-field-box">
-              <div class="m-field-label">
-                <span>5️⃣</span>
-                <span data-i18n="f5_title">مفتاح الربط البرمجي الحي للمتجر (API Token للقراءة فقط) + الحد الأدنى للكمية</span>
-              </div>
-              <div class="m-field-hint" data-i18n="f5_hint">من إعدادات متجرك في (سلة أو زد) ليسحب أمين المستودع «رَصد» منتجاتك وأسعارك لحظة بلحظة — مع تحديد الحد الأدنى للكمية للتنبيه قبل النفاد.</div>
-              <div class="m-row-2">
-                <input type="password" id="onb_api_token" class="m-input" data-i18n-ph="f5_ph1" placeholder="Read-Only API Token">
-                <input type="number" id="onb_min_qty" class="m-input" value="5" min="1" data-i18n-ph="f5_ph2" placeholder="الحد الأدنى للكمية (مثال: 5)" oninput="saveOnbDraft()">
-              </div>
-            </div>
-
-            <button class="m-submit-btn" onclick="submitOnboardingForm()" data-i18n="onb_submit">
-              ✅ اعتماد البيانات الخمسة وإرسالها لتفعيل الموظف الرقمي فوراً
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TAB 3: BATCH INQUIRIES & MAINTENANCE TICKETS -->
-    <section id="view-support" class="m-view-panel">
-      <div class="m-portal-wrap">
-        <div class="m-portal-card">
-          <h2 class="m-portal-title" data-i18n="sup_title">💬 بوابة الاستفسارات الشاملة وتذاكر الصيانة</h2>
-          <p class="m-portal-desc" data-i18n="sup_desc">
-            بدلاً من كتابة رسائل متقطعة، اكتب جميع استفساراتك أو تفاصيل تذكرة الصيانة دفعة واحدة هنا، وسيقوم «سَنَد» بالرد على كافة نقاطك في رسالة واحدة شاملة ومرتبة على الواتساب.
-          </p>
-
-          <div class="m-form-grid">
-            <div class="m-row-2">
-              <div class="m-field-box">
-                <div class="m-field-label" data-i18n="sup_name_lbl">الاسم الكريم / اسم المتجر</div>
-                <input type="text" id="sup_name" class="m-input" placeholder="مثال: فهد - متجر العطور">
-              </div>
-              <div class="m-field-box">
-                <div class="m-field-label" data-i18n="sup_phone_lbl">رقم الواتساب (لاستلام الرد الشامل)</div>
-                <input type="tel" id="sup_phone" class="m-input" placeholder="05XXXXXXXX">
-              </div>
-            </div>
-
-            <div class="m-field-box">
-              <div class="m-field-label" data-i18n="sup_type_lbl">نوع الطلب</div>
-              <select id="sup_type" class="m-select">
-                <option value="استفسار شامل قبل الاشتراك" data-i18n="sup_opt1">📩 استفسارات شاملة قبل الاشتراك (رد موحد في رسالة واحدة)</option>
-                <option value="تذكرة صيانة لمشترك حالي" data-i18n="sup_opt2">🛠️ رفع تذكرة صيانة للدعم الفني (لمشتركي سَنَد)</option>
-              </select>
-            </div>
-
-            <div class="m-field-box">
-              <div class="m-field-label" data-i18n="sup_msg_lbl">اكتب جميع استفساراتك أو تفاصيل طلب الصيانة هنا:</div>
-              <div class="m-field-hint" data-i18n="sup_msg_hint">رتب أسئلتك (1، 2، 3...) أو اكتبها بحرية وسيجيبك سَنَد عليها بالكامل في رد واحد.</div>
-              <textarea id="sup_msg" rows="6" class="m-textarea" placeholder="1- هل يدعم...&#10;2- كيف يتم...&#10;3- ..."></textarea>
-            </div>
-
-            <button class="m-submit-btn" onclick="submitSupportForm()" data-i18n="sup_submit">
-              🚀 إرسال كافة الاستفسارات / التذكرة بضغطة واحدة
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
 </div>
 
-<script>
-const M_I18N = {
-  ar: {
-    dir: "rtl",
-    lang_btn: "English (LTR) ⬅️",
-    brand_name: "منظومة سَنَد",
-    brand_sub: "منارة العادل للتجارة",
-    nav_home: "الرئيسية (Home)",
-    nav_onboard: "المشتركين الجدد",
-    badge_new: "تفعيل",
-    nav_support: "الاستفسارات والدعم",
-    sb_footer: "بوابة الربط السحابي الموحدة v2.5",
-    onb_title: "🚀 بوابة تفعيل المتجر للمشتركين الجدد (البنود الخمسة)",
-    onb_desc: "مرحباً بك في عائلة «سَنَد». تُحفظ بياناتك تلقائياً في متصفحك أثناء الكتابة حتى تتمكن من الذهاب لمنصة (سلة أو زد) لنسخ مفتاح الربط والعودة دون فقدان ما كتبته.",
-    pin_label: "🔑 كود التفعيل أو رقم إيصال التحويل (المرسل من سَنَد):",
-    pin_hint: "يسمح لك بالدخول والخروج لحفظ وإكمال بيانات متجرك",
-    f1_title: "اسم متجرك الرسمي + رابط المتجر على (سلة أو زد)",
-    f1_hint: "اكتب اسم المتجر كما يظهر للعملاء مع الرابط الكامل للمتجر.",
-    f1_ph1: "اسم المتجر الرسمي (مثال: متجر رفا)",
-    f1_ph2: "https://salla.sa/your-store",
-    f2_title: "الاسم المفضل لموظفك الرقمي الذي سيخاطب عملاءك",
-    f2_hint: "الاسم الذي سيعرّف به الموظف الرقمي نفسه عند الرد على زبائنك.",
-    f2_ph: "مثال: سَنَد، أو مساعد متجر رفا...",
-    f3_title: "رقم جوال المالك (Owner) لاستقبال تقارير المستودع",
-    f3_hint: "سيتم اعتماد هذا الرقم كجوال الأونر (المالك) الذي يستقبل تقارير المستودع وتنبيهات البضاعة التي شارفت على الانتهاء.",
-    f4_title: "رقم واتساب خدمة العملاء الذي سيعمل عليه الموظف الرقمي",
-    f4_hint: "الرقم المخصص للرد على الزبائن (سيتم إرسال باركود الربط QR له).",
-    f5_title: "مفتاح الربط البرمجي الحي للمتجر (API Token للقراءة فقط) + الحد الأدنى للكمية",
-    f5_hint: "من إعدادات متجرك في (سلة أو زد) ليسحب أمين المستودع «رَصد» منتجاتك وأسعارك لحظة بلحظة — مع تحديد الحد الأدنى للكمية للتنبيه قبل النفاد.",
-    f5_ph1: "Read-Only API Token",
-    f5_ph2: "الحد الأدنى للكمية (مثال: 5)",
-    onb_submit: "✅ اعتماد البيانات الخمسة وإرسالها لتفعيل الموظف الرقمي فوراً",
-    sup_title: "💬 بوابة الاستفسارات الشاملة وتذاكر الصيانة",
-    sup_desc: "بدلاً من كتابة رسائل متقطعة، اكتب جميع استفساراتك أو تفاصيل تذكرة الصيانة دفعة واحدة هنا، وسيقوم «سَنَد» بالرد على كافة نقاطك في رسالة واحدة شاملة ومرتبة على الواتساب.",
-    sup_name_lbl: "الاسم الكريم / اسم المتجر",
-    sup_phone_lbl: "رقم الواتساب (لاستلام الرد الشامل)",
-    sup_type_lbl: "نوع الطلب",
-    sup_opt1: "📩 استفسارات شاملة قبل الاشتراك (رد موحد في رسالة واحدة)",
-    sup_opt2: "🛠️ رفع تذكرة صيانة للدعم الفني (لمشتركي سَنَد)",
-    sup_msg_lbl: "اكتب جميع استفساراتك أو تفاصيل طلب الصيانة هنا:",
-    sup_msg_hint: "رتب أسئلتك (1، 2، 3...) أو اكتبها بحرية وسيجيبك سَنَد عليها بالكامل في رد واحد.",
-    sup_submit: "🚀 إرسال كافة الاستفسارات / التذكرة بضغطة واحدة"
-  },
-  en: {
-    dir: "ltr",
-    lang_btn: "➡️ العربية (RTL)",
-    brand_name: "Sanad AI Platform",
-    brand_sub: "Manarat Al-Adel Trading",
-    nav_home: "Home",
-    nav_onboard: "New Subscribers",
-    badge_new: "Setup",
-    nav_support: "Inquiries & Support",
-    sb_footer: "Unified Cloud Portal v2.5",
-    onb_title: "🚀 New Store Onboarding Portal (5 Mandatory Steps)",
-    onb_desc: "Welcome to Sanad AI. Your entries are auto-saved in your browser so you can switch tabs to Salla/Zid to copy your API token and return anytime without losing progress.",
-    pin_label: "🔑 Activation Code / Transfer Ref (Provided by Sanad):",
-    pin_hint: "Allows multi-entry access to complete your store setup",
-    f1_title: "Official Store Name + Store Link (Salla or Zid)",
-    f1_hint: "Enter your public store name and full store URL.",
-    f1_ph1: "Official Store Name (e.g., Rafa Store)",
-    f1_ph2: "https://salla.sa/your-store",
-    f2_title: "Preferred Name for Your Digital Employee",
-    f2_hint: "The persona name your AI assistant will use when greeting your customers.",
-    f2_ph: "e.g., Sanad, or Rafa Store Assistant...",
-    f3_title: "Owner Mobile Number (For Inventory & Low-Stock Reports)",
-    f3_hint: "This number is registered as the Store Owner to receive warehouse reports and low-stock alerts.",
-    f4_title: "Customer Service WhatsApp Number (Bot Number)",
-    f4_hint: "The dedicated WhatsApp number that will reply to your customers (receives QR link).",
-    f5_title: "Live Store API Token (Read-Only) + Low-Stock Threshold",
-    f5_hint: "From your Salla/Zid settings so Rasd Engine can sync products & prices in real-time — plus minimum quantity alert limit.",
-    f5_ph1: "Read-Only API Token",
-    f5_ph2: "Min Qty Threshold (e.g., 5)",
-    onb_submit: "✅ Submit All 5 Setup Items & Activate Digital Employee",
-    sup_title: "💬 All-in-One Inquiries & Maintenance Ticket Portal",
-    sup_desc: "Instead of sending fragmented messages, write all your questions or technical ticket details here at once. Sanad AI will reply to all your points in one comprehensive WhatsApp message.",
-    sup_name_lbl: "Your Name / Store Name",
-    sup_phone_lbl: "WhatsApp Number (To Receive Reply)",
-    sup_type_lbl: "Request Type",
-    sup_opt1: "📩 Pre-Subscription Batch Inquiry (Single Unified Reply)",
-    sup_opt2: "🛠️ Technical Maintenance Ticket (Existing Subscribers)",
-    sup_msg_lbl: "Write all your questions or maintenance details below:",
-    sup_msg_hint: "List your questions (1, 2, 3...) and Sanad will answer everything in one organized message.",
-    sup_submit: "🚀 Send All Inquiries / Submit Ticket in One Click"
-  }
-};
+<!-- ========================================================= -->
+<!-- 2. OAUTH & EMAIL LOGIN MODAL (GOOGLE / GITHUB / EMAIL)    -->
+<!-- ========================================================= -->
+<div class="m-modal-overlay" id="m-auth-modal" onclick="if(event.target===this)closeAuthModal()">
+  <div class="m-auth-card">
+    <button class="m-auth-close" onclick="document.getElementById('m-auth-modal').style.display='none';document.getElementById('m-auth-modal').classList.remove('open');">✕</button>
+    <div class="m-hn-logo" style="margin:0 auto 12px;width:44px;height:44px;font-size:20px;">س</div>
+    <h3 style="margin:0 0 6px;font-size:20px;font-weight:900;" id="auth-title">تسجيل الدخول إلى بوابة سَنَد</h3>
+    <p style="margin:0 0 20px;font-size:13px;color:#64748b;" id="auth-sub">اختر طريقة الدخول لفتح لوحة تحكم متجرك المتزامنة مع «رَصد»</p>
 
-let currentManaratLang = localStorage.getItem("manarat_lang") || "ar";
+    <!-- Google OAuth Button -->
+    <button class="m-oauth-btn" onclick="window.realOAuthSignIn('Google')">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      <span id="auth-google-btn">المتابعة باستخدام حساب Google</span>
+    </button>
 
-function applyManaratLang(lang) {
-  currentManaratLang = lang;
-  localStorage.setItem("manarat_lang", lang);
-  const dict = M_I18N[lang];
-  document.documentElement.setAttribute("dir", dict.dir);
-  document.documentElement.setAttribute("lang", lang);
+    
 
-  const lbl = document.getElementById("m-lang-label");
-  if (lbl) lbl.textContent = dict.lang_btn;
+    <div class="m-auth-or" id="auth-or-txt">أو عبر البريد الإلكتروني المباشر</div>
 
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    const k = el.getAttribute("data-i18n");
-    if (dict[k]) el.textContent = dict[k];
-  });
-  document.querySelectorAll("[data-i18n-ph]").forEach(el => {
-    const k = el.getAttribute("data-i18n-ph");
-    if (dict[k]) el.setAttribute("placeholder", dict[k]);
-  });
-}
+    <div class="m-auth-field">
+      <label id="auth-email-lbl">البريد الإلكتروني</label>
+      <input type="email" id="auth-email-inp" class="m-auth-input" placeholder="merchant@store.com">
+    </div>
+    <div class="m-auth-field">
+      <label id="auth-pin-lbl">كود التفعيل المرسل من سَنَد (اختياري للمعاينة)</label>
+      <input type="password" id="auth-pin-inp" class="m-auth-input" placeholder="•••••••">
+    </div>
 
-function toggleManaratLang() {
-  applyManaratLang(currentManaratLang === "ar" ? "en" : "ar");
-}
+    <button class="m-auth-submit" onclick="document.getElementById('m-auth-modal').style.display='none';document.getElementById('public-landing-view').style.display='none';document.getElementById('client-workspace-view').style.display='flex';document.getElementById('ws-user-badge').textContent=(document.getElementById('auth-email-inp').value||'merchant@store.com');window.scrollTo(0,0);" id="auth-submit-btn">
+      دخول إلى لوحة تحكم المتجر
+    </button>
+  </div>
+</div>
 
-function switchManaratTab(tab) {
-  ["home", "onboard", "support"].forEach(t => {
-    const v = document.getElementById("view-" + t);
-    const n = document.getElementById("nav-" + t);
-    if (v) v.classList.toggle("active", t === tab);
-    if (n) n.classList.toggle("active", t === tab);
-  });
-  const sb = document.getElementById("m-sidebar");
-  if (sb) sb.classList.remove("open");
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
+<!-- ========================================================= -->
+<!-- 3. CLIENT WORKSPACE (GEMINI COLLAPSIBLE SIDEBAR + HPANEL) -->
+<!-- ========================================================= -->
+<div id="client-workspace-view">
+  <aside class="m-gem-sidebar" id="m-gem-sidebar">
+    <div class="m-gem-sb-top">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="m-hn-logo" style="width:32px;height:32px;font-size:15px;">س</div>
+        <strong style="font-size:16px;" id="ws-sb-brand">بوابة سَنَد</strong>
+      </div>
+      <!-- Gemini-style Collapse Sidebar Icon Button -->
+      <button class="m-collapse-btn" onclick="toggleGemSidebar()" title="Close sidebar / طي القائمة">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+      </button>
+    </div>
 
-function saveOnbDraft() {
-  const draft = {
-    code: document.getElementById("onb_code")?.value || "",
-    storeName: document.getElementById("onb_store_name")?.value || "",
-    storeUrl: document.getElementById("onb_store_url")?.value || "",
-    botName: document.getElementById("onb_bot_name")?.value || "",
-    ownerPhone: document.getElementById("onb_owner_phone")?.value || "",
-    botPhone: document.getElementById("onb_bot_phone")?.value || "",
-    minQty: document.getElementById("onb_min_qty")?.value || "5"
-  };
-  localStorage.setItem("manarat_onb_draft", JSON.stringify(draft));
-}
+    <ul class="m-gem-nav">
+      <li>
+        <button class="m-gem-item active" id="ws-nav-home" onclick="switchWsPane('home')">
+          <span>🏠</span>
+          <span id="ws-lbl-home">الرئيسية</span>
+        </button>
+      </li>
+      <li>
+        <button class="m-gem-item" id="ws-nav-setup" onclick="switchWsPane('setup')">
+          <span>🚀</span>
+          <span id="ws-lbl-setup">إعدادات المتجر (الـ 5 خانات)</span>
+        </button>
+      </li>
+      <li>
+        <button class="m-gem-item" id="ws-nav-rasd" onclick="switchWsPane('rasd')">
+          <span>📦</span>
+          <span id="ws-lbl-rasd">مزامنة مستودع «رَصد»</span>
+        </button>
+      </li>
+      <li>
+        <button class="m-gem-item" id="ws-nav-support" onclick="switchWsPane('support')">
+          <span>💬</span>
+          <span id="ws-lbl-support">الاستفسارات وتذاكر الصيانة</span>
+        </button>
+      </li>
+    </ul>
 
-function loadOnbDraft() {
-  try {
-    const raw = localStorage.getItem("manarat_onb_draft");
-    if (!raw) return;
-    const d = JSON.parse(raw);
-    if (d.code) document.getElementById("onb_code").value = d.code;
-    if (d.storeName) document.getElementById("onb_store_name").value = d.storeName;
-    if (d.storeUrl) document.getElementById("onb_store_url").value = d.storeUrl;
-    if (d.botName) document.getElementById("onb_bot_name").value = d.botName;
-    if (d.ownerPhone) document.getElementById("onb_owner_phone").value = d.ownerPhone;
-    if (d.botPhone) document.getElementById("onb_bot_phone").value = d.botPhone;
-    if (d.minQty) document.getElementById("onb_min_qty").value = d.minQty;
-  } catch (e) {}
-}
+    <div class="m-gem-foot">
+      <button class="m-btn-lang" style="width:100%;justify-content:center;" onclick="toggleHostingerLang()">
+        <span>🌐</span>
+        <span id="ws-lang-btn">English</span>
+      </button>
+      <button class="m-btn-signin" style="width:100%;justify-content:center;color:#ef4444;border-color:#fecaca;" onclick="logoutWorkspace()">
+        <span>🚪</span>
+        <span id="ws-logout-btn">تسجيل الخروج</span>
+      </button>
+    </div>
+  </aside>
 
-function submitOnboardingForm() {
-  const code = document.getElementById("onb_code").value.trim() || "NEW";
-  const sName = document.getElementById("onb_store_name").value.trim();
-  const sUrl = document.getElementById("onb_store_url").value.trim();
-  const bName = document.getElementById("onb_bot_name").value.trim() || "سند";
-  const oPhone = document.getElementById("onb_owner_phone").value.trim();
-  const bPhone = document.getElementById("onb_bot_phone").value.trim();
-  const token = document.getElementById("onb_api_token").value.trim();
-  const minQty = document.getElementById("onb_min_qty").value.trim() || "5";
+  <div class="m-gem-main with-sb" id="m-gem-main">
+    <div class="m-ws-topbar">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="m-collapse-btn" onclick="toggleGemSidebar()" title="Open/Close Sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+        </button>
+        <div>
+          <div style="font-weight:900;font-size:15px;" id="ws-top-title">لوحة تحكم المشترك (سَنَد + رَصد)</div>
+          <div style="font-size:12px;color:#64748b;" id="ws-user-badge">متصل بحساب: merchant@store.com</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="background:#dcfce7;color:#166534;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:800;" id="ws-status-pill">🟢 سَنَد + رَصد: متصل</span>
+      </div>
+    </div>
 
-  if (!sName || !oPhone || !bPhone) {
-    alert(currentManaratLang === "ar" ? "يرجى إكمال الحقول الأساسية (اسم المتجر، جوال المالك، ورقم البوت)." : "Please fill in the required fields (Store Name, Owner Phone, Bot Phone).");
-    return;
-  }
+    <div class="m-ws-container">
+      <!-- PANE 1: HOME (CLEAN STORE DASHBOARD SYNCED WITH RASD) -->
+      <div class="m-ws-pane active" id="ws-pane-home">
+        <div class="m-kpi-grid">
+          <div class="m-kpi-card">
+            <div class="m-kpi-label" id="kpi1-lbl">حالة الموظف الرقمي (سَنَد)</div>
+            <div class="m-kpi-val" style="color:#16a34a;font-size:20px;" id="kpi1-val">🟢 نشط على الواتساب</div>
+            <div class="m-kpi-sub" id="kpi1-sub">يرد على العملاء على مدار الساعة</div>
+          </div>
+          <div class="m-kpi-card">
+            <div class="m-kpi-label" id="kpi2-lbl">أصناف المتجر في «رَصد»</div>
+            <div class="m-kpi-val" id="kpi2-val">148</div>
+            <div class="m-kpi-sub" id="kpi2-sub">متزامنة تلقائياً مع متجرك</div>
+          </div>
+          <div class="m-kpi-card">
+            <div class="m-kpi-label" id="kpi3-lbl">تنبيهات انخفاض المخزون</div>
+            <div class="m-kpi-val" style="color:#d97706;" id="kpi3-val">3 أصناف</div>
+            <div class="m-kpi-sub" id="kpi3-sub">وصلت للحد الأدنى المعتمد</div>
+          </div>
+        </div>
 
-  const msg = [
-    "🚀 *طلب تفعيل مشترك جديد (البنود الخمسة - maladel.com)*",
-    "🔑 كود التفعيل: " + code,
-    "1️⃣ المتجر: " + sName + " | " + sUrl,
-    "2️⃣ اسم الموظف الرقمي: " + bName,
-    "3️⃣ جوال المالك (للتقارير): " + oPhone,
-    "4️⃣ واتساب خدمة العملاء: " + bPhone,
-    "5️⃣ مفتاح الربط (Token): " + (token ? token : "سيتم تزويده") + " | الحد الأدنى للكمية: " + minQty
-  ].join("
-");
+        <div class="m-ws-card">
+          <h3 style="margin:0 0 8px;font-size:18px;font-weight:900;" id="home-card-title">📊 ملخص الربط والمزامنة الحية مع متجرك</h3>
+          <p style="margin:0 0 18px;color:#64748b;font-size:13.5px;" id="home-card-desc">
+            تعرض هذه الصفحة خلاصة بيانات متجرك المسحوبة عبر أمين المستودع «رَصد» وحالة موظف المبيعات «سَنَد» في شاشة واحدة مريحة بصرياً.
+          </p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="m-btn-signup" onclick="switchWsPane('setup')" id="home-btn-setup">⚙️ تحديث بيانات الربط الخمسة</button>
+            <button class="m-btn-signin" onclick="switchWsPane('support')" id="home-btn-sup">💬 إرسال استفسار أو تذكرة صيانة</button>
+          </div>
+        </div>
+      </div>
 
-  try {
-    fetch("http://127.0.0.1:5699/api/portal-event", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ type: "ONBOARDING", code, sName, sUrl, bName, oPhone, bPhone, minQty, time: new Date().toISOString() })
-    }).catch(() => {});
-  } catch (e) {}
+      <!-- PANE 2: 5 MANDATORY ONBOARDING FIELDS -->
+      <div class="m-ws-pane" id="ws-pane-setup">
+        <div class="m-ws-card">
+          <h3 style="margin:0 0 6px;font-size:19px;font-weight:900;" id="setup-title">🚀 إعدادات تفعيل وربط المتجر (الخانات الخمس)</h3>
+          <p style="margin:0 0 20px;color:#64748b;font-size:13.5px;" id="setup-desc">
+            تُحفظ مسودتك تلقائياً لتتمكن من نسخ مفتاح الـ API من منصة (سلة أو زد) والعودة لإكمال التفعيل في أي وقت.
+          </p>
 
-  window.open("https://wa.me/966566566977?text=" + encodeURIComponent(msg), "_blank");
-}
+          <div class="m-form-box">
+            <label id="f1-lbl">1️⃣ اسم متجرك الرسمي + رابط المتجر على (سلة أو زد)</label>
+            <small id="f1-sub">اكتب اسم المتجر الرسمي والرابط الكامل للمتجر</small>
+            <div class="m-row-2">
+              <input type="text" id="onb_store_name" class="m-auth-input" placeholder="اسم المتجر الرسمي">
+              <input type="url" id="onb_store_url" class="m-auth-input" placeholder="https://salla.sa/store">
+            </div>
+          </div>
 
-function submitSupportForm() {
-  const name = document.getElementById("sup_name").value.trim();
-  const phone = document.getElementById("sup_phone").value.trim();
-  const type = document.getElementById("sup_type").value;
-  const details = document.getElementById("sup_msg").value.trim();
+          <div class="m-form-box">
+            <label id="f2-lbl">2️⃣ الاسم المفضل لموظفك الرقمي الذي سيخاطب عملاءك</label>
+            <small id="f2-sub">مثال: سَنَد، أو مساعد متجر...</small>
+            <input type="text" id="onb_bot_name" class="m-auth-input" placeholder="سَنَد">
+          </div>
 
-  if (!name || !details) {
-    alert(currentManaratLang === "ar" ? "يرجى كتابة الاسم وتفاصيل الاستفسار أو التذكرة." : "Please enter your name and inquiry/ticket details.");
-    return;
-  }
+          <div class="m-form-box">
+            <label id="f3-lbl">3️⃣ رقم جوال الأونر (المالك) لاستقبال تقارير المستودع</label>
+            <small id="f3-sub">يستقبل تقارير المستودع وتنبيهات البضاعة التي شارفت على الانتهاء</small>
+            <input type="tel" id="onb_owner_phone" class="m-auth-input" placeholder="05XXXXXXXX">
+          </div>
 
-  const tktId = "TKT-" + Math.floor(1000 + Math.random() * 9000);
-  const msg = [
-    "📌 *" + type + " (" + tktId + ")*",
-    "👤 العميل/المتجر: " + name,
-    "📱 الواتساب: " + phone,
-    "📝 التفاصيل الكاملة (لإجابتها في رسالة واحدة):",
-    details
-  ].join("
-");
+          <div class="m-form-box">
+            <label id="f4-lbl">4️⃣ رقم واتساب خدمة العملاء الذي سيعمل عليه الموظف الرقمي</label>
+            <small id="f4-sub">الرقم المخصص للرد على الزبائن</small>
+            <input type="tel" id="onb_bot_phone" class="m-auth-input" placeholder="05XXXXXXXX">
+          </div>
 
-  try {
-    fetch("http://127.0.0.1:5699/api/portal-event", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ type: "TICKET", tktId, category: type, name, phone, details, time: new Date().toISOString() })
-    }).catch(() => {});
-  } catch (e) {}
+          <div class="m-form-box">
+            <label id="f5-lbl">5️⃣ مفتاح الربط البرمجي (API Token للقراءة فقط) + الحد الأدنى للكمية</label>
+            <small id="f5-sub">ليسحب أمين المستودع «رَصد» منتجاتك وأسعارك لحظة بلحظة</small>
+            <div class="m-row-2">
+              <input type="password" id="onb_api_token" class="m-auth-input" placeholder="Read-Only API Token">
+              <input type="number" id="onb_min_qty" class="m-auth-input" value="5" min="1" placeholder="الحد الأدنى للكمية (5)">
+            </div>
+          </div>
 
-  window.open("https://wa.me/966566566977?text=" + encodeURIComponent(msg), "_blank");
-}
+          <button class="m-auth-submit" onclick="submitClientSetup()" id="setup-submit-btn">
+            ✅ حفظ واعتماد إعدادات المتجر الخمسة لدى «سَنَد» و«رَصد»
+          </button>
+        </div>
+      </div>
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.body.classList.add("manarat-spa-body");
-  loadOnbDraft();
-  applyManaratLang(currentManaratLang);
-  if (window.location.hash === "#onboard") switchManaratTab("onboard");
-  if (window.location.hash === "#support") switchManaratTab("support");
-});
-</script>
+      <!-- PANE 3: RASD INVENTORY SYNC -->
+      <div class="m-ws-pane" id="ws-pane-rasd">
+        <div class="m-ws-card">
+          <h3 style="margin:0 0 8px;font-size:18px;font-weight:900;" id="rasd-title">📦 حالة مزامنة أمين المستودع «رَصد»</h3>
+          <p style="margin:0 0 16px;color:#64748b;font-size:13.5px;" id="rasd-desc">
+            يقرأ «رَصد» أصنافك وأسعارك وكمياتك آلياً عبر مفتاح القراءة فقط، ويرسل تنبيهاً لجوال المالك فور وصول أي صنف للحد الأدنى.
+          </p>
+          <div class="m-form-box" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+            <div>
+              <strong id="rasd-sync-lbl">آخر مزامنة للكتالوج والأسعار:</strong>
+              <div style="font-size:12.5px;color:#16a34a;" id="rasd-sync-sub">متصل وجاهز للمزامنة الآلية</div>
+            </div>
+            <button class="m-btn-signup" onclick="alert(window.curHnLang==='en'?'Rasd Engine sync triggered!':'تم إرسال طلب مزامنة فوري لمحرك رَصد!')">🔄 مزامنة الأصناف الآن</button>
+          </div>
+        </div>
+      </div>
 
-</body>
-</html>
+      <!-- PANE 4: INQUIRIES & MAINTENANCE TICKETS -->
+      <div class="m-ws-pane" id="ws-pane-support">
+        <div class="m-ws-card">
+          <h3 style="margin:0 0 8px;font-size:18px;font-weight:900;" id="sup-title">💬 الاستفسارات الشاملة وتذاكر الصيانة</h3>
+          <p style="margin:0 0 18px;color:#64748b;font-size:13.5px;" id="sup-desc">
+            اكتب جميع استفساراتك أو تفاصيل طلب الصيانة دفعة واحدة هنا، وسيقوم «سَنَد» بالرد عليها كاملة في رسالة واحدة شاملة على الواتساب.
+          </p>
+          <div class="m-form-box">
+            <label id="sup-type-lbl">نوع الطلب</label>
+            <select id="sup_type" class="m-auth-input" style="margin-top:6px;">
+              <option value="استفسار شامل">📩 استفسارات شاملة (رد موحد في رسالة واحدة)</option>
+              <option value="تذكرة صيانة">🛠️ رفع تذكرة صيانة للدعم الفني</option>
+            </select>
+          </div>
+          <div class="m-form-box">
+            <label id="sup-msg-lbl">تفاصيل الاستفسارات أو التذكرة</label>
+            <textarea id="sup_msg" rows="5" class="m-auth-input" style="margin-top:6px;" placeholder="اكتب كافة نقاطك هنا..."></textarea>
+          </div>
+          <button class="m-auth-submit" onclick="submitClientTicket()" id="sup-submit-btn">
+            🚀 إرسال الطلب الموحد إلى «سَنَد» بضغطة واحدة
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
