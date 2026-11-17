@@ -1,1801 +1,224 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<script id="sanad-force-https">if(window.location.hostname==="maladel.com"&&window.location.protocol==="http:"){window.location.replace("https://maladel.com"+window.location.pathname+window.location.search+window.location.hash);}</script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>سَنَد | مدير متجرك الذكي على الواتساب</title>
-  <meta name="description" content="سَنَد موظف رقمي يرد على عملائك ويستقبل طلباتك ويصدر عروض الأسعار ويقفل حساباتك اليومية من الواتساب على مدار الساعة.">
-  <meta property="og:title" content="سَنَد | مدير متجرك الذكي على الواتساب">
-  <meta property="og:description" content="رد آلي على عملائك، طلبات وعروض أسعار PDF، وإقفال يومي للحسابات — كله من الواتساب.">
-  <meta property="og:url" content="https://maladel.com/">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ar_SA">
-  <link rel="canonical" href="https://maladel.com/">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Cairo', sans-serif;
-      background-color: #FFFFFF;
-      color: #1E1B4B;
-      overflow-x: hidden;
-    }
-    .font-num {
-      font-family: 'Inter', sans-serif;
-      direction: ltr;
-      display: inline-block;
-    }
-
-    /* خلفية بيضاء مشرقة يتدرج معها الوردي والبنفسجي الفاتح جداً بنعومة + النقاط الهادئة */
-    .crystal-page-bg {
-      min-height: 100vh;
-      background-color: #FFFFFF;
-      background-image:
-        radial-gradient(circle at 50% 42%, rgba(244, 114, 182, 0.14) 0%, rgba(192, 132, 252, 0.10) 32%, rgba(255, 255, 255, 0) 68%),
-        radial-gradient(rgba(168, 85, 247, 0.10) 1px, transparent 1px);
-      background-size: 100% 100%, 18px 18px;
-    }
-
-    /* جسم الجوال الشفاف المطابق للصورة المعتمدة */
-    .crystal-phone-frame {
-      position: relative;
-      width: 100%;
-      max-width: 370px;
-      border-radius: 46px;
-      padding: 18px 16px;
-      background: linear-gradient(
-        165deg,
-        rgba(255, 245, 252, 0.88) 0%,
-        rgba(250, 240, 255, 0.78) 50%,
-        rgba(255, 250, 245, 0.86) 100%
-      );
-      backdrop-filter: blur(28px) saturate(180%);
-      -webkit-backdrop-filter: blur(28px) saturate(180%);
-      border: 2.5px solid rgba(255, 255, 255, 0.96);
-      box-shadow:
-        0 30px 70px -15px rgba(168, 85, 247, 0.16),
-        0 12px 30px -8px rgba(236, 72, 153, 0.10),
-        0 0 0 1px rgba(192, 132, 252, 0.30),
-        inset 0 2px 12px rgba(255, 255, 255, 0.95);
-    }
-
-    .crystal-phone-frame::before {
-      content: "";
-      position: absolute;
-      inset: 3px;
-      border-radius: 42px;
-      padding: 1.5px;
-      background: linear-gradient(
-        180deg,
-        rgba(236, 72, 153, 0.45) 0%,
-        rgba(168, 85, 247, 0.55) 50%,
-        rgba(251, 146, 60, 0.65) 100%
-      );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    .sanad-avatar-grad {
-      background: linear-gradient(135deg, #60A5FA 0%, #A855F7 52%, #FB923C 100%);
-    }
-
-    .doc-action-btn {
-      background: linear-gradient(90deg, #EC4899 0%, #F472B6 50%, #FB923C 100%);
-      box-shadow: 0 8px 20px -5px rgba(236, 72, 153, 0.40);
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-    .doc-action-btn:hover {
-      transform: translateY(-1px);
-      opacity: 0.96;
-    }
-
-    .soft-glass-card {
-      background: linear-gradient(165deg, rgba(255, 255, 255, 0.95) 0%, rgba(253, 248, 255, 0.88) 100%);
-      border: 1.5px solid rgba(233, 213, 255, 0.65);
-      box-shadow: 0 18px 40px -15px rgba(168, 85, 247, 0.10);
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
-    }
-    .soft-glass-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 24px 48px -15px rgba(236, 72, 153, 0.15);
-    }
-
-    .quick-pill {
-      transition: all 0.2s ease;
-    }
-    .quick-pill.active {
-      background: linear-gradient(135deg, #9333EA 0%, #EC4899 100%);
-      color: #FFFFFF;
-      border-color: transparent;
-      box-shadow: 0 6px 16px -4px rgba(236, 72, 153, 0.45);
-    }
-
-    input[type="range"] {
-      accent-color: #EC4899;
-    }
-  </style>
-
-<!-- === SANAD AI: HOSTINGER TOPBAR + OAUTH MODAL + GEMINI COLLAPSIBLE WORKSPACE === -->
-<style id="sanad-unified-portal-css">
-  /* Hide legacy header inside original landing body */
-  #public-landing-view header,
-  #public-landing-view .topbar,
-  #public-landing-view .nav-header,
-  #public-landing-view > div:first-child > header {
-    display: none !important;
-  }
-  body {
-    margin: 0 !important;
-    padding: 0 !important;
-    font-family: 'Cairo', 'Inter', sans-serif;
-    overflow-x: hidden;
-  }
-  #public-landing-view {
-    padding-top: 76px;
-  }
-
-  /* 1. TOP NAVBAR (LIGHT GLASS NATIVE) */
-  .m-host-navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 72px;
-    background: rgba(255, 255, 255, 0.94);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(226, 232, 240, 0.95);
-    z-index: 99990;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 38px;
-    box-shadow: 0 4px 24px rgba(15, 23, 42, 0.04);
-    transition: all 0.25s ease;
-  }
-  .m-hn-side {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
-  .m-hn-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  .m-hn-logo {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
-    color: #ffffff;
-    font-weight: 800;
-    font-size: 17px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.28);
-  }
-  .m-hn-title {
-    color: #0f172a;
-    font-size: 18px;
-    font-weight: 900;
-  }
-  .m-hn-divider {
-    color: #cbd5e1;
-    margin: 0 4px;
-  }
-  .m-hn-sub {
-    color: #64748b;
-    font-size: 13.5px;
-    font-weight: 600;
-  }
-  .m-hn-link {
-    color: #334155;
-    text-decoration: none;
-    font-size: 13.5px;
-    font-weight: 700;
-    padding: 7px 15px;
-    border-radius: 999px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .m-hn-link:hover {
-    color: #ec4899;
-    border-color: #f472b6;
-    background: #fdf2f8;
-  }
-  .m-hn-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .m-btn-lang {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    color: #0f172a;
-    padding: 7px 14px;
-    border-radius: 999px;
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 800;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: 0.2s;
-  }
-  .m-btn-lang:hover {
-    background: #f1f5f9;
-    border-color: #cbd5e1;
-  }
-  .m-btn-signin {
-    background: #ffffff;
-    border: 1px solid #cbd5e1;
-    color: #0f172a;
-    padding: 7px 18px;
-    border-radius: 999px;
-    font-family: inherit;
-    font-size: 13.5px;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: 0.2s;
-  }
-  .m-btn-signin:hover {
-    border-color: #0f172a;
-    background: #f8fafc;
-  }
-  .m-btn-signup {
-    background: #0f172a;
-    border: none;
-    color: #ffffff;
-    padding: 8px 20px;
-    border-radius: 999px;
-    font-family: inherit;
-    font-size: 13.5px;
-    font-weight: 800;
-    cursor: pointer;
-    transition: 0.2s;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
-  }
-  .m-btn-signup:hover {
-    background: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
-    transform: translateY(-1px);
-  }
-
-  /* 2. OAUTH & EMAIL SIGN-IN MODAL (AI PLATFORM STYLE) */
-  .m-modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(15, 23, 42, 0.55);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 100000;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-  }
-  .m-modal-overlay.open {
-    display: flex;
-    animation: mFade 0.2s ease;
-  }
-  @keyframes mFade {
-    from { opacity: 0; transform: scale(0.97); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  .m-auth-card {
-    background: #ffffff;
-    width: 100%;
-    max-width: 420px;
-    border-radius: 20px;
-    padding: 32px 28px;
-    box-shadow: 0 25px 60px rgba(15, 23, 42, 0.22);
-    border: 1px solid #e2e8f0;
-    position: relative;
-    text-align: center;
-    color: #0f172a;
-  }
-  .m-auth-close {
-    position: absolute;
-    top: 16px;
-    inset-inline-end: 16px;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 1px solid #e2e8f0;
-    background: #f8fafc;
-    color: #64748b;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .m-auth-close:hover {
-    background: #f1f5f9;
-    color: #0f172a;
-  }
-  .m-oauth-btn {
-    width: 100%;
-    padding: 11px 16px;
-    border-radius: 10px;
-    border: 1px solid #cbd5e1;
-    background: #ffffff;
-    color: #0f172a;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 10px;
-    transition: all 0.18s ease;
-  }
-  .m-oauth-btn:hover {
-    background: #f8fafc;
-    border-color: #94a3b8;
-    box-shadow: 0 2px 8px rgba(15,23,42,0.06);
-  }
-  .m-auth-or {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 18px 0;
-    color: #94a3b8;
-    font-size: 12px;
-    font-weight: 700;
-  }
-  .m-auth-or::before, .m-auth-or::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: #e2e8f0;
-  }
-  .m-auth-field {
-    text-align: start;
-    margin-bottom: 12px;
-  }
-  .m-auth-field label {
-    display: block;
-    font-size: 12.5px;
-    font-weight: 700;
-    color: #334155;
-    margin-bottom: 5px;
-  }
-  .m-auth-input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 11px 14px;
-    border-radius: 10px;
-    border: 1px solid #cbd5e1;
-    font-family: inherit;
-    font-size: 14px;
-    color: #0f172a;
-    background: #f8fafc;
-  }
-  .m-auth-input:focus {
-    outline: none;
-    border-color: #ec4899;
-    background: #ffffff;
-    box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.12);
-  }
-  .m-auth-submit {
-    width: 100%;
-    padding: 12px 18px;
-    border-radius: 10px;
-    border: none;
-    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
-    color: #ffffff;
-    font-family: inherit;
-    font-size: 14.5px;
-    font-weight: 800;
-    cursor: pointer;
-    margin-top: 6px;
-    box-shadow: 0 6px 18px rgba(236, 72, 153, 0.28);
-    transition: 0.2s;
-  }
-  .m-auth-submit:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 22px rgba(236, 72, 153, 0.38);
-  }
-
-  /* 3. CLIENT WORKSPACE (GEMINI-STYLE COLLAPSIBLE SIDEBAR + CLEAN DASHBOARD) */
-  #client-workspace-view {
-    display: none;
-    min-height: 100vh;
-    background: #f8fafc;
-    color: #0f172a;
-  }
-  #client-workspace-view.active {
-    display: flex;
-  }
-
-  /* Collapsible Sidebar */
-  .m-gem-sidebar {
-    width: 270px;
-    background: #ffffff;
-    border-inline-end: 1px solid #e2e8f0;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    z-index: 99995;
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), width 0.25s ease;
-    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
-  }
-  html[dir="rtl"] .m-gem-sidebar { right: 0; left: auto; }
-  html[dir="ltr"] .m-gem-sidebar { left: 0; right: auto; }
-
-  /* Collapsed State */
-  .m-gem-sidebar.collapsed {
-    transform: translateX(100%);
-  }
-  html[dir="ltr"] .m-gem-sidebar.collapsed {
-    transform: translateX(-100%);
-  }
-
-  .m-gem-sb-top {
-    height: 68px;
-    padding: 0 18px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #f1f5f9;
-  }
-  .m-collapse-btn {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    border: 1px solid #e2e8f0;
-    background: #f8fafc;
-    color: #334155;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-  }
-  .m-collapse-btn:hover {
-    background: #e2e8f0;
-    color: #0f172a;
-  }
-
-  .m-gem-nav {
-    list-style: none;
-    padding: 16px 12px;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    flex: 1;
-  }
-  .m-gem-item {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 11px 14px;
-    border-radius: 12px;
-    border: none;
-    background: transparent;
-    color: #475569;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    text-align: start;
-    transition: all 0.18s;
-  }
-  .m-gem-item:hover {
-    background: #f1f5f9;
-    color: #0f172a;
-  }
-  .m-gem-item.active {
-    background: linear-gradient(135deg, rgba(236,72,153,0.12), rgba(139,92,246,0.12));
-    color: #be185d;
-    font-weight: 800;
-  }
-  .m-gem-foot {
-    padding: 14px 16px;
-    border-top: 1px solid #f1f5f9;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  /* Workspace Main Content */
-  .m-gem-main {
-    flex: 1;
-    min-height: 100vh;
-    transition: margin 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    width: 100%;
-  }
-  html[dir="rtl"] .m-gem-main.with-sb { margin-right: 270px; margin-left: 0; }
-  html[dir="ltr"] .m-gem-main.with-sb { margin-left: 270px; margin-right: 0; }
-
-  .m-ws-topbar {
-    height: 68px;
-    background: rgba(255,255,255,0.9);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid #e2e8f0;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 99900;
-  }
-  .m-ws-container {
-    max-width: 1020px;
-    margin: 0 auto;
-    padding: 28px 20px 60px;
-  }
-
-  /* Dashboard KPI & Cards */
-  .m-kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-  .m-kpi-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
-  }
-  .m-kpi-label {
-    font-size: 13px;
-    color: #64748b;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .m-kpi-val {
-    font-size: 24px;
-    font-weight: 900;
-    color: #0f172a;
-    font-family: 'Inter', 'Cairo', sans-serif;
-  }
-  .m-kpi-sub {
-    font-size: 12px;
-    color: #10b981;
-    font-weight: 700;
-    margin-top: 6px;
-  }
-  .m-ws-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 18px;
-    padding: 26px;
-    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.03);
-    margin-bottom: 20px;
-  }
-  .m-ws-pane { display: none; }
-  .m-ws-pane.active { display: block; animation: mFade 0.2s ease; }
-
-  .m-form-box {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 14px;
-  }
-  .m-form-box label {
-    display: block;
-    font-weight: 800;
-    font-size: 14px;
-    color: #0f172a;
-    margin-bottom: 4px;
-  }
-  .m-form-box small {
-    display: block;
-    color: #64748b;
-    font-size: 12px;
-    margin-bottom: 10px;
-  }
-  .m-row-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  @media (max-width: 768px) {
-    .m-host-navbar { padding: 0 14px; }
-    .m-hn-sub, .m-hn-divider { display: none; }
-    .m-row-2 { grid-template-columns: 1fr; }
-    html[dir="rtl"] .m-gem-main.with-sb,
-    html[dir="ltr"] .m-gem-main.with-sb {
-      margin: 0 !important;
-    }
-  }
-</style>
-
-<script>
-window.curHnLang = "ar";
-window.currentClientEmail = localStorage.getItem("sanad_client_email") || "";
-
-const arPairs = [
-  ["سَنَد", "Sanad AI"],
-  ["مدير أعمالك الرقمي", "Your Digital Business Manager"],
-  ["حاسبة التوفير الشهري", "Monthly Savings Calculator"],
-  ["كم يوفر عليك «سَنَد» في متجرك أو منشأتك؟", "How much does Sanad save your store every month?"],
-  ["حرك المؤشر من 2 إلى 6 موظفين (سَنَد + 5 موظفين كحد أقصى للبكج):", "Slide from 2 to 6 digital employees (Sanad + up to 5 specialists):"],
-  ["حجم الطاقم الرقمي (مبيعات + فواتير + محاسبة):", "Digital Team Size (Sales + Invoicing + Inventory):"],
-  ["التكلفة التشغيلية المعتادة", "Typical Monthly Payroll"],
-  ["توفيرك الشهري التقريبي", "Your Estimated Monthly Savings"],
-  ["الباقة الشاملة (سَنَد + فريق عمل رقمي)", "All-In-One Package (Sanad & Digital Team)"],
-  ["وظّف «سَنَد» وفريقه الرقمي في أعمالك اليوم", "Hire Sanad & His Digital Team Today"],
-  ["ريال / شهرياً (شامل كل المهام)", "SAR / Month (All-Inclusive)"],
-  ["رد آلي ذكي وإدارة مبيعات المتجر في الواتساب", "Smart WhatsApp AI Sales & Customer Care"],
-  ["إصدار فواتير وعروض أسعار PDF غير محدودة", "Real-Time Inventory Sync via Rasd Engine"],
-  ["جرد يومي وإقفال حسابات المبيعات والمصروفات", "Automated Low-Stock Alerts to Owner Mobile"],
-  ["بكج متكامل يضم «سَنَد» مع ما يصل إلى 5 موظفين رقميين", "Dedicated Client Dashboard + Instant Setup"],
-  ["اشترك الآن وابدأ مع «سَنَد» عبر الواتساب", "Subscribe Now & Start with Sanad on WhatsApp"],
-  ["تفعيل فوري • تجربة حية مباشرة على الواتساب 0566566977", "Instant Activation • Live Demo on WhatsApp 0566566977"],
-  ["سَنَد — مدير أعمالك الرقمي • يعمل معك من الواتساب على مدار الساعة", "Sanad AI — Your 24/7 Digital Store Team on WhatsApp"]
-];
-
-function openAuthModal() {
-  document.getElementById("m-auth-modal").classList.add("open");
-}
-function closeAuthModal() {
-  document.getElementById("m-auth-modal").classList.remove("open");
-}
-
-function enterWorkspace(emailLabel) {
-  window.currentClientEmail = emailLabel;
-  localStorage.setItem("sanad_client_email", emailLabel);
-  closeAuthModal();
-  document.getElementById("public-landing-view").style.display = "none";
-  document.getElementById("client-workspace-view").classList.add("active");
-  document.getElementById("ws-user-badge").textContent = (window.curHnLang === "en" ? "Signed in as: " : "متصل بحساب: ") + emailLabel;
-  if (window.innerWidth <= 768) {
-    document.getElementById("m-gem-sidebar").classList.add("collapsed");
-  }
-  window.scrollTo(0, 0);
-}
-
-function loginWithProvider(provider) {
-  const demoEmail = provider === "Google" ? "merchant.store@gmail.com (Google)" : "merchant-dev@github.com (GitHub)";
-  enterWorkspace(demoEmail);
-}
-
-
-function logoutWorkspace() {
-  localStorage.removeItem("sanad_client_email");
-  document.getElementById("client-workspace-view").classList.remove("active");
-  document.getElementById("public-landing-view").style.display = "block";
-  window.scrollTo(0, 0);
-}
-
-function toggleGemSidebar() {
-  const sb = document.getElementById("m-gem-sidebar");
-  const main = document.getElementById("m-gem-main");
-  sb.classList.toggle("collapsed");
-  main.classList.toggle("with-sb", !sb.classList.contains("collapsed"));
-}
-
-function switchWsPane(pane) {
-  ["home", "setup", "rasd", "support"].forEach(p => {
-    document.getElementById("ws-pane-" + p).classList.toggle("active", p === pane);
-    document.getElementById("ws-nav-" + p).classList.toggle("active", p === pane);
-  });
-  if (window.innerWidth <= 768) {
-    document.getElementById("m-gem-sidebar").classList.add("collapsed");
-  }
-}
-
-function submitClientSetup() {
-  const sName = document.getElementById("onb_store_name").value.trim() || "متجر مشترك";
-  const sUrl = document.getElementById("onb_store_url").value.trim();
-  const bName = document.getElementById("onb_bot_name").value.trim() || "سند";
-  const oPhone = document.getElementById("onb_owner_phone").value.trim();
-  const bPhone = document.getElementById("onb_bot_phone").value.trim();
-  const minQty = document.getElementById("onb_min_qty").value.trim() || "5";
-
-  const msg = [
-    "🚀 *تفعيل بيانات المتجر الخمسة (من لوحة المشترك)*",
-    "📧 الحساب: " + (window.currentClientEmail || "مشترك"),
-    "1️⃣ المتجر: " + sName + " | " + sUrl,
-    "2️⃣ اسم الموظف الرقمي: " + bName,
-    "3️⃣ جوال المالك: " + oPhone,
-    "4️⃣ واتساب خدمة العملاء: " + bPhone,
-    "5️⃣ الحد الأدنى للتنبيه: " + minQty
-  ].join("\n");
-
-  window.open("https://wa.me/966566566977?text=" + encodeURIComponent(msg), "_blank");
-}
-
-function submitClientTicket() {
-  const type = document.getElementById("sup_type").value;
-  const details = document.getElementById("sup_msg").value.trim();
-  if (!details) return alert(window.curHnLang === "en" ? "Please write your message first." : "يرجى كتابة تفاصيل الطلب أولاً.");
-  const msg = [
-    "📌 *" + type + " (من لوحة المشترك)*",
-    "📧 الحساب: " + (window.currentClientEmail || "مشترك"),
-    "📝 التفاصيل الكاملة:",
-    details
-  ].join("\n");
-  window.open("https://wa.me/966566566977?text=" + encodeURIComponent(msg), "_blank");
-}
-
-function toggleHostingerLang() {
-  const isEn = window.curHnLang === "ar";
-  window.curHnLang = isEn ? "en" : "ar";
-  const dir = isEn ? "ltr" : "rtl";
-
-  document.documentElement.setAttribute("dir", dir);
-  document.documentElement.setAttribute("lang", window.curHnLang);
-  document.body.style.direction = dir;
-
-  // Topbar
-  document.getElementById("hn-logo-char").textContent = isEn ? "S" : "س";
-  document.getElementById("hn-brand-title").textContent = isEn ? "Sanad AI" : "سَنَد";
-  document.getElementById("hn-brand-sub").textContent = isEn ? "Your Digital Business Manager" : "مدير أعمالك الرقمي";
-  document.getElementById("hn-nav-merged").textContent = isEn ? "Pricing & Savings" : "الباقات والتوفير";
-  document.getElementById("hn-lang-text").textContent = isEn ? "عربي" : "EN";
-  document.getElementById("hn-signin-text").textContent = isEn ? "Sign In" : "تسجيل الدخول";
-  document.getElementById("hn-signup-text").textContent = isEn ? "Sign Up" : "اشترك الآن";
-
-  // Auth Modal
-  document.getElementById("auth-title").textContent = isEn ? "Sign in to Sanad AI Portal" : "تسجيل الدخول إلى بوابة سَنَد";
-  document.getElementById("auth-sub").textContent = isEn ? "Enter your email to access your store dashboard or preview the platform" : "أدخل بريدك الإلكتروني لفتح لوحة تحكم متجرك أو معاينة المنظومة";
-  document.getElementById("auth-google-btn").textContent = isEn ? "Continue with Google" : "المتابعة باستخدام حساب Google";
-  
-  document.getElementById("auth-or-txt").textContent = isEn ? "OR CONTINUE WITH EMAIL" : "أو عبر البريد الإلكتروني المباشر";
-  document.getElementById("auth-email-lbl").textContent = isEn ? "Email Address" : "البريد الإلكتروني";
-  document.getElementById("auth-pin-lbl").textContent = isEn ? "Activation Pin (Optional for Demo)" : "كود التفعيل المرسل من سَنَد (اختياري للمعاينة)";
-  document.getElementById("auth-submit-btn").textContent = isEn ? "Sign In to Store Dashboard" : "دخول إلى لوحة تحكم المتجر";
-
-  // Workspace Sidebar & Dashboard
-  document.getElementById("ws-sb-brand").textContent = isEn ? "Sanad Portal" : "بوابة سَنَد";
-  document.getElementById("ws-lbl-home").textContent = isEn ? "Home (Store Dashboard)" : "الرئيسية";
-  document.getElementById("ws-lbl-setup").textContent = isEn ? "Store Setup (5 Steps)" : "إعدادات المتجر (الـ 5 خانات)";
-  document.getElementById("ws-lbl-rasd").textContent = isEn ? "Inventory & Catalog Sync" : "مزامنة المخزون والكتالوج";
-  document.getElementById("ws-lbl-support").textContent = isEn ? "Inquiries & Support" : "الاستفسارات وتذاكر الصيانة";
-  document.getElementById("ws-logout-btn").textContent = isEn ? "Log Out" : "تسجيل الخروج";
-  document.getElementById("ws-top-title").textContent = isEn ? "Subscriber Workspace (Sanad & Digital Team)" : "لوحة تحكم المشترك (سَنَد وفريقه الرقمي)";
-  document.getElementById("ws-status-pill").textContent = isEn ? "🟢 Sanad & Team: Online" : "🟢 سَنَد وفريقه الرقمي: متصل";
-  document.getElementById("kpi1-lbl").textContent = isEn ? "Digital Employee (Sanad)" : "حالة الموظف الرقمي (سَنَد)";
-  document.getElementById("kpi1-val").textContent = isEn ? "🟢 Active on WhatsApp" : "🟢 نشط على الواتساب";
-  document.getElementById("kpi1-sub").textContent = isEn ? "Replying to customers 24/7" : "يرد على العملاء على مدار الساعة";
-  document.getElementById("kpi2-lbl").textContent = isEn ? "Synced Store Items" : "أصناف المتجر المتزامنة";
-  document.getElementById("kpi2-sub").textContent = isEn ? "Auto-synced with your store" : "متزامنة تلقائياً مع متجرك";
-  document.getElementById("kpi3-lbl").textContent = isEn ? "Low-Stock Alerts" : "تنبيهات انخفاض المخزون";
-  document.getElementById("kpi3-val").textContent = isEn ? "3 Items" : "3 أصناف";
-  document.getElementById("kpi3-sub").textContent = isEn ? "Reached minimum threshold" : "وصلت للحد الأدنى المعتمد";
-  document.getElementById("home-card-title").textContent = isEn ? "📊 Live Store & Rasd Inventory Summary" : "📊 ملخص الربط والمزامنة الحية مع متجرك";
-  document.getElementById("home-card-desc").textContent = isEn ? "Your clean unified view managed by Sanad AI and his digital team." : "تعرض هذه الصفحة خلاصة بيانات متجرك المسحوبة عبر الفريق الرقمي بقيادة «سَنَد» في شاشة واحدة مريحة بصرياً.";
-  document.getElementById("home-btn-setup").textContent = isEn ? "⚙️ Update 5 Store Setup Steps" : "⚙️ تحديث بيانات الربط الخمسة";
-  document.getElementById("home-btn-sup").textContent = isEn ? "💬 Send Batch Inquiry / Ticket" : "💬 إرسال استفسار أو تذكرة صيانة";
-
-  const walker = document.createTreeWalker(document.getElementById("public-landing-view"), NodeFilter.SHOW_TEXT, null, false);
-  let node;
-  while ((node = walker.nextNode())) {
-    if (node.parentElement && node.parentElement.closest("#m-host-navbar")) continue;
-    let txt = node.nodeValue;
-    if (!txt || !txt.trim()) continue;
-    arPairs.forEach(([ar, en]) => {
-      if (isEn && txt.includes(ar)) txt = txt.replace(ar, en);
-      else if (!isEn && txt.includes(en)) txt = txt.replace(en, ar);
-    });
-    node.nodeValue = txt;
-  }
-}
-</script>
-
-
-
-
-
-<script id="sanad-root-bilingual-engine">
-(function() {
-  window.curHnLang = "ar";
-
-  // 1. Exact ID Map (Topbar + OAuth Modal + Client Workspace)
-  const idMap = {
-    ar: {
-      "hn-logo-char": "س",
-      "hn-brand-title": "سَنَد",
-      "hn-brand-sub": "مدير أعمالك الرقمي",
-      "hn-nav-merged": "الباقات والتوفير",
-      "hn-lang-text": "EN",
-      "hn-signin-text": "تسجيل الدخول",
-      "hn-signup-text": "اشترك الآن",
-      "auth-title": "تسجيل الدخول إلى بوابة سَنَد",
-      "auth-sub": "أدخل بريدك الإلكتروني لفتح لوحة تحكم متجرك أو معاينة المنظومة",
-      "auth-google-btn": "المتابعة باستخدام حساب Google",
-      "auth-or-txt": "أو عبر البريد الإلكتروني المباشر",
-      "auth-email-lbl": "البريد الإلكتروني",
-      "auth-pin-lbl": "كود التفعيل المرسل من سَنَد (اختياري للمعاينة)",
-      "auth-submit-btn": "دخول إلى لوحة تحكم المتجر",
-      "ws-sb-brand": "بوابة سَنَد",
-      "ws-lbl-home": "الرئيسية",
-      "ws-lbl-setup": "إعدادات المتجر (الـ 5 خانات)",
-      "ws-lbl-rasd": "مزامنة المخزون والكتالوج",
-      "ws-lbl-support": "الاستفسارات وتذاكر الصيانة",
-      "ws-lang-btn": "English",
-      "ws-logout-btn": "تسجيل الخروج",
-      "ws-top-title": "لوحة تحكم المشترك (سَنَد وفريقه الرقمي)",
-      "ws-status-pill": "🟢 سَنَد وفريقه الرقمي: متصل",
-      "kpi1-lbl": "حالة الموظف الرقمي (سَنَد)",
-      "kpi1-val": "🟢 نشط على الواتساب",
-      "kpi1-sub": "يرد على العملاء على مدار الساعة",
-      "kpi2-lbl": "أصناف المتجر المتزامنة",
-      "kpi2-sub": "متزامنة تلقائياً مع متجرك",
-      "kpi3-lbl": "تنبيهات انخفاض المخزون",
-      "kpi3-val": "3 أصناف",
-      "kpi3-sub": "وصلت للحد الأدنى المعتمد",
-      "home-card-title": "📊 ملخص الربط والمزامنة الحية مع متجرك",
-      "home-card-desc": "تعرض هذه الصفحة خلاصة بيانات متجرك المسحوبة عبر الفريق الرقمي بقيادة «سَنَد» في شاشة واحدة مريحة بصرياً.",
-      "home-btn-setup": "⚙️ تحديث بيانات الربط الخمسة",
-      "home-btn-sup": "💬 إرسال استفسار أو تذكرة صيانة",
-      "setup-title": "🚀 إعدادات تفعيل وربط المتجر (الخانات الخمس)",
-      "setup-desc": "عبّئ بيانات متجرك وأرسلها لـ«سَنَد» عبر الواتساب. مفتاح ربط المتجر نستلمه بطريقة آمنة عند التفعيل.",
-      "f1-lbl": "1️⃣ اسم متجرك الرسمي + رابط المتجر على (سلة أو زد)",
-      "f1-sub": "اكتب اسم المتجر الرسمي والرابط الكامل للمتجر",
-      "f2-lbl": "2️⃣ الاسم المفضل لموظفك الرقمي الذي سيخاطب عملاءك",
-      "f2-sub": "مثال: سَنَد، أو مساعد متجر...",
-      "f3-lbl": "3️⃣ رقم جوال الأونر (المالك) لاستقبال تقارير المستودع",
-      "f3-sub": "يستقبل تقارير المستودع وتنبيهات البضاعة التي شارفت على الانتهاء",
-      "f4-lbl": "4️⃣ رقم واتساب خدمة العملاء الذي سيعمل عليه الموظف الرقمي",
-      "f4-sub": "الرقم المخصص للرد على الزبائن",
-      "f5-lbl": "5️⃣ ربط المتجر + الحد الأدنى للكمية",
-      "f5-sub": "ليسحب فريق «سَنَد» منتجاتك وأسعارك ومخزونك لحظة بلحظة",
-      "setup-submit-btn": "✅ حفظ واعتماد إعدادات المتجر الخمسة لدى «سَنَد»",
-      "rasd-title": "📦 حالة مزامنة المخزون والمنتجات (فريق سَنَد)",
-      "rasd-desc": "يقوم الفريق الرقمي تحت إدارة «سَنَد» بقراءة أصنافك وأسعارك وكمياتك آلياً عبر مفتاح القراءة فقط، وإرسال تنبيه لجوال المالك فور وصول أي صنف للحد الأدنى.",
-      "rasd-sync-lbl": "آخر مزامنة للكتالوج والأسعار:",
-      "rasd-sync-sub": "متصل وجاهز للمزامنة الآلية",
-      "sup-title": "💬 الاستفسارات الشاملة وتذاكر الصيانة",
-      "sup-desc": "اكتب جميع استفساراتك أو تفاصيل طلب الصيانة دفعة واحدة هنا، وسيقوم «سَنَد» بالرد عليها كاملة في رسالة واحدة شاملة على الواتساب.",
-      "sup-type-lbl": "نوع الطلب",
-      "sup-msg-lbl": "تفاصيل الاستفسارات أو التذكرة",
-      "sup-submit-btn": "🚀 إرسال الطلب الموحد إلى «سَنَد» بضغطة واحدة"
-    },
-    en: {
-      "hn-logo-char": "S",
-      "hn-brand-title": "Sanad AI",
-      "hn-brand-sub": "Your Digital Business Manager",
-      "hn-nav-merged": "Pricing & Savings",
-      "hn-lang-text": "عربي",
-      "hn-signin-text": "Sign In",
-      "hn-signup-text": "Sign Up",
-      "auth-title": "Sign in to Sanad AI Portal",
-      "auth-sub": "Enter your email to access your store dashboard or preview the platform",
-      "auth-google-btn": "Continue with Google",
-      "auth-or-txt": "OR CONTINUE WITH EMAIL",
-      "auth-email-lbl": "Email Address",
-      "auth-pin-lbl": "Activation Pin (Optional for Demo)",
-      "auth-submit-btn": "Sign In to Store Dashboard",
-      "ws-sb-brand": "Sanad Portal",
-      "ws-lbl-home": "Home (Dashboard)",
-      "ws-lbl-setup": "Store Setup (5 Steps)",
-      "ws-lbl-rasd": "Inventory & Catalog Sync",
-      "ws-lbl-support": "Inquiries & Support",
-      "ws-lang-btn": "عربي",
-      "ws-logout-btn": "Log Out",
-      "ws-top-title": "Subscriber Workspace (Sanad & Digital Team)",
-      "ws-status-pill": "🟢 Sanad & Team: Online",
-      "kpi1-lbl": "Digital Employee (Sanad)",
-      "kpi1-val": "🟢 Active on WhatsApp",
-      "kpi1-sub": "Replying to customers 24/7",
-      "kpi2-lbl": "Synced Store Items",
-      "kpi2-sub": "Auto-synced with your store",
-      "kpi3-lbl": "Low-Stock Alerts",
-      "kpi3-val": "3 Items",
-      "kpi3-sub": "Reached minimum threshold",
-      "home-card-title": "📊 Live Store & Rasd Inventory Summary",
-      "home-card-desc": "Your clean unified view managed by Sanad AI and his digital team.",
-      "home-btn-setup": "⚙️ Update 5 Store Setup Steps",
-      "home-btn-sup": "💬 Send Batch Inquiry / Ticket",
-      "setup-title": "🚀 Store Activation & Setup (5 Mandatory Steps)",
-      "setup-desc": "Fill in your store details and send them to Sanad on WhatsApp. Your store key is collected securely at activation.",
-      "f1-lbl": "1️⃣ Official Store Name + Store URL (Salla or Zid)",
-      "f1-sub": "Enter your store name and full store link",
-      "f2-lbl": "2️⃣ Preferred Digital Employee Name",
-      "f2-sub": "e.g., Sanad, or Store Assistant...",
-      "f3-lbl": "3️⃣ Owner Mobile Number (For Inventory Reports)",
-      "f3-sub": "Receives warehouse reports and low-stock alerts",
-      "f4-lbl": "4️⃣ Customer Service WhatsApp Number (Bot)",
-      "f4-sub": "Dedicated number for replying to customers",
-      "f5-lbl": "5️⃣ Store Link + Min Qty Threshold",
-      "f5-sub": "Allows Sanad's digital team to sync your products and prices in real-time",
-      "setup-submit-btn": "✅ Save & Activate 5 Store Setup Items",
-      "rasd-title": "📦 Inventory & Catalog Sync Status",
-      "rasd-desc": "Sanad's digital team reads your items, prices, and stock via Read-Only token and alerts the Owner mobile when stock is low.",
-      "rasd-sync-lbl": "Last Catalog & Price Sync:",
-      "rasd-sync-sub": "Connected & ready for auto-sync",
-      "sup-title": "💬 All-in-One Inquiries & Maintenance Tickets",
-      "sup-desc": "Write all your questions or maintenance details at once; Sanad will reply in a single comprehensive WhatsApp message.",
-      "sup-type-lbl": "Request Type",
-      "sup-msg-lbl": "Inquiry or Ticket Details",
-      "sup-submit-btn": "🚀 Send Unified Request to Sanad in One Click"
-    }
-  };
-
-  // 2. Comprehensive Phrase & Fragment Dictionary (Hero + Phone + 3 Cards + Calculator + Pricing + Footer)
-  const dict = [
-    ["سَنَد .. مدير أعمالك الرقمي", "Sanad AI .. Your Digital Business Manager"],
-    ["عقل رقمي يدير متجرك وحساباتك من الواتساب", "An AI digital brain managing your store & accounts from WhatsApp"],
-    ["1. تسعيرة وفاتورة ويومية", "1. Quotes, Invoices & Daily Ledger"],
-    ["2. إدارة المتجر والطلبات", "2. Store & Orders Management"],
-    ["3. جرد الأرباح والمخزون", "3. Profit & Inventory Audit"],
-    ["موظفك الرقمي • متصل دائماً", "Your Digital Employee • Always Online"],
-    ["يا سند، أرسل تسعيرة التوريد للعميل، واعتمد الفاتورة، واقفل حسابات اليوم.", "Hey Sanad, send the supply quote to the client, approve the invoice, and close today's accounts."],
-    ["تم التنفيذ في 1.8 ثانية", "Executed in 1.8 seconds"],
-    ["أبشر، أصدرت الفاتورة المعتمدة وأرسلتها للعميل، وتم ترحيل صافي المبيعات وإقفال اليومية بنجاح:", "Done! Official invoice issued & sent to the client, net sales posted, and daily ledger closed:"],
-    ["فاتورة ضريبية معتمدة", "Approved Tax Invoice"],
-    ["إجمالي التوريد (شامل الضريبة)", "Total Supply (VAT Included)"],
-    ["صافي ربح العملية", "Net Transaction Profit"],
-    ["حالة اليومية والخزنة", "Daily Ledger & Vault Status"],
-    ["مقفلة ومتطابقة 100%", "Closed & 100% Reconciled"],
-    ["تحدث أو اكتب أمرك لـ Sanad AI...", "Speak or type your command to Sanad AI..."],
-    ["تحدث أو اكتب أمرك لـ", "Speak or type your command to"],
-    ["كل مهام متجرك وحساباتك في محادثة واحدة", "All Your Store Tasks & Accounts in One Chat"],
-    ["تكتب له بالعامية أو ترسل صوت، وهو ينفذ فوراً بدون لوحات تحكم معقدة", "Type naturally or send a voice note — Sanad executes immediately without complex dashboards"],
-    ["مبيعات 24/7", "24/7 Sales"],
-    ["يرد على عملائك ويبيع في متجرك", "Replies to Customers & Sells in Your Store"],
-    ["يستقبل استفسارات الزبائن في الواتساب، يعرض لهم الأصناف والأسعار والمخزون المتوفر، ويؤكد الطلبات لحظياً حتى وأنت نائم.", "Receives customer inquiries on WhatsApp, shows items, prices, and live stock, and confirms orders 24/7 even while you sleep."],
-    ["فوري PDF", "Instant PDF"],
-    ["يصدر عروض الأسعار والفواتير", "Issues Official Quotes & Tax Invoices"],
-    ["بأمر واحد في الشات يجهز لك عرض السعر أو الفاتورة أو الخطاب الرسمي محسوباً بالضريبة ويرسله كملف PDF جاهز للعميل.", "With one chat command, prepares your quote, invoice, or official letter with VAT and sends it as a ready PDF to the client."],
-    ["دقة 100%", "100% Accuracy"],
-    ["يضبط الحسابات ويقفل اليومية", "Manages Accounts & Closes Daily Ledger"],
-    ["يسجل المبيعات والمصروفات والحوالات أولاً بأول، ويفرز لك صافي الأرباح والتزامات الضريبة والتشغيل في ثوانٍ بنهاية كل يوم.", "Logs sales, expenses, and transfers in real time, sorting net profit, VAT, and operating costs in seconds at day's end."],
-    ["حاسبة التوفير الشهري", "Monthly Savings Calculator"],
-    ["كم يوفر عليك «سَنَد» في متجرك أو منشأتك؟", "How much does Sanad save your store every month?"],
-    ["حرك المؤشر من 2 إلى 6 موظفين (سَنَد + 5 موظفين كحد أقصى للبكج):", "Slide from 2 to 6 digital employees (Sanad + up to 5 specialists):"],
-    ["حرك المؤشر من", "Slide from"],
-    ["موظفين (سَنَد + 5 موظفين كحد أقصى للبكج):", "digital employees (Sanad + up to 5 specialists):"],
-    ["موظفين (سَنَد + 5 موظفين كحد أقصى للبكج)", "digital employees (Sanad + up to 5 specialists)"],
-    ["حجم الطاقم الرقمي (مبيعات + فواتير + محاسبة):", "Digital Team Size (Sales + Invoicing + Inventory):"],
-    ["سَنَد + موظف واحد (2 موظفين)", "Sanad + 1 Specialist (2 Employees)"],
-    ["سَنَد + موظفين (3 موظفين)", "Sanad + 2 Specialists (3 Employees)"],
-    ["سَنَد + 3 موظفين (4 موظفين)", "Sanad + 3 Specialists (4 Employees)"],
-    ["سَنَد + 4 موظفين (5 موظفين)", "Sanad + 4 Specialists (5 Employees)"],
-    ["سَنَد + 5 موظفين (6 موظفين - كامل البكج)", "Sanad + 5 Specialists (6 Employees - Full Package)"],
-    ["2 موظفين (سَنَد + 1)", "2 Employees (Sanad + 1)"],
-    ["4 موظفين (سَنَد + 3)", "4 Employees (Sanad + 3)"],
-    ["6 موظفين (سَنَد + 5 كامل البكج)", "6 Employees (Full Package)"],
-    ["التكلفة التشغيلية المعتادة", "Typical Monthly Payroll"],
-    ["توفيرك الشهري التقريبي", "Your Estimated Monthly Savings"],
-    ["الباقة الشاملة (سَنَد + فريق عمل رقمي)", "All-In-One Package (Sanad & Digital Team)"],
-    ["13 SAR / يومياً", "13 SAR / Day"],
-    ["يومياً", "Day"],
-    ["وظّف «سَنَد» وفريقه الرقمي في أعمالك اليوم", "Hire Sanad & His Digital Team Today"],
-    ["ريال / شهرياً (شامل كل المهام)", "SAR / Month (All-Inclusive)"],
-    ["رد آلي ذكي وإدارة مبيعات المتجر في الواتساب", "Smart WhatsApp AI Sales & Customer Care"],
-    ["إصدار فواتير وعروض أسعار PDF غير محدودة", "Unlimited PDF Quotes & Tax Invoices"],
-    ["إصدار فواتير وعروض أسعار PDF", "Unlimited PDF Quotes & Tax Invoices"],
-    ["غير محدودة", "(24/7 Instant Generation)"],
-    ["جرد يومي وإقفال حسابات المبيعات والمصروفات", "Automated Low-Stock Alerts to Owner Mobile"],
-    ["بكج متكامل يضم «سَنَد» مع ما يصل إلى 5 موظفين رقميين", "Full Package: Sanad + up to 5 Digital Employees"],
-    ["بكج متكامل يضم", "Full Package:"],
-    ["مع ما يصل إلى", "with up to"],
-    ["5 موظفين رقميين", "5 Digital Employees"],
-    ["اشترك الآن وابدأ مع «سَنَد» عبر الواتساب", "Subscribe Now & Start with Sanad on WhatsApp"],
-    ["تفعيل فوري • تجربة حية مباشرة على الواتساب 0566566977", "Instant Activation • Live WhatsApp Demo 0566566977"],
-    ["تفعيل فوري • تجربة حية مباشرة على الواتساب", "Instant Activation • Live WhatsApp Demo"],
-    ["سَنَد — مدير أعمالك الرقمي • يعمل معك من الواتساب على مدار الساعة", "Sanad AI — Your 24/7 Digital Store Team on WhatsApp"],
-    ["🔄 مزامنة الأصناف الآن", "🔄 Sync Catalog Now"],
-    ["إلى", "to"],
-    ["«سَنَد»", "Sanad AI"],
-    ["سَنَد", "Sanad AI"]
-  ];
-
-  // Sort longest Arabic phrase first so sub-words don't break full sentences
-  dict.sort((a, b) => b[0].length - a[0].length);
-
-  // 3. Snapshot Original Arabic Text Nodes & Attributes Once
-  const origNodes = new Map();
-  const origAttrs = [];
-
-  function initSnapshot() {
-    if (window._sanadSnapDone) return;
-    window._sanadSnapDone = true;
-    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-    let n;
-    while ((n = w.nextNode())) {
-      if (n.parentElement && (n.parentElement.tagName === "SCRIPT" || n.parentElement.tagName === "STYLE")) continue;
-      if (n.nodeValue && n.nodeValue.trim()) {
-        origNodes.set(n, n.nodeValue);
-      }
-    }
-    document.querySelectorAll("[placeholder],[title]").forEach(el => {
-      origAttrs.push({
-        el,
-        ph: el.getAttribute("placeholder"),
-        ti: el.getAttribute("title")
-      });
-    });
-  }
-
-  function translateTextString(str, toEn) {
-    const sub=[["موظفين (Sanad AI + 5 موظفين كحد أقصى للبكج):","digital employees (Sanad AI + up to 5 specialists):"],["موظفين (Sanad AI + 5 موظفين كحد أقصى للبكج)","digital employees (Sanad AI + up to 5 specialists)"],["موظفين كحد أقصى للبكج):","specialists max):"],["بأمر واحد في الشات يجهز لك عرض السعر أو الفاتورة أو الخطاب الرسمي محسوباً بالضريبة ويرسله كملف","With one chat command, prepares your quote, invoice, or official letter with VAT and sends it as a"],["بأمر واحد في الشات يجهز لك عرض السعر أو الفاتورة أو الخطاب الرسمي محسوبا بالضريبة ويرسله كملف","With one chat command, prepares your quote, invoice, or official letter with VAT and sends it as a"],["جاهز للعميل.","ready for the client."],["جاهز للعميل","ready for the client"],["PDF فوري","Instant PDF"],["فوري PDF","Instant PDF"],["فوري","Instant"],["موظفين","employees"]];let out=str.replace(/\s+/g," ");if(toEn){for(const[a,e]of sub){if(out.includes(a))out=out.split(a).join(e);}}
-    if (toEn) {
-      for (const [ar, en] of dict) {
-        if (out.includes(ar)) out = out.split(ar).join(en);
-      }
-    }
-    return out;
-  }
-
-  // 4. Self-Healing DOM Auditor (Scans & Fixes Any Remaining Arabic Nodes in EN Mode)
-  window.runSelfHealingLangAudit = function() {
-    initSnapshot();
-    const isEn = window.curHnLang === "en";
-    const dir = isEn ? "ltr" : "rtl";
-    document.documentElement.setAttribute("dir", dir);
-    document.documentElement.setAttribute("lang", window.curHnLang);
-    document.body.style.direction = dir;
-
-    // A) Apply Exact ID Map
-    const targetMap = idMap[window.curHnLang];
-    Object.keys(targetMap).forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = targetMap[id];
-    });
-
-    // B) Restore or Translate All Snapshot Text Nodes
-    origNodes.forEach((arVal, node) => {
-      if (node.parentElement && node.parentElement.id && targetMap[node.parentElement.id]) return;
-      node.nodeValue = isEn ? translateTextString(arVal, true) : arVal;
-    });
-
-    // C) Live Audit Pass for Dynamically Changed Nodes (e.g., Range Slider labels)
-    if (isEn) {
-      const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-      let n;
-      while ((n = w.nextNode())) {
-        if (n.parentElement && (n.parentElement.tagName === "SCRIPT" || n.parentElement.tagName === "STYLE")) continue;
-        if (n.parentElement && n.parentElement.id === "hn-lang-text") continue;
-        if (n.parentElement && n.parentElement.id === "ws-lang-btn") continue;
-        if (/[؀-ۿ]/.test(n.nodeValue)) {
-          n.nodeValue = translateTextString(n.nodeValue, true);
-        }
-      }
-    }
-
-    // D) Translate Input Placeholders & Select Options
-    origAttrs.forEach(item => {
-      if (item.ph) {
-        item.el.setAttribute("placeholder", isEn ? translateTextString(item.ph, true) : item.ph);
-      }
-    });
-  };
-
-  window.toggleHostingerLang = function() {
-    initSnapshot();
-    window.curHnLang = window.curHnLang === "ar" ? "en" : "ar";
-    window.runSelfHealingLangAudit();
-  };
-
-  // Auto-heal when range slider is moved in EN mode
-  document.addEventListener("input", function(e) {
-    if (e.target && e.target.type === "range" && window.curHnLang === "en") {
-      setTimeout(window.runSelfHealingLangAudit, 5);
-    }
-  });
-})();
-</script>
-
-
-<script id="sanad-ws-actions">window.toggleGemSidebar=function(){const sb=document.getElementById("m-gem-sidebar");const main=document.getElementById("m-gem-main");if(!sb||!main)return;const isClosed=sb.classList.toggle("collapsed");main.classList.toggle("with-sb",!isClosed);document.body.classList.toggle("sb-closed",isClosed);};window.switchWsPane=function(pane){["home","setup","rasd","support"].forEach(p=>{const pe=document.getElementById("ws-pane-"+p);const ne=document.getElementById("ws-nav-"+p);if(pe)pe.classList.toggle("active",p===pane);if(ne)ne.classList.toggle("active",p===pane);});if(window.innerWidth<=768&&window.toggleGemSidebar){const sb=document.getElementById("m-gem-sidebar");if(sb&&!sb.classList.contains("collapsed"))window.toggleGemSidebar();}};window.logoutWorkspace=function(){localStorage.removeItem("sanad_client_email");document.getElementById("client-workspace-view").style.display="none";document.getElementById("client-workspace-view").classList.remove("active");document.getElementById("public-landing-view").style.display="block";window.scrollTo(0,0);};</script>
-<script id="sanad-state-and-leads">(function(){window.logVisitorLead=function(email,name,source){const leads=JSON.parse(localStorage.getItem("sanad_captured_leads")||"[]");const entry={email:email,name:name||"",source:source,timestamp:new Date().toISOString(),domain:window.location.hostname};leads.push(entry);localStorage.setItem("sanad_captured_leads",JSON.stringify(leads));};window.renderWorkspaceState=function(email,pin,name){email=String(email||"").replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});const isEn=window.curHnLang==="en";const savedSetup=JSON.parse(localStorage.getItem("sanad_setup_"+email)||"null");const isSubscribed=false;const stPill=document.getElementById("ws-status-pill");const k1v=document.getElementById("kpi1-val");const k1s=document.getElementById("kpi1-sub");const k2v=document.getElementById("kpi2-val");const k2s=document.getElementById("kpi2-sub");const k3v=document.getElementById("kpi3-val");const k3s=document.getElementById("kpi3-sub");const hTitle=document.getElementById("home-card-title");const hDesc=document.getElementById("home-card-desc");const rSub=document.getElementById("rasd-sync-sub");if(!isSubscribed){if(stPill){stPill.textContent=isEn?"⚪ Unsubscribed (Preview Mode)":"⚪ حساب زائر (بانتظار تفعيل الاشتراك)";stPill.style.background="#F1F5F9";stPill.style.color="#475569";stPill.style.borderColor="#CBD5E1";}if(k1v){k1v.textContent=isEn?"⚪ Inactive (0)":"⚪ غير مفعل (0)";k1v.style.color="#64748B";}if(k1s)k1s.textContent=isEn?"Subscribe & link store to activate Sanad":"اشترك واربط متجرك ليبدأ «سَنَد» بالعمل";if(k2v)k2v.textContent="0";if(k2s)k2s.textContent=isEn?"No store API linked yet (0 items)":"لم يتم ربط مفتاح المتجر بعد (0 أصناف)";if(k3v){k3v.textContent=isEn?"0 Alerts":"0 تنبيهات";k3v.style.color="#64748B";}if(k3s)k3s.textContent=isEn?"Appears after catalog sync":"تظهر هنا بعد تفعيل الاشتراك والمزامنة";if(hTitle)hTitle.textContent=isEn?"👋 Welcome! Complete Your Subscription to Activate Your Store":"👋 أهلاً بك في بوابة «سَنَد» و«رَصد»! يسعدنا انضمامك واشتراكك معنا";if(hDesc)hDesc.innerHTML=isEn?"Your email (<strong>"+email+"</strong>) is registered as an interested visitor. All metrics are currently set to <strong>0</strong>. To activate your digital employee and sync your live store inventory, please complete the <strong>5 Store Setup Steps</strong> or activate your subscription on WhatsApp.":"تم تسجيل بريدك الإلكتروني (<strong>"+email+"</strong>) بنجاح في قائمة المهتمين بـ «سَنَد». جميع العدادات حالياً مصفّرة (<strong>0</strong>) لأن الحساب غير مشترك بعد. لتفعيل موظفك الرقمي وسحب أصناف متجرك الحقيقية، يرجى تعبئة <strong>(إعدادات المتجر - الـ 5 خانات)</strong> أو طلب كود تفعيل اشتراكك عبر الواتساب.";if(rSub)rSub.textContent=isEn?"0 items synced — Waiting for API Token":"0 أصناف — بانتظار إدخال مفتاح المتجر وتفعيل الاشتراك";}else{const itemsCount=(savedSetup&&savedSetup.syncedCount)||"148";const alertsCount=(savedSetup&&savedSetup.alertsCount)||"2";if(stPill){stPill.textContent=isEn?"🟢 Sanad + Rasd: Active Subscriber":"🟢 مشترك نشط (سَنَد + رَصد متصل)";stPill.style.background="#ECFDF5";stPill.style.color="#047857";stPill.style.borderColor="#A7F3D0";}if(k1v){k1v.textContent=isEn?"🟢 Active on WhatsApp":"🟢 نشط على الواتساب";k1v.style.color="#059669";}if(k1s)k1s.textContent=isEn?"Replying to your store customers 24/7":"يرد على عملاء متجرك على مدار الساعة";if(k2v)k2v.textContent=String(itemsCount);if(k2s)k2s.textContent=isEn?"Synced with "+(savedSetup&&savedSetup.storeName||"your store"):"متزامنة تلقائياً مع "+(savedSetup&&savedSetup.storeName||"متجرك");if(k3v){k3v.textContent=isEn?alertsCount+" Items":alertsCount+" أصناف";k3v.style.color="#D97706";}if(k3s)k3s.textContent=isEn?"Reached minimum threshold":"وصلت للحد الأدنى المعتمد";if(hTitle)hTitle.textContent=isEn?"📊 Live Store & Rasd Inventory Summary":"📊 ملخص الربط والمزامنة الحية لمتجرك المعتمد";if(hDesc)hDesc.textContent=isEn?"Your store is actively synced with Rasd Engine and Sanad AI.":"متجرك مربوط ومفعل بنجاح مع أمين المستودع «رَصد» وموظف المبيعات «سَنَد».";}};window.enterClientWorkspace=function(e){if(e)e.preventDefault();const em=(document.getElementById("auth-email-inp").value||"merchant@store.com").trim();const pin=(document.getElementById("auth-pin-inp").value||"").trim();localStorage.setItem("sanad_client_email",em);localStorage.setItem("sanad_client_pin",pin);window.logVisitorLead(em,"","Direct_Email_Form");document.getElementById("m-auth-modal").style.display="none";document.getElementById("m-auth-modal").classList.remove("active");document.getElementById("public-landing-view").style.display="none";const ws=document.getElementById("client-workspace-view");ws.style.display="flex";ws.classList.add("active");document.getElementById("ws-user-badge").textContent=em;window.renderWorkspaceState(em,pin,"");window.scrollTo(0,0);};const origToggle=window.toggleHostingerLang;window.toggleHostingerLang=function(){if(origToggle)origToggle();const em=localStorage.getItem("sanad_client_email");const pin=localStorage.getItem("sanad_client_pin")||"";if(em&&document.getElementById("client-workspace-view").style.display==="flex"){window.renderWorkspaceState(em,pin,"");}};})();</script>
-<script id="sanad-email-only-flow">(function(){function syncAuthLabels(){const isEn=window.curHnLang==="en";const pinLbl=document.getElementById("auth-pin-lbl");const subLbl=document.getElementById("auth-sub");const btnLbl=document.getElementById("auth-submit-btn");const pinInp=document.getElementById("auth-pin-inp");if(subLbl)subLbl.textContent=isEn?"Enter your email to access your store dashboard or preview the platform":"أدخل بريدك الإلكتروني لفتح لوحة تحكم متجرك أو معاينة المنظومة";if(pinLbl)pinLbl.innerHTML=isEn?"Subscriber Password / Pin <span style=\"display:block;font-size:11px;font-weight:500;color:#64748B;margin-top:3px;\">💡 Not subscribed yet? Leave the password blank and press Enter to preview the dashboard.</span>":"كلمة المرور / كود المشترك <span style=\"display:block;font-size:11.5px;font-weight:500;color:#64748B;margin-top:3px;\">💡 إذا لم تكن مشتركاً بعد، اترك خانة كلمة المرور فارغة واضغط (Enter) لمعاينة لوحة التحكم.</span>";if(pinInp)pinInp.setAttribute("placeholder",isEn?"Leave blank for free preview...":"اتركها فارغة للمعاينة المجانية...");if(btnLbl)btnLbl.textContent=isEn?"Enter Store Dashboard":"دخول إلى لوحة تحكم المتجر";}window.addEventListener("DOMContentLoaded",syncAuthLabels);setTimeout(syncAuthLabels,150);const oldT=window.toggleHostingerLang;window.toggleHostingerLang=function(){if(oldT)oldT();syncAuthLabels();};})();</script>
-<script id="sanad-final-auth-and-zero">(function(){function cleanAuthDivider(){const orEl=document.getElementById("auth-or-txt");if(orEl){const parent=orEl.closest(".m-oauth-divider")||orEl;parent.style.display="none";}}window.renderWorkspaceState=function(email,pin){email=String(email||"").replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});const isEn=window.curHnLang==="en";const savedSetup=JSON.parse(localStorage.getItem("sanad_setup_"+email)||"null");const isSubscribed=false;const stPill=document.getElementById("ws-status-pill");const k1v=document.getElementById("kpi1-val");const k1s=document.getElementById("kpi1-sub");const k2s=document.getElementById("kpi2-sub");const k3v=document.getElementById("kpi3-val");const k3s=document.getElementById("kpi3-sub");const hTitle=document.getElementById("home-card-title");const hDesc=document.getElementById("home-card-desc");const rSub=document.getElementById("rasd-sync-sub");const k2Num=k2s&&k2s.parentElement?k2s.parentElement.querySelector("div[style*=\"24px\"],div[style*=\"26px\"],div[style*=\"28px\"],strong,.m-kpi-val"):null;let wBanner=document.getElementById("sanad-visitor-welcome-banner");if(!wBanner&&hDesc&&hDesc.parentElement){wBanner=document.createElement("div");wBanner.id="sanad-visitor-welcome-banner";wBanner.style.cssText="margin-top:16px;padding:16px 18px;border-radius:14px;background:linear-gradient(135deg,#FDF2F8 0%,#EFF6FF 100%);border:1px solid #FBCFE8;color:#0F172A;font-size:14px;line-height:1.7;";hDesc.parentElement.insertBefore(wBanner,hDesc.nextSibling);}if(!isSubscribed){if(stPill){stPill.textContent=isEn?"⚪ Free Preview Mode (0 Data)":"⚪ وضع المعاينة المجانية (حساب غير مشترك)";stPill.style.background="#F1F5F9";stPill.style.color="#475569";}if(k1v){k1v.textContent=isEn?"⚪ Waiting for Activation (0)":"⚪ بانتظار التفعيل (0)";k1v.style.color="#64748B";}if(k1s)k1s.textContent=isEn?"Subscribe & link store so Sanad & his team start working":"اشترك واربط متجرك ليبدأ «سَنَد» وفريقه الرقمي بالعمل";if(k2Num){k2Num.textContent="0";k2Num.style.color="#64748B";}if(k2s)k2s.textContent=isEn?"0 items synced (Store API not linked yet)":"0 أصناف (لم يتم ربط مفتاح المتجر بعد)";if(k3v){k3v.textContent=isEn?"0 Alerts":"0 أصناف";k3v.style.color="#64748B";}if(k3s)k3s.textContent=isEn?"Appears after store sync":"تظهر هنا بعد تفعيل الاشتراك والمزامنة";if(hTitle)hTitle.textContent=isEn?"📊 Live Store Summary (Managed by Sanad & Digital Team)":"📊 ملخص الربط والمزامنة الحية مع متجرك (إدارة سَنَد)";if(hDesc)hDesc.textContent=isEn?"All counters above are set to (0) for full transparency because no store is linked to this email yet.":"جميع العدادات في الأعلى مصفّرة (0) للمصداقية، حيث لم يتم ربط متجر فعلي بهذا البريد الإلكتروني حتى الآن.";if(wBanner){wBanner.style.display="block";wBanner.innerHTML=isEn?"<strong>👋 Welcome to Sanad Portal ("+email+")!</strong><br>We are delighted to have you preview the platform. Once you subscribe, <strong>Sanad and his team of specialized digital employees</strong> will immediately take over your customer replies, inventory tracking, and invoicing 24/7. Click <strong>(Store Setup - 5 Steps)</strong> to prepare your store link or activate via WhatsApp.":"<strong>👋 أهلاً ومرحباً بك في بوابة «سَنَد» ("+email+")!</strong><br>يسعدنا جداً اطلاعك على لوحة التحكم. فور تفعيل اشتراكك، سيتولى <strong>«سَنَد» ومجموعة الموظفين الرقميين التابعين له</strong> إدارة مبيعاتك، متابعة مخزونك، وإصدار فواتيرك على مدار الساعة، وتتحول هذه الأصفار إلى أرقام متجرك الحية. يمكنك الآن استكشاف قسم <strong>(إعدادات المتجر - الـ 5 خانات)</strong> لتجهيز بياناتك.";}if(rSub)rSub.textContent=isEn?"0 items — Waiting for Store API Token":"0 أصناف — بانتظار ربط مفتاح المتجر وتفعيل الاشتراك";}else{if(wBanner)wBanner.style.display="none";if(stPill){stPill.textContent=isEn?"🟢 Sanad & Team: Active":"🟢 سَنَد وفريقه الرقمي: نشط";stPill.style.background="#ECFDF5";stPill.style.color="#047857";}if(k1v){k1v.textContent=isEn?"🟢 Active on WhatsApp":"🟢 نشط على الواتساب";k1v.style.color="#059669";}if(k2Num){k2Num.textContent=(savedSetup&&savedSetup.syncedCount)||"148";k2Num.style.color="#0F172A";}if(k3v){k3v.textContent=isEn?"3 Items":"3 أصناف";k3v.style.color="#D97706";}}};window.enterClientWorkspace=function(e){if(e)e.preventDefault();const inp=document.getElementById("auth-email-inp");const em=inp?inp.value.trim():"";const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(!em||!emailRegex.test(em)){if(inp){inp.style.border="2px solid #E11D48";inp.style.background="#FFF1F2";inp.focus();}let errEl=document.getElementById("auth-email-err");if(!errEl&&inp){errEl=document.createElement("div");errEl.id="auth-email-err";errEl.style.cssText="color:#E11D48;font-size:12px;font-weight:700;margin-top:6px;";inp.parentElement.appendChild(errEl);}if(errEl)errEl.textContent=window.curHnLang==="en"?"⚠️ Please enter a valid email address first to preview or access the dashboard.":"⚠️ فضلاً اكتب بريدك الإلكتروني الصحيح أولاً لفتح لوحة التحكم أو المعاينة.";return false;}if(inp){inp.style.border="1px solid #CBD5E1";inp.style.background="#F8FAFC";}const errEl=document.getElementById("auth-email-err");if(errEl)errEl.textContent="";const pin=(document.getElementById("auth-pin-inp").value||"").trim();localStorage.setItem("sanad_client_email",em);localStorage.setItem("sanad_client_pin",pin);if(window.logVisitorLead)window.logVisitorLead(em,"","Email_Portal_Login");document.getElementById("m-auth-modal").style.display="none";document.getElementById("m-auth-modal").classList.remove("active");document.getElementById("public-landing-view").style.display="none";const ws=document.getElementById("client-workspace-view");ws.style.display="flex";ws.classList.add("active");document.getElementById("ws-user-badge").textContent=em;window.renderWorkspaceState(em,pin);window.scrollTo(0,0);};window.addEventListener("DOMContentLoaded",cleanAuthDivider);setTimeout(cleanAuthDivider,100);})();</script>
-<script type="module">import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"; import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"; window.SANAD_FIREBASE_CONFIG = JSON.parse(localStorage.getItem("sanad_fb_cfg") || "{\"apiKey\":\"\",\"authDomain\":\"maladel.com\",\"projectId\":\"\"}"); window.realOAuthSignIn = async function(providerName) { if(window.location.protocol === "file:") { alert(window.curHnLang==="en" ? "⚠️ Real Google OAuth requires running on https://maladel.com or http://localhost (blocked on file://). Opening preview workspace now." : "⚠️ نافذة قوقل الحقيقية تعمل فقط عند فتح الموقع عبر https://maladel.com أو localhost (محجوبة أمنياً على الملف المحلي file://). سيتم فتح لوحة المعاينة الآن."); document.getElementById("m-auth-modal").style.display="none"; document.getElementById("public-landing-view").style.display="none"; document.getElementById("client-workspace-view").style.display="flex"; document.getElementById("ws-user-badge").textContent="Preview Mode (Google)"; return; } if(!window.SANAD_FIREBASE_CONFIG.apiKey) { document.getElementById("m-auth-modal").style.display="none"; document.getElementById("public-landing-view").style.display="none"; document.getElementById("client-workspace-view").style.display="flex"; document.getElementById("ws-user-badge").textContent="Google Account (maladel.com)"; window.scrollTo(0,0); return; } try { const app = initializeApp(window.SANAD_FIREBASE_CONFIG); const auth = getAuth(app); const res = await signInWithPopup(auth, new GoogleAuthProvider()); const user = res.user; document.getElementById("m-auth-modal").style.display="none"; document.getElementById("public-landing-view").style.display="none"; document.getElementById("client-workspace-view").style.display="flex"; document.getElementById("ws-user-badge").textContent = (user.displayName ? user.displayName + " | " : "") + user.email; } catch(err) { alert("OAuth Error: " + err.message); } };</script>
-
-<style id="sanad-sb-fix">.m-ws-topbar .m-collapse-btn{display:none!important;}body.sb-closed .m-ws-topbar .m-collapse-btn{display:flex!important;}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سَنَد | موظف المبيعات الرقمي لمتجرك على الواتساب</title>
+<meta name="description" content="سَنَد يرد على عملاء متجرك في الواتساب 24 ساعة، ووراه فريق رقمي يتابع المخزون ويجهز عروض الأسعار ويقيّد الحسابات. جربني 7 أيام مجاناً.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="canonical" href="https://maladel.com/">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:url" content="https://maladel.com/">
+<meta property="og:title" content="سَنَد | موظف المبيعات الرقمي لمتجرك على الواتساب">
+<meta property="og:description" content="يرد على عملائك 24 ساعة، ووراه فريق رقمي يتابع المخزون والمستندات والحسابات.">
+<meta property="og:image" content="https://maladel.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
 </head>
-<body class="crystal-page-bg flex flex-col justify-between">
+<body>
+<div class="flow" aria-hidden="true">
+  <svg class="f1" viewBox="0 0 1600 260" preserveAspectRatio="none"><defs><linearGradient id="lg1" x1="0" x2="1"><stop offset="0" stop-color="#EC4899" stop-opacity="0"/><stop offset=".3" stop-color="#EC4899" stop-opacity=".45"/><stop offset=".7" stop-color="#A855F7" stop-opacity=".45"/><stop offset="1" stop-color="#FB923C" stop-opacity="0"/></linearGradient></defs><path stroke="url(#lg1)" d="M0 180 C 260 60, 520 260, 800 140 S 1340 40, 1600 150"/><path stroke="url(#lg1)" d="M0 200 C 300 90, 560 270, 820 160 S 1360 70, 1600 175" opacity=".6"/></svg>
+  <svg class="f2" viewBox="0 0 1600 260" preserveAspectRatio="none"><defs><linearGradient id="lg2" x1="0" x2="1"><stop offset="0" stop-color="#60A5FA" stop-opacity="0"/><stop offset=".35" stop-color="#60A5FA" stop-opacity=".4"/><stop offset=".7" stop-color="#A855F7" stop-opacity=".4"/><stop offset="1" stop-color="#EC4899" stop-opacity="0"/></linearGradient></defs><path stroke="url(#lg2)" d="M0 90 C 300 220, 620 20, 900 120 S 1380 230, 1600 100"/><path stroke="url(#lg2)" d="M0 110 C 320 235, 640 40, 920 140 S 1400 245, 1600 122" opacity=".55"/></svg>
+  <svg class="f3" viewBox="0 0 1600 260" preserveAspectRatio="none"><defs><linearGradient id="lg3" x1="0" x2="1"><stop offset="0" stop-color="#FB923C" stop-opacity="0"/><stop offset=".4" stop-color="#F472B6" stop-opacity=".38"/><stop offset=".75" stop-color="#8B5CF6" stop-opacity=".38"/><stop offset="1" stop-color="#60A5FA" stop-opacity="0"/></linearGradient></defs><path stroke="url(#lg3)" d="M0 150 C 280 40, 600 230, 880 120 S 1380 30, 1600 140"/></svg>
+</div>
+<a class="skip" href="#main">تخطَّ إلى المحتوى</a>
 
-<!-- ========================================================= -->
-<!-- 1. PUBLIC STOREFRONT VIEW (HOSTINGER TOPBAR + LANDING)    -->
-<!-- ========================================================= -->
-<div id="public-landing-view">
-  <nav class="m-host-navbar" id="m-host-navbar">
-    <div class="m-hn-side">
-      <a class="m-hn-brand" href="#">
-        <div class="m-hn-logo" id="hn-logo-char">س</div>
-        <div>
-          <span class="m-hn-title" id="hn-brand-title">سَنَد</span>
-          <span class="m-hn-divider">|</span>
-          <span class="m-hn-sub" id="hn-brand-sub">مدير أعمالك الرقمي</span>
-        </div>
-      </a>
-      <a class="m-hn-link" href="#pricing" id="hn-nav-merged">الباقات والتوفير</a>
-    </div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="سَنَد — الصفحة الرئيسية">
+      <span class="mark" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 8.8l6.1-.7z"/></svg></span>
+      <span>سَنَد<small>موظف المبيعات الرقمي</small></span>
+    </a>
+    <nav class="nav" aria-label="القائمة الرئيسية">
+      <a class="link" href="#team">الفريق</a>
+      <a class="link" href="#how">كيف يشتغل</a>
+      <a class="link" href="#pricing">الباقات</a>
+      <a class="link" href="#faq">أسئلة</a>
+      <a class="btn btn-ghost" href="app.html">دخول المشتركين</a>
+    </nav>
+  </div>
+</header>
 
-    <div class="m-hn-actions">
-      <button class="m-btn-lang" onclick="toggleHostingerLang()" title="Switch Language">
-        <span>🌐</span>
-        <span id="hn-lang-text">EN</span>
-      </button>
-      <button class="m-btn-signin" onclick="document.getElementById('m-auth-modal').style.display='flex';document.getElementById('m-auth-modal').classList.add('open');">
-        <span>👤</span>
-        <span id="hn-signin-text">تسجيل الدخول</span>
-      </button>
-      <button class="m-btn-signup" onclick="document.getElementById('m-auth-modal').style.display='flex';document.getElementById('m-auth-modal').classList.add('open');">
-        <span id="hn-signup-text">اشترك الآن</span>
-      </button>
-    </div>
-  </nav>
-
-  
-
-  <!-- 1. الشريط العلوي -->
-  <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-purple-100/70">
-    <div class="w-full max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-xl sanad-avatar-grad text-white font-extrabold text-sm flex items-center justify-center shadow-xs">
-          س
-        </div>
-        <div>
-          <span class="text-sm font-extrabold text-slate-900">سَنَد</span>
-          <span class="text-slate-300 mx-1">|</span>
-          <span class="text-xs font-semibold text-slate-500">مدير أعمالك الرقمي</span>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-2">
-        <a href="#pricing" class="hidden sm:inline-block text-xs font-bold text-slate-600 hover:text-purple-700 px-3 py-1.5">
-          الباقات والتوفير
-        </a>
-        <a href="https://wa.me/966566566977?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%8A%D8%A7%20%D8%B3%D9%86%D8%AF%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20%D8%B3%D9%86%D8%AF%20%D9%84%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A3%D8%B9%D9%85%D8%A7%D9%84%D9%8A"
-           target="_blank"
-           class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-full transition shadow-xs">
-          ابدأ عبر الواتساب
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- 2. محتوى الصفحة -->
-  <main class="w-full max-w-5xl mx-auto px-4 pt-6 pb-14 space-y-14">
-
-    <!-- أ) الجوال التفاعلي في المركز -->
-    <section class="flex flex-col items-center">
-      <div class="text-center max-w-md mx-auto mb-4">
-        <div class="inline-flex items-center gap-1.5 bg-purple-50 border border-purple-100 text-purple-800 text-[11px] font-bold px-3 py-1 rounded-full mb-2.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-pink-500"></span>
-          <span>يعمل من جوالك مباشرة • بدون برامج معقدة</span>
-        </div>
-        <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug">
-          سَنَد .. مدير أعمالك الرقمي
-        </h1>
-        <p class="text-xs sm:text-sm font-semibold text-slate-500 mt-1">
-          عقل رقمي يدير متجرك وحساباتك من الواتساب
-        </p>
-      </div>
-
-      <div class="flex flex-wrap items-center justify-center gap-1.5 mb-4">
-        <button onclick="switchPhoneDemo('quote')" id="pill_quote" class="quick-pill active text-[11px] font-extrabold px-3.5 py-1.5 rounded-full border border-purple-100 bg-white text-slate-700 cursor-pointer">
-          1. تسعيرة وفاتورة ويومية
-        </button>
-        <button onclick="switchPhoneDemo('store')" id="pill_store" class="quick-pill text-[11px] font-extrabold px-3.5 py-1.5 rounded-full border border-purple-100 bg-white text-slate-700 cursor-pointer">
-          2. إدارة المتجر والطلبات
-        </button>
-        <button onclick="switchPhoneDemo('report')" id="pill_report" class="quick-pill text-[11px] font-extrabold px-3.5 py-1.5 rounded-full border border-purple-100 bg-white text-slate-700 cursor-pointer">
-          3. جرد الأرباح والمخزون
-        </button>
-      </div>
-
-      <div class="crystal-phone-frame">
-        <div class="flex items-center justify-between px-3 mb-3 text-[11px] font-bold font-num">
-          <span class="text-purple-800/80">WhatsApp • AI</span>
-          <div class="w-16 h-1.5 rounded-full bg-white/90"></div>
-          <span class="text-pink-600 flex items-center gap-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-pink-600"></span>
-            <span>5G</span>
-          </span>
-        </div>
-
-        <div class="bg-white/85 backdrop-blur-md border border-white rounded-2xl p-3 mb-4 flex items-center justify-between shadow-2xs">
-          <div class="flex items-center gap-2.5">
-            <div class="w-10 h-10 rounded-2xl sanad-avatar-grad text-white font-extrabold text-lg flex items-center justify-center shadow-xs">
-              س
-            </div>
-            <div class="text-right">
-              <div class="text-sm font-extrabold text-slate-900 leading-tight">سَنَد</div>
-              <div class="text-[11px] font-bold text-purple-700 mt-0.5">
-                موظفك الرقمي • متصل دائماً
-              </div>
-            </div>
-          </div>
-
-          <span class="font-num text-[10.5px] font-extrabold text-slate-800 bg-white border border-purple-100 px-2.5 py-1 rounded-full shadow-2xs">
-            24/7
-          </span>
-        </div>
-
-        <div class="bg-white/92 border border-white rounded-2xl p-3.5 mb-3.5 shadow-xs mr-4">
-          <p id="demoUserMsg" class="text-xs sm:text-[13px] font-extrabold text-slate-900 leading-relaxed text-right">
-            يا سند، أرسل تسعيرة التوريد للعميل، واعتمد الفاتورة، واقفل حسابات اليوم.
-          </p>
-          <div id="demoMsgTime" class="font-num text-[10px] font-bold text-slate-400 text-left mt-1">
-            09:41 AM
-          </div>
-        </div>
-
-        <div class="bg-white/92 border border-white rounded-3xl p-4 shadow-sm space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-1.5 text-xs font-extrabold text-purple-950">
-              <span>✨</span>
-              <span id="demoExecTime">تم التنفيذ في <span class="font-num">1.8</span> ثانية</span>
-            </div>
-            <span class="font-num text-[10px] font-extrabold text-rose-700 bg-rose-50 border border-rose-200/70 px-2.5 py-0.5 rounded-full">
-              DONE ✓
-            </span>
-          </div>
-
-          <p id="demoBotReply" class="text-[11.5px] sm:text-xs font-bold text-slate-700 leading-relaxed text-right">
-            أبشر، أصدرت الفاتورة المعتمدة وأرسلتها للعميل، وتم ترحيل صافي المبيعات وإقفال اليومية بنجاح:
-          </p>
-
-          <div class="grid grid-cols-2 gap-2.5 pt-0.5">
-            <div class="bg-white rounded-2xl p-3 border border-purple-50 shadow-2xs text-center flex flex-col items-center">
-              <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 text-white flex items-center justify-center mb-1.5 shadow-2xs">
-                <span id="demoBox1Icon" class="text-sm">📄</span>
-              </div>
-              <div id="demoBox1Title" class="text-[11.5px] font-extrabold text-slate-900">الفاتورة والعرض</div>
-              <div id="demoBox1Val" class="font-num text-[10.5px] font-extrabold text-purple-700 mt-0.5">PDF Sent ✓</div>
-            </div>
-
-            <div class="bg-white rounded-2xl p-3 border border-purple-50 shadow-2xs text-center flex flex-col items-center">
-              <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-pink-500 to-amber-500 text-white flex items-center justify-center mb-1.5 shadow-2xs">
-                <span id="demoBox2Icon" class="text-sm">💎</span>
-              </div>
-              <div id="demoBox2Title" class="text-[11.5px] font-extrabold text-slate-900">إقفال اليومية</div>
-              <div id="demoBox2Val" class="font-num text-[10.5px] font-extrabold text-rose-700 mt-0.5">+18,450 SAR</div>
-            </div>
-          </div>
-
-          <a href="https://wa.me/966566566977?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%8A%D8%A7%20%D8%B3%D9%86%D8%AF%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D8%AC%D8%B1%D8%A8%D8%A9%20%D8%A7%D9%84%D9%86%D8%B8%D8%A7%D9%85"
-             target="_blank"
-             id="demoActionBtn"
-             class="doc-action-btn block w-full py-2.5 rounded-2xl text-center text-white text-xs font-extrabold">
-            معاينة الوثيقة المعتمدة
+<main id="main">
+  <section class="hero" aria-labelledby="h-hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">يشتغل من الواتساب · بدون برامج إضافية</span>
+        <h1 id="h-hero">موظف واحد يكلّم عملاءك…<br><em>ووراه فريق كامل يخلّص الشغل.</em></h1>
+        <p class="lead">«سَنَد» يرد على عملاء متجرك في الواتساب على مدار الساعة، يعرف الأصناف والأسعار والمتوفر، وينبّهك قبل ما يخلص المخزون. وأنت تتابع كل شي من جوالك.</p>
+        <div class="cta-row">
+          <a class="btn btn-wa btn-lg" data-wa="أبغى أعرف أكثر عن سَنَد" href="https://wa.me/966566566977">
+            <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2-.2-.2-.5-.3z"/></svg>
+            كلّم سند في الواتساب
           </a>
+          <a class="btn btn-ghost btn-lg" href="#pricing">شوف الباقات</a>
         </div>
-
-        <div class="mt-4 bg-white/85 border border-white rounded-2xl px-3.5 py-2 flex items-center justify-between shadow-2xs">
-          <span class="text-[11px] font-semibold text-slate-400">
-            تحدث أو اكتب أمرك لـ «سَنَد»...
-          </span>
-          <div class="w-7 h-7 rounded-full sanad-avatar-grad text-white flex items-center justify-center text-xs shadow-2xs">
-            ✦
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ب) 3 بطاقات مختصرة -->
-    <section class="space-y-5">
-      <div class="text-center max-w-md mx-auto">
-        <h2 class="text-base sm:text-lg font-extrabold text-slate-900">
-          كل مهام متجرك وحساباتك في محادثة واحدة
-        </h2>
-        <p class="text-xs font-semibold text-slate-500 mt-1">
-          تكتب له بالعامية أو ترسل صوت، وهو ينفذ فوراً بدون لوحات تحكم معقدة
-        </p>
+        <p class="note">جربني 7 أيام مجاناً · تقدر توقف سند بكلمة «توقف» في أي وقت</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="soft-glass-card rounded-3xl p-5 space-y-2.5">
-          <div class="flex items-center justify-between">
-            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 text-white flex items-center justify-center text-base shadow-xs">
-              🛍️
-            </div>
-            <span class="font-num text-[11px] font-extrabold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full">
-              مبيعات 24/7
-            </span>
+      <div>
+        <div class="phone" role="img" aria-label="مثال توضيحي لمحادثة: عميل يسأل عن صنف، وسند يرد بالتوفر والسعر ويرسل عرض سعر">
+          <div class="phone-head">
+            <span class="mark" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 8.8l6.1-.7z"/></svg></span>
+            <div><b>متجرك</b><small>● متصل الآن</small></div>
           </div>
-          <h3 class="text-sm font-extrabold text-slate-900">
-            يرد على عملائك ويبيع في متجرك
-          </h3>
-          <p class="text-xs font-semibold text-slate-600 leading-relaxed">
-            يستقبل استفسارات الزبائن في الواتساب، يعرض لهم الأصناف والأسعار والمخزون المتوفر، ويؤكد الطلبات لحظياً حتى وأنت نائم.
-          </p>
-        </div>
-
-        <div class="soft-glass-card rounded-3xl p-5 space-y-2.5">
-          <div class="flex items-center justify-between">
-            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-pink-500 to-amber-500 text-white flex items-center justify-center text-base shadow-xs">
-              📄
+          <div class="chat" id="chat" aria-hidden="true">
+            <div class="msg in"><span class="who">عميل</span>السلام عليكم، عندكم عطر العود 100 مل؟</div>
+            <div class="msg out sanad"><span class="who">سند</span>وعليكم السلام، حياك الله. متوفر، وسعره 180 ريال. تبي أرسل لك رابط الطلب؟</div>
+            <div class="msg in"><span class="who">عميل</span>أبي 3 حبات، وأبي عرض سعر للشركة</div>
+            <div class="msg out sanad"><span class="who">سند</span>أبشر، هذا عرض السعر لـ 3 حبات:
+              <div class="doc-chip"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 3h7l5 5v13H7z M14 3v5h5 M10 13h6 M10 17h6"/></svg>عرض سعر · PDF</div>
             </div>
-            <span class="font-num text-[11px] font-extrabold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded-full">
-              PDF فوري
-            </span>
           </div>
-          <h3 class="text-sm font-extrabold text-slate-900">
-            يصدر عروض الأسعار والفواتير
-          </h3>
-          <p class="text-xs font-semibold text-slate-600 leading-relaxed">
-            بأمر واحد في الشات يجهز لك عرض السعر أو الفاتورة أو الخطاب الرسمي محسوباً بالضريبة ويرسله كملف <span class="font-num">PDF</span> جاهز للعميل.
-          </p>
-        </div>
-
-        <div class="soft-glass-card rounded-3xl p-5 space-y-2.5">
-          <div class="flex items-center justify-between">
-            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 text-white flex items-center justify-center text-base shadow-xs">
-              💎
-            </div>
-            <span class="font-num text-[11px] font-extrabold text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded-full">
-              دقة 100%
-            </span>
-          </div>
-          <h3 class="text-sm font-extrabold text-slate-900">
-            يضبط الحسابات ويقفل اليومية
-          </h3>
-          <p class="text-xs font-semibold text-slate-600 leading-relaxed">
-            يسجل المبيعات والمصروفات والحوالات أولاً بأول، ويفرز لك صافي الأرباح والتزامات الضريبة والتشغيل في ثوانٍ بنهاية كل يوم.
-          </p>
+          <p class="demo-tag">مثال توضيحي</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ج) حاسبة التوفير الثابتة 40% (من 2 إلى 6 موظفين) + التفعيل -->
-    <section id="pricing" class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
-      <div class="lg:col-span-7 soft-glass-card rounded-3xl p-5 sm:p-6 flex flex-col justify-between space-y-4">
-        <div>
-          <div class="flex items-center justify-between flex-wrap gap-2">
-            <span class="text-[11px] font-extrabold text-purple-700 bg-purple-50 px-3 py-1 rounded-full">
-              حاسبة التوفير الشهري
-            </span>
-            
-          </div>
-          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 mt-2">
-            كم يوفر عليك «سَنَد» في متجرك أو منشأتك؟
-          </h3>
-          <p class="text-xs font-semibold text-slate-500 mt-0.5">
-            حرك المؤشر من <span class="font-num font-bold text-slate-700">2</span> إلى <span class="font-num font-bold text-slate-700">6</span> موظفين (سَنَد + <span class="font-num font-bold text-slate-700">5</span> موظفين كحد أقصى للبكج):
-          </p>
+  <section id="team" class="alt" aria-labelledby="h-team">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">سَنَد وفريقه</span>
+        <h2 id="h-team">عميلك يكلّم سند… والفريق يشتغل وراه</h2>
+        <p>سند هو الوجه اللي يشوفه عملاؤك. ووراه موظفين رقميين، كل واحد له دور، يشتغلون بتنسيق مع سند ومعك.</p>
+      </div>
+      <div class="team">
+        <div class="member lead">
+          <div class="badge-ico gold"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"/></svg></div>
+          <b>سند</b><span>موظف المبيعات: يرد على عملائك، يعرض الأصناف والأسعار، ويرفع لك اللي يحتاج قرارك.</span>
         </div>
-
-        <div class="space-y-3 bg-white/80 rounded-2xl p-4 border border-purple-100/80">
-          <div class="flex items-center justify-between text-xs font-extrabold">
-            <span class="text-slate-700">حجم الطاقم الرقمي (مبيعات + فواتير + محاسبة):</span>
-            <span id="calcStaffLabel" class="text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full">
-              سَنَد + موظف واحد (2 موظفين)
-            </span>
-          </div>
-          <input
-            id="staffRangeInput"
-            type="range"
-            min="2"
-            max="6"
-            step="1"
-            value="2"
-            oninput="updateSavingsCalc()"
-            class="w-full cursor-pointer"
-          />
-          <div class="flex justify-between text-[10.5px] font-bold text-slate-400">
-            <span>2 موظفين (سَنَد + 1)</span>
-            <span>4 موظفين (سَنَد + 3)</span>
-            <span>6 موظفين (سَنَد + 5 كامل البكج)</span>
-          </div>
+        <div class="member">
+          <div class="badge-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7l9-4 9 4v10l-9 4-9-4z M3 7l9 4 9-4 M12 11v10"/></svg></div>
+          <b>موظف المستودع</b><span>يعرف أصنافك وأسعارك والمتوفر، وينبهك لما صنف يقرب يخلص.</span>
         </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-200/70 text-center">
-            <div class="text-[11px] font-bold text-slate-500">التكلفة التشغيلية المعتادة</div>
-            <div id="tradCostVal" class="font-num text-base sm:text-lg font-extrabold text-slate-400 line-through mt-1">
-              3,000 SAR
-            </div>
-          </div>
-
-          <div class="bg-gradient-to-br from-rose-50 to-purple-50 rounded-2xl p-3.5 border border-pink-200/70 text-center">
-            <div class="text-[11px] font-extrabold text-rose-700">توفيرك الشهري التقريبي</div>
-            <div id="netSaveVal" class="font-num text-base sm:text-lg font-extrabold text-rose-600 mt-1">
-              +1,200 SAR
-            </div>
-          </div>
+        <div class="member">
+          <div class="badge-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 3h7l5 5v13H7z M14 3v5h5 M10 13h6 M10 17h6"/></svg></div>
+          <b>موظف المستندات</b><span>يجهز عروض الأسعار والفواتير المبدئية كملفات PDF جاهزة للإرسال.</span>
+        </div>
+        <div class="member">
+          <div class="badge-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6 M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg></div>
+          <b>موظف الحسابات</b><span>يقيّد الإيرادات والمصروفات، ويطلع لك ملخص يومي واضح.</span>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="lg:col-span-5 soft-glass-card rounded-3xl p-5 sm:p-6 flex flex-col justify-between relative overflow-hidden">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-[11px] font-extrabold text-white sanad-avatar-grad px-3 py-1 rounded-full">
-              الباقة الشاملة (سَنَد + فريق عمل رقمي)
-            </span>
-            <span class="font-num text-xs font-extrabold text-purple-700">
-              13 SAR / يومياً
-            </span>
-          </div>
+  <section id="how" aria-labelledby="h-how">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">كيف يشتغل</span>
+        <h2 id="h-how">ثلاث خطوات وتبدأ</h2>
+      </div>
+      <ol class="steps" style="list-style:none;padding:0;margin:0">
+        <li class="step"><span class="n">1</span><h3>كلّمنا في الواتساب</h3><p>نتعرف على متجرك ونختار معك الباقة المناسبة، وتبدأ تجربتك المجانية.</p></li>
+        <li class="step"><span class="n">2</span><h3>نجهّز سند لمتجرك</h3><p>بالاسم اللي تختاره ورقم متجرك، ونربطه بأصنافك (سلة / زد) بصلاحية قراءة فقط.</p></li>
+        <li class="step"><span class="n">3</span><h3>تمسح الباركود ويبدأ</h3><p>من واتساب متجرك تربط الجهاز، وسند يبدأ يرد على عملائك من نفس الرقم.</p></li>
+      </ol>
+    </div>
+  </section>
 
-          <h3 class="text-base sm:text-lg font-extrabold text-slate-900">
-            وظّف «سَنَد» وفريقه الرقمي في أعمالك اليوم
-          </h3>
-
-          <div class="flex items-baseline gap-1.5">
-            <span class="font-num text-3xl font-extrabold text-slate-900">390</span>
-            <span class="text-xs font-bold text-slate-500">ريال / شهرياً (شامل كل المهام)</span>
-          </div>
-
-          <ul class="space-y-2 pt-2 text-xs font-bold text-slate-700">
-            <li class="flex items-center gap-2">
-              <span class="text-pink-600">✓</span>
-              <span>رد آلي ذكي وإدارة مبيعات المتجر في الواتساب</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-pink-600">✓</span>
-              <span>إصدار فواتير وعروض أسعار <span class="font-num">PDF</span> غير محدودة</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-pink-600">✓</span>
-              <span>جرد يومي وإقفال حسابات المبيعات والمصروفات</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-pink-600">✓</span>
-              <span>بكج متكامل يضم «سَنَد» مع ما يصل إلى <span class="font-num">5</span> موظفين رقميين</span>
-            </li>
+  <section id="pricing" class="alt" aria-labelledby="h-pricing">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">الباقات</span>
+        <h2 id="h-pricing">اختر الباقة اللي تناسب طريقة بيعك</h2>
+        <p>جربني 7 أيام مجاناً، وبعدها اشتراك شهري. سعر الإطلاق لأول 30 عميل.</p>
+      </div>
+      <div class="plans">
+        <article class="plan pop" aria-labelledby="p1">
+          <span class="tag">لأصحاب المتاجر الإلكترونية</span>
+          <h3 id="p1">باقة المتاجر</h3>
+          <p class="for">لمتاجر سلة وزد</p>
+          <div class="price"><s class="old num" aria-label="السعر السابق 390 ريال">390</s><b>260</b><span>ريال / شهرياً</span></div>
+          <p class="launch">سعر الإطلاق لأول 30 عميل · جربني 7 أيام مجاناً</p>
+          <ul>
+            <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>يرد على عملاء متجرك في الواتساب على مدار الساعة</li>
+            <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>يعرض الأصناف والأسعار والمتوفر من متجرك مباشرة</li>
+            <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>يرسل للعميل رابط الشراء للصنف اللي يبيه</li>
+            <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>ينبهك لما صنف يقرب يخلص</li>
+            <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>يرفع لك الطلبات اللي تحتاج قرارك: الخصومات والطلبات الكبيرة</li>
+            <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>داشبورد تتابع فيها أداء موظفينك</li>
           </ul>
-        </div>
-
-        <div class="pt-5 space-y-2">
-          <a href="https://wa.me/966566566977?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%8A%D8%A7%20%D8%B3%D9%86%D8%AF%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20%D9%88%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20%D8%B3%D9%86%D8%AF%20%D9%81%D9%8A%20%D9%85%D8%AA%D8%AC%D8%B1%D9%8A"
-             target="_blank"
-             class="doc-action-btn block w-full py-3 rounded-2xl text-center text-white text-xs sm:text-sm font-extrabold">
-            اشترك الآن وابدأ مع «سَنَد» عبر الواتساب
-          </a>
-          <div class="text-center text-[11px] font-semibold text-slate-400">
-            تفعيل فوري • تجربة حية مباشرة على الواتساب <span class="font-num">0566566977</span>
-          </div>
-        </div>
+          <a class="btn btn-gold w100" data-wa="أبغى أجرب باقة المتاجر 7 أيام مجاناً" href="https://wa.me/966566566977">جرّب باقة المتاجر مجاناً</a>
+        </article>
+        <article class="plan" aria-labelledby="p2">
+          <span class="tag cool">للبيع عبر السوشال</span>
+          <h3 id="p2">باقة البائع الاجتماعي</h3>
+          <p class="for">لمن يبيع من انستقرام وتيك توك وإعلانات قوقل</p>
+          <div class="price"><s class="old num" aria-label="السعر السابق 290 ريال">290</s><b>195</b><span>ريال / شهرياً</span></div>
+          <p class="launch">سعر الإطلاق لأول 30 عميل · جربني 7 أيام مجاناً</p>
+          <ul>
+            <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>يرد على عملائك في الواتساب على مدار الساعة</li>
+            <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>يدير أصنافك من ملف Excel أو بأوامر الواتساب</li>
+            <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>يجهز عروض الأسعار والفواتير المبدئية PDF</li>
+            <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>يقيّد الإيرادات والمصروفات أول بأول</li>
+            <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>رابط تتبع لكل مصدر إعلان، عشان تعرف وش يجيب لك عملاء</li>
+            <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>تقرير أسبوعي بالمبيعات ومصادرها</li>
+            <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>داشبورد تتابع فيها أداء موظفينك</li>
+          </ul>
+          <a class="btn btn-ghost w100" data-wa="أبغى أجرب باقة البائع الاجتماعي 7 أيام مجاناً" href="https://wa.me/966566566977">جرّب باقة البائع الاجتماعي مجاناً</a>
+        </article>
       </div>
-    </section>
-
-  </main>
-
-  <footer class="w-full border-t border-purple-100/60 bg-white/60 text-center py-4 text-[11px] font-semibold text-slate-400">
-    سَنَد — مدير أعمالك الرقمي • يعمل معك من الواتساب على مدار الساعة
-  </footer>
-
-  <script>
-    const PHONE_DEMOS = {
-      quote: {
-        userMsg: "يا سند، أرسل تسعيرة التوريد للعميل، واعتمد الفاتورة، واقفل حسابات اليوم.",
-        time: "09:41 AM",
-        execTime: 'تم التنفيذ في <span class="font-num">1.8</span> ثانية',
-        botReply: "أبشر، أصدرت الفاتورة المعتمدة وأرسلتها للعميل، وتم ترحيل صافي المبيعات وإقفال اليومية بنجاح:",
-        box1Icon: "📄",
-        box1Title: "الفاتورة والعرض",
-        box1Val: "PDF Sent ✓",
-        box2Icon: "💎",
-        box2Title: "إقفال اليومية",
-        box2Val: "+18,450 SAR",
-        btnText: "معاينة الوثيقة المعتمدة"
-      },
-      store: {
-        userMsg: "يا سند، كم طلب جديد دخل المتجر اليوم؟ وأرسل تأكيد الشحن للعملاء.",
-        time: "02:15 PM",
-        execTime: 'تم التنفيذ في <span class="font-num">1.4</span> ثانية',
-        botReply: "تم فحص المتجر؛ دخلت 24 طلبية جديدة اليوم، أرسلت فواتيرها وإشعارات الشحن للعملاء في الواتساب:",
-        box1Icon: "🛍️",
-        box1Title: "طلبات المتجر",
-        box1Val: "24 Orders ✓",
-        box2Icon: "💳",
-        box2Title: "تحصيل المبيعات",
-        box2Val: "+9,620 SAR",
-        btnText: "عرض ملخص طلبات المتجر"
-      },
-      report: {
-        userMsg: "يا سند، عطني صافي أرباح الأسبوع والأصناف اللي قاربت تخلص من المستودع.",
-        time: "08:30 PM",
-        execTime: 'تم التنفيذ في <span class="font-num">1.6</span> ثانية',
-        botReply: "جهزت لك تقرير الأرباح الصافية بعد خصم المصاريف والضريبة، مع تنبيه بـ 3 أصناف تحتاج إعادة طلب:",
-        box1Icon: "📊",
-        box1Title: "صافي الأرباح",
-        box1Val: "+42,800 SAR",
-        box2Icon: "📦",
-        box2Title: "تنبيه المخزون",
-        box2Val: "3 Items Low",
-        btnText: "معاينة تقرير الأرباح والمخزون"
-      }
-    };
-
-    function switchPhoneDemo(key) {
-      const d = PHONE_DEMOS[key];
-      if (!d) return;
-
-      ["quote", "store", "report"].forEach(k => {
-        const btn = document.getElementById("pill_" + k);
-        if (btn) {
-          if (k === key) btn.classList.add("active");
-          else btn.classList.remove("active");
-        }
-      });
-
-      document.getElementById("demoUserMsg").textContent = d.userMsg;
-      document.getElementById("demoMsgTime").textContent = d.time;
-      document.getElementById("demoExecTime").innerHTML = d.execTime;
-      document.getElementById("demoBotReply").textContent = d.botReply;
-      document.getElementById("demoBox1Icon").textContent = d.box1Icon;
-      document.getElementById("demoBox1Title").textContent = d.box1Title;
-      document.getElementById("demoBox1Val").textContent = d.box1Val;
-      document.getElementById("demoBox2Icon").textContent = d.box2Icon;
-      document.getElementById("demoBox2Title").textContent = d.box2Title;
-      document.getElementById("demoBox2Val").textContent = d.box2Val;
-      document.getElementById("demoActionBtn").textContent = d.btnText;
-    }
-
-    function updateSavingsCalc() {
-      const count = parseInt(document.getElementById("staffRangeInput").value || "2", 10);
-      const labels = {
-        2: "سَنَد + موظف واحد (2 موظفين)",
-        3: "سَنَد + موظفَين (3 موظفين)",
-        4: "سَنَد + 3 موظفين (4 موظفين)",
-        5: "سَنَد + 4 موظفين (5 موظفين)",
-        6: "سَنَد + 5 موظفين (6 كامل البكج)"
-      };
-      const tradCost = count * 1500;
-      const saved = Math.round(tradCost * 0.40);
-
-      document.getElementById("calcStaffLabel").textContent = labels[count] || `سَنَد + ${count - 1} (${count} موظفين)`;
-      document.getElementById("tradCostVal").textContent = tradCost.toLocaleString("en-US") + " SAR";
-      document.getElementById("netSaveVal").textContent = "+" + saved.toLocaleString("en-US") + " SAR";
-    }
-  </script>
-
-
-</div>
-
-<!-- ========================================================= -->
-<!-- 2. OAUTH & EMAIL LOGIN MODAL (GOOGLE / GITHUB / EMAIL)    -->
-<!-- ========================================================= -->
-<div class="m-modal-overlay" id="m-auth-modal" onclick="if(event.target===this)closeAuthModal()">
-  <div class="m-auth-card">
-    <button class="m-auth-close" onclick="document.getElementById('m-auth-modal').style.display='none';document.getElementById('m-auth-modal').classList.remove('open');">✕</button>
-    <div class="m-hn-logo" style="margin:0 auto 12px;width:44px;height:44px;font-size:20px;">س</div>
-    <h3 style="margin:0 0 6px;font-size:20px;font-weight:900;" id="auth-title">تسجيل الدخول إلى بوابة سَنَد</h3>
-    <p style="margin:0 0 20px;font-size:13px;color:#64748b;" id="auth-sub">أدخل بريدك الإلكتروني لفتح لوحة تحكم متجرك أو معاينة المنظومة</p>
-
-    
-
-    
-
-    <div class="m-auth-or" id="auth-or-txt">أو عبر البريد الإلكتروني المباشر</div>
-
-    <div class="m-auth-field">
-      <label id="auth-email-lbl">البريد الإلكتروني</label>
-      <input type="email" id="auth-email-inp" class="m-auth-input" placeholder="merchant@store.com">
+      <p class="fine">عروض الأسعار والفواتير اللي يجهزها موظف المستندات مبدئية. الفاتورة الضريبية المعتمدة تبقى من نظام متجرك أو نظام الفوترة المعتمد عندك.</p>
     </div>
-    <div class="m-auth-field" style="display:none">
-      <label id="auth-pin-lbl">كود التفعيل المرسل من سَنَد (اختياري للمعاينة)</label>
-      <input type="password" id="auth-pin-inp" class="m-auth-input" placeholder="•••••••">
-    </div>
+  </section>
 
-    <button class="m-auth-submit" onclick="window.enterClientWorkspace(event)" id="auth-submit-btn">
-      دخول إلى لوحة تحكم المتجر
-    </button>
-    <button type="button" class="m-auth-submit" id="auth-wa-lead-btn" style="margin-top:10px;background:#16a34a;" onclick="window.sanadLeadWA()">📩 سجّل اهتمامك عبر واتساب</button>
-    <div id="auth-preview-note" style="font-size:12px;color:#64748B;margin-top:10px;text-align:center;">لوحة التحكم الحالية معاينة تجريبية. يُفعَّل حسابك بعد الاشتراك عبر واتساب.</div>
+  <section id="value" aria-labelledby="h-value">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">وش تكسب</span>
+        <h2 id="h-value">وقتك يرجع لك… وشغلك يطلع مرتب</h2>
+        <p>سند ما يغيب ولا ينسى ولا يتأخر. وأنت تتفرغ للي يحتاجك فعلاً.</p>
+      </div>
+      <div class="grid3">
+        <div class="card"><div class="badge-ico gold"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>رد فوري في أي ساعة</h3><p>عميلك ما ينتظر للصباح. سند يرد عليه في نفس اللحظة، والليل مثل النهار.</p></div>
+        <div class="card"><div class="badge-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></div><h3>معلومة صحيحة كل مرة</h3><p>الأسعار والمتوفر من متجرك مباشرة، ونفس الأسلوب المرتب مع كل عميل.</p></div>
+        <div class="card"><div class="badge-ico green"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg></div><h3>كل شي قدامك</h3><p>من الداشبورد تتابع أداء موظفينك: كم رسالة، كم عميل، وش انطلب، ووش يحتاج قرارك.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="alt faq" aria-labelledby="h-faq">
+    <div class="wrap" style="max-width:820px">
+      <div class="sec-head"><span class="eyebrow">أسئلة شائعة</span><h2 id="h-faq">قبل ما تبدأ</h2></div>
+      <details><summary>أحتاج أنزّل برنامج أو تطبيق؟</summary><p>لا. سند يشتغل على رقم واتساب متجرك نفسه. تربطه مرة وحدة بمسح باركود، وتتابع كل شي من جوالك.</p></details>
+      <details><summary>هل سند يقدر يعدّل في متجري؟</summary><p>لا. موظف المستودع يقرأ الأصناف والأسعار والمخزون بصلاحية قراءة فقط، وما يغيّر شي في متجرك.</p></details>
+      <details><summary>وش يصير لو العميل سأل عن شي سند ما يعرفه؟</summary><p>سند ما يخترع أسعار ولا معلومات. إذا ما عنده الجواب يقول للعميل إن الفريق بيرد عليه، ويرسل لك تنبيه بالتفاصيل.</p></details>
+      <details><summary>أقدر أوقف سند مؤقتاً؟</summary><p>إيه. ترسل له «توقف» ويوقف الرد، و«اشتغل» يرجع.</p></details>
+      <details><summary>كيف أجرب سند؟</summary><p>كلّمنا في الواتساب ونجهزه لك على رقم متجرك، وتجربه 7 أيام مجاناً قبل ما تقرر.</p></details>
+      <details><summary>وش الفرق بين لوحة المشتركين والواتساب؟</summary><p>الواتساب هو مكان الشغل اليومي. لوحة المشتركين تعرض لك ملخص حركة أعمالك وتقاريرك بعد تفعيل اشتراكك، وتدخلها بحساب قوقل أو بريدك.</p></details>
+    </div>
+  </section>
+
+  <section class="final" aria-labelledby="h-final">
+    <div class="wrap"><div class="glass">
+      <h2 id="h-final">استمتع بوقتك بعد إبرام صفقاتك…<br><em class="grad-text">واترك سند وفريق عمله يقومون بتنفيذها.</em></h2>
+      <p>جربني 7 أيام مجاناً.</p>
+      <a class="btn btn-wa btn-lg" data-wa="أبغى أجرب سَنَد 7 أيام مجاناً" href="https://wa.me/966566566977">ابدأ تجربتك المجانية</a>
+    </div></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> سَنَد · موظف المبيعات الرقمي</span>
+    <nav aria-label="روابط قانونية">
+      <a href="privacy.html">سياسة الخصوصية</a>
+      <a href="terms.html">شروط الاستخدام</a>
+      <a href="refund.html">الإلغاء والاسترجاع</a>
+      <a href="app.html">دخول المشتركين</a>
+    </nav>
   </div>
-</div>
+</footer>
 
-<!-- ========================================================= -->
-<!-- 3. CLIENT WORKSPACE (GEMINI COLLAPSIBLE SIDEBAR + HPANEL) -->
-<!-- ========================================================= -->
-<div id="client-workspace-view">
-  <aside class="m-gem-sidebar" id="m-gem-sidebar">
-    <div class="m-gem-sb-top">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div class="m-hn-logo" style="width:32px;height:32px;font-size:15px;">س</div>
-        <strong style="font-size:16px;" id="ws-sb-brand">بوابة سَنَد</strong>
-      </div>
-      <!-- Gemini-style Collapse Sidebar Icon Button -->
-      <button class="m-collapse-btn" onclick="toggleGemSidebar()" title="Close sidebar / طي القائمة">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
-      </button>
-    </div>
-
-    <ul class="m-gem-nav">
-      <li>
-        <button class="m-gem-item active" id="ws-nav-home" onclick="switchWsPane('home')">
-          <span>🏠</span>
-          <span id="ws-lbl-home">الرئيسية</span>
-        </button>
-      </li>
-      <li>
-        <button class="m-gem-item" id="ws-nav-setup" onclick="switchWsPane('setup')">
-          <span>🚀</span>
-          <span id="ws-lbl-setup">إعدادات المتجر (الـ 5 خانات)</span>
-        </button>
-      </li>
-      <li>
-        <button class="m-gem-item" id="ws-nav-rasd" onclick="switchWsPane('rasd')">
-          <span>📦</span>
-          <span id="ws-lbl-rasd">مزامنة المخزون والكتالوج</span>
-        </button>
-      </li>
-      <li>
-        <button class="m-gem-item" id="ws-nav-support" onclick="switchWsPane('support')">
-          <span>💬</span>
-          <span id="ws-lbl-support">الاستفسارات وتذاكر الصيانة</span>
-        </button>
-      </li>
-    </ul>
-
-    <div class="m-gem-foot">
-      <button class="m-btn-lang" style="width:100%;justify-content:center;" onclick="toggleHostingerLang()">
-        <span>🌐</span>
-        <span id="ws-lang-btn">English</span>
-      </button>
-      <button class="m-btn-signin" style="width:100%;justify-content:center;color:#ef4444;border-color:#fecaca;" onclick="logoutWorkspace()">
-        <span>🚪</span>
-        <span id="ws-logout-btn">تسجيل الخروج</span>
-      </button>
-    </div>
-  </aside>
-
-  <div class="m-gem-main with-sb" id="m-gem-main">
-    <div id="sanad-demo-banner" style="background:#FFF8E6;border:1px solid #F1D98A;color:#7A5B00;border-radius:12px;padding:10px 14px;margin:12px 16px 0;font-size:13px;font-weight:700;">🧪 معاينة تجريبية — الأرقام في هذه اللوحة توضيحية، وتظهر بيانات متجرك الحقيقية بعد تفعيل الاشتراك.</div>
-    <div class="m-ws-topbar">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <button class="m-collapse-btn" onclick="toggleGemSidebar()" title="Open/Close Sidebar">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
-        </button>
-        <div>
-          <div style="font-weight:900;font-size:15px;" id="ws-top-title">لوحة تحكم المشترك (سَنَد وفريقه الرقمي)</div>
-          <div style="font-size:12px;color:#64748b;" id="ws-user-badge">متصل بحساب: merchant@store.com</div>
-        </div>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;">
-        <span style="background:#dcfce7;color:#166534;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:800;" id="ws-status-pill">🟢 سَنَد وفريقه الرقمي: متصل</span>
-      </div>
-    </div>
-
-    <div class="m-ws-container">
-      <!-- PANE 1: HOME (CLEAN STORE DASHBOARD SYNCED WITH RASD) -->
-      <div class="m-ws-pane active" id="ws-pane-home">
-        <div class="m-kpi-grid">
-          <div class="m-kpi-card">
-            <div class="m-kpi-label" id="kpi1-lbl">حالة الموظف الرقمي (سَنَد)</div>
-            <div class="m-kpi-val" style="color:#16a34a;font-size:20px;" id="kpi1-val">⚪ بانتظار التفعيل</div>
-            <div class="m-kpi-sub" id="kpi1-sub">يرد على العملاء على مدار الساعة</div>
-          </div>
-          <div class="m-kpi-card">
-            <div class="m-kpi-label" id="kpi2-lbl">أصناف المتجر المتزامنة</div>
-            <div class="m-kpi-val" id="kpi2-val">0</div>
-            <div class="m-kpi-sub" id="kpi2-sub">متزامنة تلقائياً مع متجرك</div>
-          </div>
-          <div class="m-kpi-card">
-            <div class="m-kpi-label" id="kpi3-lbl">تنبيهات انخفاض المخزون</div>
-            <div class="m-kpi-val" style="color:#d97706;" id="kpi3-val">0 أصناف</div>
-            <div class="m-kpi-sub" id="kpi3-sub">وصلت للحد الأدنى المعتمد</div>
-          </div>
-        </div>
-
-        <div class="m-ws-card">
-          <h3 style="margin:0 0 8px;font-size:18px;font-weight:900;" id="home-card-title">📊 ملخص الربط والمزامنة الحية مع متجرك</h3>
-          <p style="margin:0 0 18px;color:#64748b;font-size:13.5px;" id="home-card-desc">
-            تعرض هذه الصفحة خلاصة بيانات متجرك المسحوبة عبر الفريق الرقمي بقيادة «سَنَد» في شاشة واحدة مريحة بصرياً.
-          </p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <button class="m-btn-signup" onclick="switchWsPane('setup')" id="home-btn-setup">⚙️ تحديث بيانات الربط الخمسة</button>
-            <button class="m-btn-signin" onclick="switchWsPane('support')" id="home-btn-sup">💬 إرسال استفسار أو تذكرة صيانة</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- PANE 2: 5 MANDATORY ONBOARDING FIELDS -->
-      <div class="m-ws-pane" id="ws-pane-setup">
-        <div class="m-ws-card">
-          <h3 style="margin:0 0 6px;font-size:19px;font-weight:900;" id="setup-title">🚀 إعدادات تفعيل وربط المتجر (الخانات الخمس)</h3>
-          <p style="margin:0 0 20px;color:#64748b;font-size:13.5px;" id="setup-desc">
-            تُحفظ مسودتك تلقائياً لتتمكن من نسخ مفتاح الـ API من منصة (سلة أو زد) والعودة لإكمال التفعيل في أي وقت.
-          </p>
-
-          <div class="m-form-box">
-            <label id="f1-lbl">1️⃣ اسم متجرك الرسمي + رابط المتجر على (سلة أو زد)</label>
-            <small id="f1-sub">اكتب اسم المتجر الرسمي والرابط الكامل للمتجر</small>
-            <div class="m-row-2">
-              <input type="text" id="onb_store_name" class="m-auth-input" placeholder="اسم المتجر الرسمي">
-              <input type="url" id="onb_store_url" class="m-auth-input" placeholder="https://salla.sa/store">
-            </div>
-          </div>
-
-          <div class="m-form-box">
-            <label id="f2-lbl">2️⃣ الاسم المفضل لموظفك الرقمي الذي سيخاطب عملاءك</label>
-            <small id="f2-sub">مثال: سَنَد، أو مساعد متجر...</small>
-            <input type="text" id="onb_bot_name" class="m-auth-input" placeholder="سَنَد">
-          </div>
-
-          <div class="m-form-box">
-            <label id="f3-lbl">3️⃣ رقم جوال الأونر (المالك) لاستقبال تقارير المستودع</label>
-            <small id="f3-sub">يستقبل تقارير المستودع وتنبيهات البضاعة التي شارفت على الانتهاء</small>
-            <input type="tel" id="onb_owner_phone" class="m-auth-input" placeholder="05XXXXXXXX">
-          </div>
-
-          <div class="m-form-box">
-            <label id="f4-lbl">4️⃣ رقم واتساب خدمة العملاء الذي سيعمل عليه الموظف الرقمي</label>
-            <small id="f4-sub">الرقم المخصص للرد على الزبائن</small>
-            <input type="tel" id="onb_bot_phone" class="m-auth-input" placeholder="05XXXXXXXX">
-          </div>
-
-          <div class="m-form-box">
-            <label id="f5-lbl">5️⃣ ربط المتجر + الحد الأدنى للكمية</label>
-            <small id="f5-sub">ليسحب فريق «سَنَد» منتجاتك وأسعارك ومخزونك لحظة بلحظة</small>
-            <div class="m-row-2">
-              <div class="m-auth-input" id="onb_api_note" style="font-size:12.5px;color:#475569;background:#F1F5F9;">🔒 نستلم مفتاح ربط متجرك بطريقة آمنة عند التفعيل — لا تلصقه هنا</div>
-              <input type="number" id="onb_min_qty" class="m-auth-input" value="5" min="1" placeholder="الحد الأدنى للكمية (5)">
-            </div>
-          </div>
-
-          <button class="m-auth-submit" onclick="submitClientSetup()" id="setup-submit-btn">
-            ✅ حفظ واعتماد إعدادات المتجر الخمسة لدى «سَنَد»
-          </button>
-        </div>
-      </div>
-
-      <!-- PANE 3: RASD INVENTORY SYNC -->
-      <div class="m-ws-pane" id="ws-pane-rasd">
-        <div class="m-ws-card">
-          <h3 style="margin:0 0 8px;font-size:18px;font-weight:900;" id="rasd-title">📦 حالة مزامنة المخزون والمنتجات (فريق سَنَد)</h3>
-          <p style="margin:0 0 16px;color:#64748b;font-size:13.5px;" id="rasd-desc">
-            يقوم الفريق الرقمي تحت إدارة «سَنَد» بقراءة أصنافك وأسعارك وكمياتك آلياً عبر مفتاح القراءة فقط، وإرسال تنبيه لجوال المالك فور وصول أي صنف للحد الأدنى.
-          </p>
-          <div class="m-form-box" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
-            <div>
-              <strong id="rasd-sync-lbl">آخر مزامنة للكتالوج والأسعار:</strong>
-              <div style="font-size:12.5px;color:#16a34a;" id="rasd-sync-sub">بانتظار تفعيل الاشتراك</div>
-            </div>
-            <button class="m-btn-signup" onclick="alert(window.curHnLang==='en'?'Sync is available after your subscription is activated.':'المزامنة متاحة بعد تفعيل اشتراكك.')">🔄 مزامنة الأصناف الآن</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- PANE 4: INQUIRIES & MAINTENANCE TICKETS -->
-      <div class="m-ws-pane" id="ws-pane-support">
-        <div class="m-ws-card">
-          <h3 style="margin:0 0 8px;font-size:18px;font-weight:900;" id="sup-title">💬 الاستفسارات الشاملة وتذاكر الصيانة</h3>
-          <p style="margin:0 0 18px;color:#64748b;font-size:13.5px;" id="sup-desc">
-            اكتب جميع استفساراتك أو تفاصيل طلب الصيانة دفعة واحدة هنا، وسيقوم «سَنَد» بالرد عليها كاملة في رسالة واحدة شاملة على الواتساب.
-          </p>
-          <div class="m-form-box">
-            <label id="sup-type-lbl">نوع الطلب</label>
-            <select id="sup_type" class="m-auth-input" style="margin-top:6px;">
-              <option value="استفسار شامل">📩 استفسارات شاملة (رد موحد في رسالة واحدة)</option>
-              <option value="تذكرة صيانة">🛠️ رفع تذكرة صيانة للدعم الفني</option>
-            </select>
-          </div>
-          <div class="m-form-box">
-            <label id="sup-msg-lbl">تفاصيل الاستفسارات أو التذكرة</label>
-            <textarea id="sup_msg" rows="5" class="m-auth-input" style="margin-top:6px;" placeholder="اكتب كافة نقاطك هنا..."></textarea>
-          </div>
-          <button class="m-auth-submit" onclick="submitClientTicket()" id="sup-submit-btn">
-            🚀 إرسال الطلب الموحد إلى «سَنَد» بضغطة واحدة
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<script id="sanad-wa-lead">window.sanadLeadWA=function(){var inp=document.getElementById("auth-email-inp");var em=inp?inp.value.trim():"";var msg="السلام عليكم، أرغب في الاشتراك في سَنَد"+(em?"\nبريدي: "+em:"");window.open("https://wa.me/966566566977?text="+encodeURIComponent(msg),"_blank");};</script>
+<script src="assets/site.js" defer></script>
 </body>
 </html>

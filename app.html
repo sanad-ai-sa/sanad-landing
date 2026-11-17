@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دخول المشتركين | سَنَد</title>
+<meta name="description" content="لوحة مشتركي سَنَد: ملخص حركة أعمالك وتقاريرك.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="flow" aria-hidden="true">
+  <svg class="f1" viewBox="0 0 1600 260" preserveAspectRatio="none"><defs><linearGradient id="lg1" x1="0" x2="1"><stop offset="0" stop-color="#EC4899" stop-opacity="0"/><stop offset=".3" stop-color="#EC4899" stop-opacity=".45"/><stop offset=".7" stop-color="#A855F7" stop-opacity=".45"/><stop offset="1" stop-color="#FB923C" stop-opacity="0"/></linearGradient></defs><path stroke="url(#lg1)" d="M0 180 C 260 60, 520 260, 800 140 S 1340 40, 1600 150"/><path stroke="url(#lg1)" d="M0 200 C 300 90, 560 270, 820 160 S 1360 70, 1600 175" opacity=".6"/></svg>
+  <svg class="f2" viewBox="0 0 1600 260" preserveAspectRatio="none"><defs><linearGradient id="lg2" x1="0" x2="1"><stop offset="0" stop-color="#60A5FA" stop-opacity="0"/><stop offset=".35" stop-color="#60A5FA" stop-opacity=".4"/><stop offset=".7" stop-color="#A855F7" stop-opacity=".4"/><stop offset="1" stop-color="#EC4899" stop-opacity="0"/></linearGradient></defs><path stroke="url(#lg2)" d="M0 90 C 300 220, 620 20, 900 120 S 1380 230, 1600 100"/><path stroke="url(#lg2)" d="M0 110 C 320 235, 640 40, 920 140 S 1400 245, 1600 122" opacity=".55"/></svg>
+  <svg class="f3" viewBox="0 0 1600 260" preserveAspectRatio="none"><defs><linearGradient id="lg3" x1="0" x2="1"><stop offset="0" stop-color="#FB923C" stop-opacity="0"/><stop offset=".4" stop-color="#F472B6" stop-opacity=".38"/><stop offset=".75" stop-color="#8B5CF6" stop-opacity=".38"/><stop offset="1" stop-color="#60A5FA" stop-opacity="0"/></linearGradient></defs><path stroke="url(#lg3)" d="M0 150 C 280 40, 600 230, 880 120 S 1380 30, 1600 140"/></svg>
+</div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="سَنَد — الصفحة الرئيسية">
+      <span class="mark" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 8.8l6.1-.7z"/></svg></span>
+      <span>سَنَد<small>لوحة المشتركين</small></span>
+    </a>
+    <nav class="nav">
+      <span id="who" class="pill hidden"></span>
+      <button id="signout" class="btn btn-ghost hidden" type="button">تسجيل خروج</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div id="v-loading" class="auth"><div class="spinner" role="status" aria-label="جاري التحميل"></div></div>
+
+  <!-- not configured yet -->
+  <div id="v-off" class="auth hidden">
+    <div class="auth-card">
+      <h1>الدخول قيد التجهيز</h1>
+      <p class="sub">نجهّز الدخول الآمن للوحة المشتركين. للاشتراك أو أي استفسار كلّمنا في الواتساب.</p>
+      <a class="btn btn-wa w100" data-wa="أبغى أشترك في سَنَد" href="https://wa.me/966566566977">كلّم سند في الواتساب</a>
+    </div>
+  </div>
+
+  <!-- sign in / sign up -->
+  <div id="v-auth" class="auth hidden">
+    <div class="auth-card">
+      <h1 id="auth-title">دخول المشتركين</h1>
+      <p class="sub">سجّل بحساب قوقل أو ببريدك. اللوحة تفتح بعد تفعيل اشتراكك.</p>
+      <button id="g-btn" class="btn btn-google btn-lg w100" type="button">
+        <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+        المتابعة بحساب قوقل
+      </button>
+      <div class="or">أو بالبريد الإلكتروني</div>
+      <div class="tabs" role="tablist">
+        <button id="t-in" role="tab" aria-selected="true" type="button">دخول</button>
+        <button id="t-up" role="tab" aria-selected="false" type="button">حساب جديد</button>
+      </div>
+      <form id="f-auth" novalidate>
+        <div class="field hidden" id="fld-name"><label for="a-name">الاسم</label><input id="a-name" class="input" autocomplete="name" maxlength="60"></div>
+        <div class="field"><label for="a-email">البريد الإلكتروني</label><input id="a-email" class="input" type="email" autocomplete="email" dir="ltr" required></div>
+        <div class="field"><label for="a-pass">كلمة المرور</label><input id="a-pass" class="input" type="password" autocomplete="current-password" dir="ltr" minlength="8" required></div>
+        <button id="a-submit" class="btn btn-gold btn-lg w100" type="submit">دخول</button>
+        <p id="a-err" class="err" role="alert"></p>
+        <button id="a-reset" class="linkbtn" type="button">نسيت كلمة المرور؟</button>
+      </form>
+      <p class="consent">بتسجيلك توافق على <a href="terms.html">شروط الاستخدام</a> و<a href="privacy.html">سياسة الخصوصية</a>.</p>
+    </div>
+  </div>
+
+  <!-- email not verified -->
+  <div id="v-verify" class="auth hidden">
+    <div class="auth-card">
+      <h1>أكّد بريدك الإلكتروني</h1>
+      <p class="sub">أرسلنا رابط تأكيد إلى <b id="v-email" dir="ltr"></b>. افتح الرابط ثم ارجع هنا.</p>
+      <button id="v-done" class="btn btn-gold w100" type="button">أكدت بريدي</button>
+      <p id="v-msg" class="err" role="status"></p>
+      <button id="v-resend" class="linkbtn" type="button">إعادة إرسال الرابط</button>
+    </div>
+  </div>
+
+  <!-- signed in, not activated -->
+  <div id="v-pending" class="auth hidden">
+    <div class="auth-card">
+      <span class="pill wait">بانتظار تفعيل الاشتراك</span>
+      <h1 style="margin-top:12px">حسابك جاهز</h1>
+      <p class="sub">تفتح لوحتك بعد تفعيل اشتراكك. أرسل لنا في الواتساب وفيه بريدك عشان نربطه باشتراكك.</p>
+      <a id="p-wa" class="btn btn-wa w100" href="https://wa.me/966566566977">فعّل اشتراكي عبر الواتساب</a>
+    </div>
+  </div>
+
+  <!-- dashboard -->
+  <div id="v-dash" class="dash hidden">
+    <div class="wrap">
+      <div class="dash-head">
+        <div><h1 id="d-store">لوحتك</h1><span class="pill on" id="d-plan">مشترك</span></div>
+        <span class="pill" id="d-updated">آخر تحديث: —</span>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><span>رسائل اليوم</span><b id="k-msgs">—</b></div>
+        <div class="kpi"><span>عملاء اليوم</span><b id="k-cust">—</b></div>
+        <div class="kpi"><span>عروض أسعار هذا الشهر</span><b id="k-quotes">—</b></div>
+        <div class="kpi"><span>مبيعات هذا الشهر (ريال)</span><b id="k-rev">—</b></div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <h3 style="margin-top:0">آخر 14 يوم</h3>
+          <div style="overflow-x:auto"><table class="table"><thead><tr><th>اليوم</th><th>رسائل</th><th>عملاء</th><th>طلبات</th><th>مبيعات</th></tr></thead><tbody id="t-daily"></tbody></table></div>
+          <p id="e-daily" class="empty hidden">ما فيه حركة مسجلة بعد. تظهر هنا أول ما يبدأ سند يشتغل على رقمك.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">نواقص المخزون</h3>
+          <ul id="l-low" style="list-style:none;padding:0;margin:0;display:grid;gap:8px"></ul>
+          <p id="e-low" class="empty hidden">ما فيه أصناف تحت الحد الأدنى.</p>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h3 style="margin-top:0">التقارير</h3>
+        <div id="l-reports" style="display:grid;gap:12px"></div>
+        <p id="e-reports" class="empty hidden">ما فيه تقارير بعد. يوصلك أول تقرير بعد أول أسبوع.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="v-error" class="auth hidden">
+    <div class="auth-card"><h1>صار خطأ</h1><p class="sub" id="x-msg">حدّث الصفحة وحاول مرة ثانية.</p><button class="btn btn-ghost w100" type="button" onclick="location.reload()">تحديث</button></div>
+  </div>
+</main>
+
+<script src="assets/site.js" defer></script>
+<script type="module" src="assets/app.js"></script>
+</body>
+</html>
