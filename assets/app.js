@@ -123,10 +123,12 @@ async function start() {
   // ── routing by auth state ──
   A.onAuthStateChanged(auth, (u) => route(u));
 
+  // إذا سجّل دخوله من هذي الصفحة بدون ما يختار باقة، نرجعه للموقع عادي.
+  let sawAuth = false;
   async function route(u) {
     $("who").classList.toggle("hidden", !u);
     $("signout").classList.toggle("hidden", !u);
-    if (!u) { setMode("in"); return show("v-auth"); }
+    if (!u) { sawAuth = true; setMode("in"); return show("v-auth"); }
     txt($("who"), u.email);
     const prov = (u.providerData[0] && u.providerData[0].providerId) || "password";
     if (prov === "facebook.com" && !u.email) { await A.signOut(auth); setTimeout(() => { $("a-err").textContent = AR["fb/no-email"]; }, 300); return; }
@@ -137,7 +139,10 @@ async function start() {
       let m = null;
       try { m = await F.getDoc(F.doc(db, "merchants", u.uid)); }
       catch (e) { if (!(e && e.code === "permission-denied")) throw e; }   // ما عنده ملف مشترك بعد
-      if (!m || !m.exists() || m.data().active !== true) return choose(u, prof);
+      if (!m || !m.exists() || m.data().active !== true) {
+        if (sawAuth && !Q.get("plan")) { location.replace("./"); return; }
+        return choose(u, prof);
+      }
       await dashboard(u, m.data());
     } catch (e) {
       console.error(e); show("v-error");
