@@ -219,8 +219,6 @@ footer nav a{color:var(--ink2);font-weight:600}
 .or::before,.or::after{content:"";height:1px;background:var(--hair);flex:1}
 .btn-google{width:100%;background:#fff;color:#1F1F1F;border-color:#E2E8F0;box-shadow:0 6px 16px -10px rgba(30,27,75,.3)}
 .btn-google::after{display:none}
-.btn-facebook{width:100%;margin-top:10px;background:#1877F2;color:#fff;border-color:#1877F2;box-shadow:0 6px 16px -10px rgba(24,119,242,.6)}
-.btn-facebook::after{display:none}
 .w100{width:100%}
 .err{color:#E11D48;font-size:14px;min-height:1.4em;margin:8px 0 0}
 .ok{color:var(--green2);font-size:14px}
@@ -258,3 +256,9 @@ footer nav a{color:var(--ink2);font-weight:600}
 .choice .opt input{margin-top:4px;accent-color:#A855F7}
 .choice .opt span{display:grid;gap:2px}
 .choice .opt small{color:var(--mute);font-size:13px}
+
+.social{display:flex;justify-content:center;gap:16px;margin:4px 0 2px}
+.sbtn{width:64px;height:64px;border-radius:50%;background:#fff;border:1px solid #E2E8F0;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 16px -10px rgba(30,27,75,.35);transition:transform .2s,box-shadow .2s}
+.sbtn:hover{transform:translateY(-2px);box-shadow:0 10px 22px -10px rgba(30,27,75,.45)}
+.sbtn:focus-visible{outline:3px solid #A78BFA;outline-offset:2px}
+.sico{width:30px;height:30px}
