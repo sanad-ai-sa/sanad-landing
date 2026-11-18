@@ -4,9 +4,13 @@ import { firebaseConfig } from "./firebase-config.js";
 
 const V = "10.12.0";
 const $ = (id) => document.getElementById(id);
-const views = ["v-loading", "v-off", "v-auth", "v-verify", "v-pending", "v-dash", "v-error"];
+const views = ["v-loading", "v-off", "v-auth", "v-verify", "v-choose", "v-dash", "v-error"];
 const show = (id) => views.forEach((v) => $(v).classList.toggle("hidden", v !== id));
 const WA = "966566566977";
+const Q = new URLSearchParams(location.search);
+const PLANS = { stores: "باقة المتاجر", social: "باقة البائع الاجتماعي" };
+const INTENTS = { trial: "أجرب", subscribe: "أشترك في" };
+const accountCode = (uid) => "SND-" + String(uid).replace(/[^A-Za-z0-9]/g, "").slice(0, 6).toUpperCase();
 const num = (v) => (typeof v === "number" && isFinite(v) ? new Intl.NumberFormat("ar-SA-u-nu-latn").format(v) : "—");
 const txt = (el, v) => { el.textContent = v == null || v === "" ? "—" : String(v); };
 
@@ -115,13 +119,13 @@ async function start() {
     if (!u.emailVerified) { txt($("v-email"), u.email); return show("v-verify"); }
     show("v-loading");
     try {
-      await ensureProfile(u);
-      const m = await F.getDoc(F.doc(db, "merchants", u.uid));
-      if (!m.exists() || m.data().active !== true) return pending(u);
+      const prof = await ensureProfile(u);
+      let m = null;
+      try { m = await F.getDoc(F.doc(db, "merchants", u.uid)); }
+      catch (e) { if (!(e && e.code === "permission-denied")) throw e; }   // ما عنده ملف مشترك بعد
+      if (!m || !m.exists() || m.data().active !== true) return choose(u, prof);
       await dashboard(u, m.data());
     } catch (e) {
-      // permission-denied = غير مفعّل (القواعد تمنع القراءة)
-      if (e && e.code === "permission-denied") return pending(u);
       console.error(e); show("v-error");
     }
   }
@@ -129,25 +133,48 @@ async function start() {
   async function ensureProfile(u) {
     const ref = F.doc(db, "profiles", u.uid);
     const snap = await F.getDoc(ref);
-    if (snap.exists()) return;
-    await F.setDoc(ref, {
+    if (snap.exists()) return snap.data();
+    const data = {
       email: u.email || "",
       name: (u.displayName || "").slice(0, 60),
       provider: (u.providerData[0] && u.providerData[0].providerId) || "password",
       createdAt: F.serverTimestamp(),
-    });
+    };
+    await F.setDoc(ref, data);
+    return data;
   }
 
-  function pending(u) {
-    $("p-wa").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent("أبغى أفعّل اشتراكي في لوحة سَنَد\nبريدي: " + u.email);
-    $("p-wa").target = "_blank"; $("p-wa").rel = "noopener";
-    show("v-pending");
+  // بعد الدخول وقبل التفعيل: يختار الباقة وطريقة البدء، وبعدها يكمل مع سند في الواتساب برمز حسابه.
+  function choose(u, prof) {
+    const code = accountCode(u.uid);
+    $("c-code").textContent = code;
+    const first = String(u.displayName || (prof && prof.name) || "").trim().split(/\s+/)[0];
+    $("c-state").textContent = prof && prof.plan ? "اخترت " + (PLANS[prof.plan] || "باقة") + " · بانتظار التفعيل" : (first ? "أهلاً " + first : "أهلاً بك");
+    const want = { plan: Q.get("plan") || (prof && prof.plan), intent: Q.get("intent") || (prof && prof.intent) };
+    document.querySelectorAll('#v-choose input[name="plan"]').forEach((r) => { r.checked = r.value === want.plan; });
+    document.querySelectorAll('#v-choose input[name="intent"]').forEach((r) => { r.checked = r.value === (want.intent === "subscribe" ? "subscribe" : "trial"); });
+    $("c-err").textContent = "";
+    $("c-go").onclick = async () => {
+      const plan = (document.querySelector('#v-choose input[name="plan"]:checked') || {}).value;
+      const intent = (document.querySelector('#v-choose input[name="intent"]:checked') || {}).value || "trial";
+      if (!PLANS[plan]) return ($("c-err").textContent = "اختر الباقة أولاً.");
+      $("c-go").disabled = true;
+      try {
+        await F.updateDoc(F.doc(db, "profiles", u.uid), { plan, intent, chosenAt: F.serverTimestamp() });
+      } catch (e) { console.warn("profile choice not saved", e && e.code); }   // ما يوقف التحويل للواتساب
+      const name = String(u.displayName || (prof && prof.name) || "").slice(0, 60);
+      const msg = "السلام عليكم، أبغى " + INTENTS[intent] + " " + PLANS[plan] + (intent === "trial" ? " (7 أيام مجاناً)" : "") + "."
+        + (name ? "\nاسمي: " + name : "") + "\nبريدي: " + u.email + "\nرمز حسابي: " + code;
+      location.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg);
+      setTimeout(() => { $("c-go").disabled = false; }, 4000);
+    };
+    show("v-choose");
   }
 
   async function dashboard(u, m) {
     const s = m.summary || {};
     txt($("d-store"), m.storeName || "لوحتك");
-    txt($("d-plan"), m.plan === "690" ? "باقة البائع الاجتماعي" : "باقة المتاجر");
+    txt($("d-plan"), ["social", "195", "290", "690"].includes(String(m.plan)) ? "باقة البائع الاجتماعي" : "باقة المتاجر");
     const up = s.updatedAt && s.updatedAt.toDate ? s.updatedAt.toDate() : null;
     $("d-updated").textContent = "آخر تحديث: " + (up ? up.toLocaleString("ar-SA-u-nu-latn", { dateStyle: "medium", timeStyle: "short" }) : "—");
     txt($("k-msgs"), num(s.today && s.today.messages));

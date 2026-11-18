@@ -1,7 +1,8 @@
 rules_version = '2';
 // قواعد حماية بيانات مشتركي سَنَد — هذي اللي تمنع التجاوز فعلياً (مو كود الصفحة).
-// • المشترك يقرأ ملفه هو فقط، وبعد ما يكون بريده مؤكد.
-// • لوحة المشترك (merchants/{uid}) ما يكتب فيها إلا سند من الخادم (Admin SDK يتجاوز القواعد) — الزائر ما يقدر يفعّل نفسه.
+// • المشترك يقرأ ملفه هو فقط، وبعد ما يكون بريده مؤكد (أو دخل بقوقل).
+// • يقدر يسجّل الباقة اللي اختارها (plan / intent) بس — ما يقدر يفعّل نفسه.
+// • لوحة المشترك (merchants/{uid}) ما يكتب فيها إلا سند من الخادم (Admin SDK يتجاوز القواعد).
 // • التقارير والحركة اليومية تنقرأ فقط إذا الاشتراك مفعّل (active == true).
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -12,8 +13,11 @@ service cloud.firestore {
         || request.auth.token.firebase.sign_in_provider == 'google.com');
     }
     function isOwner(uid) { return verified() && request.auth.uid == uid; }
+    function validChoice(d) {
+      return d.plan in ['stores', 'social'] && d.intent in ['trial', 'subscribe'];
+    }
 
-    // تسجيل الزائر (عميل محتمل): ينشئ ملفه مرة وحدة، بحقول محددة فقط.
+    // ملف الزائر: ينشئه مرة وحدة بحقول محددة، وبعدها يقدر يحدّث اختيار الباقة فقط.
     match /profiles/{uid} {
       allow read: if isOwner(uid);
       allow create: if isOwner(uid)
@@ -22,7 +26,11 @@ service cloud.firestore {
         && request.resource.data.name is string && request.resource.data.name.size() <= 60
         && request.resource.data.provider is string && request.resource.data.provider.size() <= 30
         && request.resource.data.createdAt == request.time;
-      allow update, delete: if false;
+      allow update: if isOwner(uid)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['plan', 'intent', 'chosenAt'])
+        && validChoice(request.resource.data)
+        && request.resource.data.chosenAt == request.time;
+      allow delete: if false;
     }
 
     // بيانات المشترك: قراءة فقط لصاحبها، والكتابة من الخادم فقط.

@@ -81,13 +81,24 @@
     </div>
   </div>
 
-  <!-- signed in, not activated -->
-  <div id="v-pending" class="auth hidden">
-    <div class="auth-card">
-      <span class="pill wait">بانتظار تفعيل الاشتراك</span>
-      <h1 style="margin-top:12px">حسابك جاهز</h1>
-      <p class="sub">تفتح لوحتك بعد تفعيل اشتراكك. أرسل لنا في الواتساب وفيه بريدك عشان نربطه باشتراكك.</p>
-      <a id="p-wa" class="btn btn-wa w100" href="https://wa.me/966566566977">فعّل اشتراكي عبر الواتساب</a>
+  <!-- signed in, not activated: choose plan → WhatsApp -->
+  <div id="v-choose" class="auth hidden">
+    <div class="auth-card" style="max-width:520px">
+      <span class="pill wait" id="c-state">أهلاً بك</span>
+      <h1 style="margin-top:12px">اختر باقتك</h1>
+      <p class="sub">اختر الباقة وطريقة البدء، وبعدها نكمل مع سند في الواتساب لتجهيز حسابك.</p>
+      <div class="choice" role="radiogroup" aria-label="الباقة">
+        <label class="opt"><input type="radio" name="plan" value="stores"><span><b>باقة المتاجر</b><small>لمتاجر سلة وزد · 260 ريال شهرياً بدل 390</small></span></label>
+        <label class="opt"><input type="radio" name="plan" value="social"><span><b>باقة البائع الاجتماعي</b><small>انستقرام وتيك توك وإعلانات قوقل · 195 ريال شهرياً بدل 290</small></span></label>
+      </div>
+      <div class="choice two" role="radiogroup" aria-label="طريقة البدء">
+        <label class="opt"><input type="radio" name="intent" value="trial" checked><span><b>جربني 7 أيام مجاناً</b></span></label>
+        <label class="opt"><input type="radio" name="intent" value="subscribe"><span><b>اشترك الحين</b></span></label>
+      </div>
+      <p class="fine">سعر الإطلاق لأول 30 عميل.</p>
+      <button id="c-go" class="btn btn-wa btn-lg w100" type="button">كمّل مع سند في الواتساب</button>
+      <p id="c-err" class="err" role="alert"></p>
+      <p class="fine" style="margin-top:10px">رمز حسابك: <b id="c-code" dir="ltr">—</b></p>
     </div>
   </div>
 

@@ -246,3 +246,13 @@ footer nav a{color:var(--ink2);font-weight:600}
 .price s.old{color:var(--dim);font-size:22px;font-weight:600;text-decoration-thickness:2px;text-decoration-color:rgba(236,72,153,.7)}
 .launch{margin:-8px 0 16px;font-size:13.5px;font-weight:700;color:#BE185D;background:rgba(253,242,248,.85);border:1px solid rgba(236,72,153,.2);border-radius:12px;padding:6px 12px;align-self:flex-start}
 .grad-text{font-style:normal;background:linear-gradient(90deg,#EC4899,#A855F7 55%,#FB923C);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* اختيار الباقة بعد الدخول */
+.choice{display:grid;gap:10px;margin:0 0 14px}
+.choice.two{grid-template-columns:1fr 1fr}
+@media (max-width:460px){.choice.two{grid-template-columns:1fr}}
+.choice .opt{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid #E2E8F0;border-radius:16px;background:rgba(255,255,255,.8);cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.choice .opt:has(input:checked){border-color:#A855F7;box-shadow:0 0 0 3px rgba(168,85,247,.15)}
+.choice .opt input{margin-top:4px;accent-color:#A855F7}
+.choice .opt span{display:grid;gap:2px}
+.choice .opt small{color:var(--mute);font-size:13px}
