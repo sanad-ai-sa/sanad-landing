@@ -47,6 +47,18 @@ service cloud.firestore {
       }
     }
 
+    // موافقات سلة: صفحة salla/callback تضيف {code, state, at} فقط. لا قراءة ولا تعديل ولا حذف من المتصفح.
+    // مسؤول المفاتيح على جهاز المالك يقرأها ويحذفها بحساب خدمة (يتجاوز القواعد).
+    match /salla_auth/{id} {
+      allow create: if request.resource.data.keys().hasOnly(['code', 'state', 'at'])
+        && request.resource.data.code is string
+        && request.resource.data.code.matches('^[A-Za-z0-9._~-]{8,512}$')
+        && request.resource.data.state is string
+        && request.resource.data.state.matches('^[a-z0-9_-]{8,128}$')
+        && request.resource.data.at == request.time;
+      allow read, update, delete: if false;
+    }
+
     // أي شي ثاني ممنوع.
     match /{document=**} {
       allow read, write: if false;
