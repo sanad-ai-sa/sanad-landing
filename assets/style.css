@@ -219,6 +219,8 @@ footer nav a{color:var(--ink2);font-weight:600}
 .or::before,.or::after{content:"";height:1px;background:var(--hair);flex:1}
 .btn-google{width:100%;background:#fff;color:#1F1F1F;border-color:#E2E8F0;box-shadow:0 6px 16px -10px rgba(30,27,75,.3)}
 .btn-google::after{display:none}
+.btn-facebook{width:100%;margin-top:10px;background:#1877F2;color:#fff;border-color:#1877F2;box-shadow:0 6px 16px -10px rgba(24,119,242,.6)}
+.btn-facebook::after{display:none}
 .w100{width:100%}
 .err{color:#E11D48;font-size:14px;min-height:1.4em;margin:8px 0 0}
 .ok{color:var(--green2);font-size:14px}

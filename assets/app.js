@@ -9,7 +9,6 @@ const show = (id) => views.forEach((v) => $(v).classList.toggle("hidden", v !== 
 const WA = "966566566977";
 const Q = new URLSearchParams(location.search);
 const PLANS = { stores: "باقة المتاجر", social: "باقة البائع الاجتماعي" };
-const INTENTS = { trial: "أجرب", subscribe: "أشترك في" };
 const accountCode = (uid) => "SND-" + String(uid).replace(/[^A-Za-z0-9]/g, "").slice(0, 6).toUpperCase();
 const num = (v) => (typeof v === "number" && isFinite(v) ? new Intl.NumberFormat("ar-SA-u-nu-latn").format(v) : "—");
 const txt = (el, v) => { el.textContent = v == null || v === "" ? "—" : String(v); };
@@ -24,6 +23,8 @@ const AR = {
   "auth/too-many-requests": "محاولات كثيرة. انتظر شوي وحاول مرة ثانية.",
   "auth/popup-closed-by-user": "تم إغلاق نافذة قوقل قبل إكمال الدخول.",
   "auth/network-request-failed": "تأكد من اتصالك بالإنترنت.",
+  "auth/account-exists-with-different-credential": "بريدك مسجل عندنا بطريقة ثانية. ادخل بقوقل أو بالبريد.",
+  "fb/no-email": "حساب فيسبوك هذا ما فيه بريد إلكتروني. ادخل بقوقل أو بالبريد.",
   "auth/unauthorized-domain": "هذا النطاق غير مصرّح له بالدخول بعد.",
 };
 const errText = (e) => AR[e && e.code] || "ما قدرنا نكمل الطلب. حاول مرة ثانية.";
@@ -64,6 +65,17 @@ async function start() {
     $("a-err").textContent = "";
     const p = new A.GoogleAuthProvider();
     p.setCustomParameters({ prompt: "select_account" });
+    try { await A.signInWithPopup(auth, p); }
+    catch (e) {
+      if (e.code === "auth/popup-blocked" || e.code === "auth/operation-not-supported-in-this-environment") await A.signInWithRedirect(auth, p);
+      else $("a-err").textContent = errText(e);
+    }
+  };
+
+  $("f-btn").onclick = async () => {
+    $("a-err").textContent = "";
+    const p = new A.FacebookAuthProvider();
+    p.addScope("email");
     try { await A.signInWithPopup(auth, p); }
     catch (e) {
       if (e.code === "auth/popup-blocked" || e.code === "auth/operation-not-supported-in-this-environment") await A.signInWithRedirect(auth, p);
@@ -116,7 +128,9 @@ async function start() {
     $("signout").classList.toggle("hidden", !u);
     if (!u) { setMode("in"); return show("v-auth"); }
     txt($("who"), u.email);
-    if (!u.emailVerified) { txt($("v-email"), u.email); return show("v-verify"); }
+    const prov = (u.providerData[0] && u.providerData[0].providerId) || "password";
+    if (prov === "facebook.com" && !u.email) { await A.signOut(auth); setTimeout(() => { $("a-err").textContent = AR["fb/no-email"]; }, 300); return; }
+    if (prov === "password" && !u.emailVerified) { txt($("v-email"), u.email); return show("v-verify"); }
     show("v-loading");
     try {
       const prof = await ensureProfile(u);
@@ -150,20 +164,18 @@ async function start() {
     $("c-code").textContent = code;
     const first = String(u.displayName || (prof && prof.name) || "").trim().split(/\s+/)[0];
     $("c-state").textContent = prof && prof.plan ? "اخترت " + (PLANS[prof.plan] || "باقة") + " · بانتظار التفعيل" : (first ? "أهلاً " + first : "أهلاً بك");
-    const want = { plan: Q.get("plan") || (prof && prof.plan), intent: Q.get("intent") || (prof && prof.intent) };
-    document.querySelectorAll('#v-choose input[name="plan"]').forEach((r) => { r.checked = r.value === want.plan; });
-    document.querySelectorAll('#v-choose input[name="intent"]').forEach((r) => { r.checked = r.value === (want.intent === "subscribe" ? "subscribe" : "trial"); });
+    const want = Q.get("plan") || (prof && prof.plan);
+    document.querySelectorAll('#v-choose input[name="plan"]').forEach((r) => { r.checked = r.value === want; });
     $("c-err").textContent = "";
     $("c-go").onclick = async () => {
       const plan = (document.querySelector('#v-choose input[name="plan"]:checked') || {}).value;
-      const intent = (document.querySelector('#v-choose input[name="intent"]:checked') || {}).value || "trial";
       if (!PLANS[plan]) return ($("c-err").textContent = "اختر الباقة أولاً.");
       $("c-go").disabled = true;
       try {
-        await F.updateDoc(F.doc(db, "profiles", u.uid), { plan, intent, chosenAt: F.serverTimestamp() });
+        await F.updateDoc(F.doc(db, "profiles", u.uid), { plan, intent: "subscribe", chosenAt: F.serverTimestamp() });
       } catch (e) { console.warn("profile choice not saved", e && e.code); }   // ما يوقف التحويل للواتساب
       const name = String(u.displayName || (prof && prof.name) || "").slice(0, 60);
-      const msg = "السلام عليكم، أبغى " + INTENTS[intent] + " " + PLANS[plan] + (intent === "trial" ? " (7 أيام مجاناً)" : "") + "."
+      const msg = "السلام عليكم، أبغى أشترك في " + PLANS[plan] + "."
         + (name ? "\nاسمي: " + name : "") + "\nبريدي: " + u.email + "\nرمز حسابي: " + code;
       location.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg);
       setTimeout(() => { $("c-go").disabled = false; }, 4000);
